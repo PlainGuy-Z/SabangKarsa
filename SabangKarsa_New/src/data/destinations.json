@@ -1,0 +1,426 @@
+{
+  "en": [
+    {
+      "id": 1,
+      "name": "Iboih Beach",
+      "description": "A beach with clear water and beautiful coral reefs. The best snorkeling destination in Sabang with amazing underwater beauty.",      
+      "image": "/assets/destinasi/destinations/pantai-iboih/pantaiiboih-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/pantai-iboih/pantaiiboih-1.webp",
+        "/assets/destinasi/destinations/pantai-iboih/pantaiiboih-2.webp",
+        "/assets/destinasi/destinations/pantai-iboih/pantaiiboih-3.webp",
+        "/assets/destinasi/destinations/pantai-iboih/pantaiiboih-4.webp"
+      ],
+      "rating": 4.8,
+      "price": "Free",
+      "category": "Beach",
+      "location": "Iboih, Sukakarya, Sabang, Aceh",
+      "openTime": "24 Hours",
+      "visitors": "500+ visitors/day",
+      "facilities": ["Snorkeling", "Diving", "Restaurant", "Toilet", "Parking"],
+      "detailDescription": "Iboih Beach is a hidden paradise on the western tip of Indonesia. With crystal-clear seawater and well-preserved coral reefs, this beach offers unforgettable snorkeling and diving experiences. The diverse marine life, ranging from colorful tropical fish to exotic coral reefs, makes Iboih Beach one of the best diving spots in Indonesia. The beach is also equipped with adequate facilities for tourists, including snorkeling equipment rentals, seafood restaurants, and a spacious parking area.",      
+      "map":"https://maps.app.goo.gl/2h2LcSzAcGxHduH97"
+    },
+    {
+      "id": 2,
+      "name": "Sarang Cave",
+      "description": "A cave with amazing stalactites and stalagmites. An adventure inside the earth that offers the wonders of natural rock formations.",      
+      "image": "/assets/destinasi/destinations/gua-sarang/wisataguasarang-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/gua-sarang/wisataguasarang-1.webp",
+        "/assets/destinasi/destinations/gua-sarang/wisataguasarang-2.webp",
+        "/assets/destinasi/destinations/gua-sarang/wisataguasarang-3.webp",
+        "/assets/destinasi/destinations/gua-sarang/wisataguasarang-4.webp"
+      ],
+      "rating": 4.7,
+      "price": "Rp 10.000",
+      "category": "Cave",
+      "location": "Iboih, Sukakarya, Sabang, Aceh",
+      "openTime": "08:00 - 19:00",
+      "visitors": "200+ visitors/day",
+      "facilities": ["Guide", "Lights", "Safe Path", "Toilet"],
+      "detailDescription": "Sarang Cave is a hidden natural wonder in Sabang. With stalactite and stalagmite formations that have been formed over thousands of years, this cave offers a unique adventure experience. Inside the cave, you will see various amazing rock formations and hear historical stories from local guides. The cave has a cool temperature and is perfect to visit during hot weather.",      
+      "map":"https://maps.app.goo.gl/YdsiNygxDobPTRyF7"
+    },
+    {
+      "id": 3,
+      "name": "Sumur Tiga Beach",
+      "description": "A beach with unique rock formations and waterfalls. Exotic natural beauty with stunning panoramic views.",      
+      "image": "/assets/destinasi/destinations/sumur-tiga/pantaisumurtiga-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/sumur-tiga/pantaisumurtiga-1.webp",
+        "/assets/destinasi/destinations/sumur-tiga/pantaisumurtiga-2.webp",
+        "/assets/destinasi/destinations/sumur-tiga/pantaisumurtiga-3.webp",
+        "/assets/destinasi/destinations/sumur-tiga/pantaisumurtiga-4.webp"
+      ],
+      "rating": 4.9,
+      "price": "Free",
+      "category": "Beach",
+      "location": "Ie Meulee, Sukajaya, Sabang, Aceh",
+      "openTime": "24 Hours",
+      "visitors": "300+ visitors/day",
+      "facilities": ["Waterfall", "Unique Rocks", "Photography", "Hiking"],
+      "detailDescription": "Sumur Tiga Beach is a unique destination that combines the beauty of the beach with a natural waterfall. The unique volcanic rock formations create a very Instagram-worthy view. The waterfall flowing directly into the sea creates a natural phenomenon rarely found elsewhere. This beach is very popular for photography and offers a stunning sunset view.",
+      "map":"https://maps.app.goo.gl/NTb5P8uojJKjZyRU7"
+    },
+    {
+      "id": 4,
+      "name": "Aneuk Laot Lake",
+      "description": "A freshwater lake in the middle of the island with stunning natural scenery and a calm and peaceful atmosphere.",
+      "image": "/assets/destinasi/destinations/aneuk-laot/aneuklaot-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/aneuk-laot/aneuklaot-1.webp",
+        "/assets/destinasi/destinations/aneuk-laot/aneuklaot-2.webp",
+        "/assets/destinasi/destinations/aneuk-laot/aneuklaot-3.webp",
+        "/assets/destinasi/destinations/aneuk-laot/aneuklaot-4.webp"
+      ],
+      "rating": 4.6,
+      "price": "Free",
+      "category": "Lake",
+      "location": "Aneuk Laot Lake, Sukakarya, Sabang, Aceh",
+      "openTime": "24 Hours",
+      "visitors": "150+ visitors/day",
+      "facilities": ["Picnic Area", "Walking Trail", "Photography", "Parking Area"],
+      "detailDescription": "Lake Aneuk Laot is an oasis of tranquility in the middle of Weh Island. Surrounded by green vegetation and mountain views, this lake offers a peaceful atmosphere that is ideal for relaxation and family picnics. Its clear waters reflect the blue sky, creating a beautiful backdrop for photography. The walking trails around the lake allow visitors to enjoy the natural beauty while taking a leisurely stroll.",
+      "map":"https://maps.app.goo.gl/WRPQDHoursefWgqCKj7"
+    },
+    {
+      "id": 5,
+      "name": "Anoi Itam Fort",
+      "description": "A historic fort with beautiful sea views and high historical value from the Dutch colonial era.",
+      "image": "/assets/destinasi/destinations/benteng-anoi-itam/bentenganoiitem-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/benteng-anoi-itam/bentenganoiitem-1.webp",
+        "/assets/destinasi/destinations/benteng-anoi-itam/bentenganoiitem-2.webp",
+        "/assets/destinasi/destinations/benteng-anoi-itam/bentenganoiitem-3.webp",
+        "/assets/destinasi/destinations/benteng-anoi-itam/bentenganoiitem-4.webp"
+      ],
+      "rating": 4.5,
+      "price": "Rp 5.000",
+      "category": "History",
+      "location": "Ujong Kareung, Sukajaya, Sabang, Aceh",
+      "openTime": "08:00 - 19:00",
+      "visitors": "100+ visitors/day",
+      "facilities": ["Historical Guide", "Photo Area", "Toilet", "Parking"],
+      "detailDescription": "Anoi Itam Fort is a historical site built during the Dutch colonial period. Located on the coast, this fort offers stunning sea views and insights into the history of Sabang. Visitors can explore the ancient stone structures and hear stories about the fort's role in past trade and defense. This place is perfect for history and photography enthusiasts.",
+      "map":"https://maps.app.goo.gl/auKndQnSLsmgb7QX8"
+    },
+    {
+      "id": 6,
+      "name": "Kilometer 0 Monument",
+      "description": "An iconic monument marking the westernmost point of Indonesia. A must-visit historical landmark in Sabang.",
+      "image": "/assets/destinasi/destinations/tugu-km0/tugu0km-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/tugu-km0/tugu0km-1.webp",
+        "/assets/destinasi/destinations/tugu-km0/tugu0km-2.webp",
+        "/assets/destinasi/destinations/tugu-km0/tugu0km-3.webp",
+        "/assets/destinasi/destinations/tugu-km0/tugu0km-4.webp"
+      ],
+      "rating": 4.8,
+      "price": "Free",
+      "category": "Monument",
+      "location": "Iboih, Sukakarya, Sabang, Aceh",
+      "openTime": "24 Hours",
+      "visitors": "400+ visitors/day",
+      "facilities": ["Photo Area", "Information Board", "Parking", "Toilet"],
+      "detailDescription": "Kilometer 0 Monument marks the westernmost point of Indonesia, making it an iconic landmark in Sabang. This monument attracts thousands of visitors who wish to take photos at Indonesia's geographical zero point. Surrounded by vast ocean and sky views, this is a must-visit spot to experience national pride and enjoy the beautiful natural scenery.",
+      "map":"https://maps.app.goo.gl/uBEWmPx9mpHJF8Zi8"
+    },
+    {
+      "id": 7,
+      "name": "Rubiah Island",
+      "description": "A small island with extraordinary underwater life. A snorkeling and diving paradise with well-preserved coral reefs.",
+      "image": "/assets/destinasi/destinations/pulau-rubiah/pulaurubiah-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/pulau-rubiah/pulaurubiah-1.webp",
+        "/assets/destinasi/destinations/pulau-rubiah/pulaurubiah-2.webp",
+        "/assets/destinasi/destinations/pulau-rubiah/pulaurubiah-3.webp",
+        "/assets/destinasi/destinations/pulau-rubiah/pulaurubiah-4.webp"
+      ],
+      "rating": 4.9,
+      "price": "Rp 15.000",
+      "category": "Island",
+      "location": "Weh Island, Sabang, Aceh",
+      "openTime": "24 Hours",
+      "visitors": "350+ visitors/day",
+      "facilities": ["Snorkeling", "Diving", "Boat Rental", "Food Stall"],
+      "detailDescription": "Rubiah Island is a top destination for snorkeling and diving enthusiasts. This small island is surrounded by pristine coral reefs and diverse marine life, including clownfish, stingrays, and sea turtles. Visitors can rent a boat to reach the island and enjoy water activities with local guides. The island also offers a peaceful atmosphere away from the crowds.",
+      "map":"https://maps.app.goo.gl/RRbrEh4hBNX7hxBk6"
+    },
+    {
+      "id": 8,
+      "name": "Pria Laot Waterfall",
+      "description": "A hidden waterfall in the middle of a tropical forest. Natural beauty with the soothing sound of water.",
+      "image": "/assets/destinasi/destinations/pria-laot/prialaot-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/pria-laot/prialaot-1.webp",
+        "/assets/destinasi/destinations/pria-laot/prialaot-2.webp",
+        "/assets/destinasi/destinations/pria-laot/prialaot-3.webp",
+        "/assets/destinasi/destinations/pria-laot/prialaot-4.webp"
+      ],
+      "rating": 4.7,
+      "price": "Rp 5.000",
+      "category": "Waterfall",
+      "location": "Batee Shoek, Sukakarya, Sabang, Aceh",
+      "openTime": "08:00 - 17:00",
+      "visitors": "120+ visitors/day",
+      "facilities": ["Trekking Trail", "Photo Area", "Information Board", "Parking"],
+      "detailDescription": "Pria Laot Waterfall is a hidden gem in the middle of Sabang's tropical forest. This waterfall offers unspoiled natural scenery, with soothing sounds of water and fresh air. The trekking trail to the waterfall is fairly easy, making it a suitable destination for beginner adventurers. This place is ideal for photography and meditation in the midst of nature.",
+      "map":"https://maps.app.goo.gl/VKzKvzHdEJnYEuc48"
+    },
+    {
+      "id": 9,
+      "name": "Tapak Gajah Beach",
+      "description": "A beach with large rocks resembling elephant footprints. A unique formation that is a special attraction.",
+      "image": "/assets/destinasi/destinations/tapak-gajah/tapakgajah-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/tapak-gajah/tapakgajah-1.webp",
+        "/assets/destinasi/destinations/tapak-gajah/tapakgajah-2.webp",
+        "/assets/destinasi/destinations/tapak-gajah/tapakgajah-3.webp",
+        "/assets/destinasi/destinations/tapak-gajah/tapakgajah-4.webp"
+      ],
+      "rating": 4.4,
+      "price": "Free",
+      "category": "Beach",
+      "location": "Ie Meulee, Sukajaya, Sabang, Aceh",
+      "openTime": "24 Hours",
+      "visitors": "200+ visitors/day",
+      "facilities": ["Photography", "Picnic Area", "Toilet", "Parking"],
+      "detailDescription": "Tapak Gajah Beach is known for its large rock formations that resemble elephant footprints, creating a unique and interesting landscape. This beach offers a peaceful atmosphere with gentle waves, perfect for relaxing and taking photos. Visitors can enjoy the natural beauty while exploring the rocks that are the hallmark of this beach.",
+      "map":"https://maps.app.goo.gl/qa3w8UeHtYGaM8qk6"
+    },
+    {
+      "id": 10,
+      "name": "Anoi Itam Beach",
+      "description": "A beach with unique volcanic black sand. A different kind of beauty with an exotic sea view.",
+      "image": "/assets/destinasi/destinations/pantai-anoi-itam/pantaianoiitam-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/pantai-anoi-itam/pantaianoiitam-1.webp",
+        "/assets/destinasi/destinations/pantai-anoi-itam/pantaianoiitam-2.webp",
+        "/assets/destinasi/destinations/pantai-anoi-itam/pantaianoiitam-3.webp",
+        "/assets/destinasi/destinations/pantai-anoi-itam/pantaianoiitam-4.webp"
+      ],
+      "rating": 4.5,
+      "price": "Free",
+      "category": "Beach",
+      "location": "Anoe Itam, Sukajaya, Sabang, Aceh",
+      "openTime": "24 Hours",
+      "visitors": "220+ visitors/day",
+      "facilities": ["Photography", "Picnic Area", "Toilet", "Parking"],
+      "detailDescription": "Anoi Itam Beach stands out with its rare volcanic black sand, creating a beautiful contrast with the blue sea. This beach offers exotic views and a peaceful atmosphere, ideal for relaxing and taking photos. Close to Anoi Itam Fort, this place is also rich in historical and cultural value.",
+      "map":"https://maps.app.goo.gl/feeZ3RsrxjfnhEkN8"
+    }
+  ],
+  "id": [
+    {
+      "id": 1,
+      "name": "Pantai Iboih",
+      "description": "Pantai dengan air jernih dan terumbu karang yang indah. Destinasi snorkeling terbaik di Sabang dengan keindahan bawah laut yang menakjubkan.",
+      "image": "/assets/destinasi/destinations/pantai-iboih/pantaiiboih-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/pantai-iboih/pantaiiboih-1.webp",
+        "/assets/destinasi/destinations/pantai-iboih/pantaiiboih-2.webp",
+        "/assets/destinasi/destinations/pantai-iboih/pantaiiboih-3.webp",
+        "/assets/destinasi/destinations/pantai-iboih/pantaiiboih-4.webp"
+      ],
+      "rating": 4.8,
+      "price": "Gratis",
+      "category": "Pantai",
+      "location": "Iboih, Sukakarya, Sabang, Aceh",
+      "openTime": "24 Jam",
+      "visitors": "500+ pengunjung/hari",
+      "facilities": ["Snorkeling", "Diving", "Restoran", "Toilet", "Parkir"],
+      "detailDescription": "Pantai Iboih adalah surga tersembunyi di ujung barat Indonesia. Dengan air laut yang kristal jernih dan terumbu karang yang masih terjaga, pantai ini menawarkan pengalaman snorkeling dan diving yang tak terlupakan. Kehidupan bawah laut yang beragam, mulai dari ikan-ikan tropis berwarna-warni hingga terumbu karang yang eksotis, menjadikan Pantai Iboih sebagai salah satu spot diving terbaik di Indonesia. Pantai ini juga dilengkapi dengan fasilitas yang memadai untuk wisatawan, termasuk penyewaan alat snorkeling, restoran seafood, dan area parkir yang luas.",
+      "map":"https://maps.app.goo.gl/2h2LcSzAcGxHduH97"
+    },
+    {
+      "id": 2,
+      "name": "Gua Sarang",
+      "description": "Gua dengan stalaktit dan stalagmit yang menakjubkan. Petualangan di dalam bumi yang menawarkan keajaiban formasi batuan alami.",
+      "image": "/assets/destinasi/destinations/gua-sarang/wisataguasarang-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/gua-sarang/wisataguasarang-1.webp",
+        "/assets/destinasi/destinations/gua-sarang/wisataguasarang-2.webp",
+        "/assets/destinasi/destinations/gua-sarang/wisataguasarang-3.webp",
+        "/assets/destinasi/destinations/gua-sarang/wisataguasarang-4.webp"
+      ],
+      "rating": 4.7,
+      "price": "Rp 10.000",
+      "category": "Gua",
+      "location": "Iboih, Sukakarya, Sabang, Aceh",
+      "openTime": "08:00 - 19:00",
+      "visitors": "200+ pengunjung/hari",
+      "facilities": ["Pemandu", "Lampu", "Jalur Aman", "Toilet"],
+      "detailDescription": "Gua Sarang adalah keajaiban alam yang tersembunyi di Sabang. Dengan formasi stalaktit dan stalagmit yang terbentuk selama ribuan tahun, gua ini menawarkan pengalaman petualangan yang unik. Di dalam gua, Anda akan melihat berbagai formasi batuan yang menakjubkan dan mendengar cerita sejarah dari pemandu lokal. Gua ini memiliki suhu yang sejuk dan cocok dikunjungi saat cuaca panas.",
+      "map":"https://maps.app.goo.gl/YdsiNygxDobPTRyF7"
+    },
+    {
+      "id": 3,
+      "name": "Pantai Sumur Tiga",
+      "description": "Pantai dengan formasi bebatuan unik dan air terjun. Keindahan alam yang eksotis dengan panorama yang memukau.",
+      "image": "/assets/destinasi/destinations/sumur-tiga/pantaisumurtiga-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/sumur-tiga/pantaisumurtiga-1.webp",
+        "/assets/destinasi/destinations/sumur-tiga/pantaisumurtiga-2.webp",
+        "/assets/destinasi/destinations/sumur-tiga/pantaisumurtiga-3.webp",
+        "/assets/destinasi/destinations/sumur-tiga/pantaisumurtiga-4.webp"
+      ],
+      "rating": 4.9,
+      "price": "Gratis",
+      "category": "Pantai",
+      "location": "Ie Meulee, Sukajaya, Sabang, Aceh",
+      "openTime": "24 Jam",
+      "visitors": "300+ pengunjung/hari",
+      "facilities": ["Air Terjun", "Bebatuan Unik", "Fotografi", "Hiking"],
+      "detailDescription": "Pantai Sumur Tiga adalah destinasi unik yang menggabungkan keindahan pantai dengan air terjun alami. Formasi bebatuan vulkanik yang unik menciptakan pemandangan yang sangat instagramable. Air terjun yang mengalir langsung ke laut menciptakan fenomena alam yang jarang ditemukan di tempat lain. Pantai ini sangat populer untuk fotografi dan menjadi spot sunset yang menakjubkan.",
+      "map":"https://maps.app.goo.gl/NTb5P8uojJKjZyRU7"
+    },
+    {
+      "id": 4,
+      "name": "Danau Aneuk Laot",
+      "description": "Danau air tawar di tengah pulau dengan pemandangan alam yang memukau dan suasana yang tenang dan damai.",
+      "image": "/assets/destinasi/destinations/aneuk-laot/aneuklaot-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/aneuk-laot/aneuklaot-1.webp",
+        "/assets/destinasi/destinations/aneuk-laot/aneuklaot-2.webp",
+        "/assets/destinasi/destinations/aneuk-laot/aneuklaot-3.webp",
+        "/assets/destinasi/destinations/aneuk-laot/aneuklaot-4.webp"
+      ],
+      "rating": 4.6,
+      "price": "Gratis",
+      "category": "Danau",
+      "location": "Danau Aneuk Laot, Sukakarya, Sabang, Aceh",
+      "openTime": "24 Jam",
+      "visitors": "150+ pengunjung/hari",
+      "facilities": ["Area Piknik", "Jalur Pejalan Kaki", "Fotografi", "Area Parkir"],
+      "detailDescription": "Danau Aneuk Laot adalah oase ketenangan di tengah Pulau Weh. Dikelilingi oleh vegetasi hijau dan pemandangan pegunungan, danau ini menawarkan suasana damai yang ideal untuk relaksasi dan piknik keluarga. Airnya yang jernih mencerminkan langit biru, menciptakan pemandangan yang indah untuk fotografi. Jalur pejalan kaki di sekitar danau memungkinkan pengunjung untuk menikmati keindahan alam sambil berjalan santai.",
+      "map":"https://maps.app.goo.gl/WRPQDjAMefWgqCKj7"
+    },
+    {
+      "id": 5,
+      "name": "Benteng Anoi Itam",
+      "description": "Benteng bersejarah dengan pemandangan laut yang indah dan nilai sejarah tinggi dari era kolonial Belanda.",
+      "image": "/assets/destinasi/destinations/benteng-anoi-itam/bentenganoiitem-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/benteng-anoi-itam/bentenganoiitem-1.webp",
+        "/assets/destinasi/destinations/benteng-anoi-itam/bentenganoiitem-2.webp",
+        "/assets/destinasi/destinations/benteng-anoi-itam/bentenganoiitem-3.webp",
+        "/assets/destinasi/destinations/benteng-anoi-itam/bentenganoiitem-4.webp"
+      ],
+      "rating": 4.5,
+      "price": "Rp 5.000",
+      "category": "Sejarah",
+      "location": "Ujong Kareung, Sukajaya, Sabang, Aceh",
+      "openTime": "08:00 - 19:00",
+      "visitors": "100+ pengunjung/hari",
+      "facilities": ["Pemandu Sejarah", "Area Foto", "Toilet", "Parkir"],
+      "detailDescription": "Benteng Anoi Itam adalah situs bersejarah yang dibangun pada masa kolonial Belanda. Terletak di tepi pantai, benteng ini menawarkan pemandangan laut yang menakjubkan serta wawasan tentang sejarah Sabang. Pengunjung dapat menjelajahi struktur batu kuno dan mendengar cerita tentang peran benteng ini dalam perdagangan dan pertahanan masa lalu. Tempat ini cocok untuk pecinta sejarah dan fotografi.",
+      "map":"https://maps.app.goo.gl/auKndQnSLsmgb7QX8"
+    },
+    {
+      "id": 6,
+      "name": "Tugu Kilometer 0",
+      "description": "Monumen titik paling barat Indonesia yang ikonik. Landmark bersejarah Sabang yang wajib dikunjungi.",
+      "image": "/assets/destinasi/destinations/tugu-km0/tugu0km-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/tugu-km0/tugu0km-1.webp",
+        "/assets/destinasi/destinations/tugu-km0/tugu0km-2.webp",
+        "/assets/destinasi/destinations/tugu-km0/tugu0km-3.webp",
+        "/assets/destinasi/destinations/tugu-km0/tugu0km-4.webp"
+      ],
+      "rating": 4.8,
+      "price": "Gratis",
+      "category": "Monumen",
+      "location": "Iboih, Sukakarya, Sabang, Aceh",
+      "openTime": "24 Jam",
+      "visitors": "400+ pengunjung/hari",
+      "facilities": ["Area Foto", "Papan Informasi", "Parkir", "Toilet"],
+      "detailDescription": "Tugu Kilometer 0 menandai titik paling barat Indonesia, menjadikannya landmark ikonik di Sabang. Monumen ini menarik ribuan pengunjung yang ingin berfoto di titik nol geografis Indonesia. Dikelilingi oleh pemandangan laut dan langit yang luas, tempat ini adalah spot wajib untuk merasakan kebanggaan nasional dan menikmati panorama alam yang indah.",
+      "map":"https://maps.app.goo.gl/uBEWmPx9mpHJF8Zi8"
+    },
+    {
+      "id": 7,
+      "name": "Pulau Rubiah",
+      "description": "Pulau kecil dengan kehidupan bawah laut yang luar biasa. Surga snorkeling dan diving dengan terumbu karang yang masih terjaga.",
+      "image": "/assets/destinasi/destinations/pulau-rubiah/pulaurubiah-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/pulau-rubiah/pulaurubiah-1.webp",
+        "/assets/destinasi/destinations/pulau-rubiah/pulaurubiah-2.webp",
+        "/assets/destinasi/destinations/pulau-rubiah/pulaurubiah-3.webp",
+        "/assets/destinasi/destinations/pulau-rubiah/pulaurubiah-4.webp"
+      ],
+      "rating": 4.9,
+      "price": "Rp 15.000",
+      "category": "Pulau",
+      "location": "Pulau Weh, Sabang, Aceh",
+      "openTime": "24 Jam",
+      "visitors": "350+ pengunjung/hari",
+      "facilities": ["Snorkeling", "Diving", "Penyewaan Perahu", "Warung Makan"],
+      "detailDescription": "Pulau Rubiah adalah destinasi utama untuk pecinta snorkeling dan diving. Pulau kecil ini dikelilingi oleh terumbu karang yang masih alami dan kehidupan laut yang beragam, termasuk ikan badut, pari, dan penyu. Pengunjung dapat menyewa perahu untuk mencapai pulau dan menikmati aktivitas air dengan panduan lokal. Pulau ini juga menawarkan suasana yang tenang dan jauh dari keramaian.",
+      "map":"https://maps.app.goo.gl/RRbrEh4hBNX7hxBk6"
+    },
+    {
+      "id": 8,
+      "name": "Air Terjun Pria Laot",
+      "description": "Air terjun tersembunyi di tengah hutan tropis. Keindahan alam yang masih alami dengan suara gemericik air yang menenangkan.",
+      "image": "/assets/destinasi/destinations/pria-laot/prialaot-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/pria-laot/prialaot-1.webp",
+        "/assets/destinasi/destinations/pria-laot/prialaot-2.webp",
+        "/assets/destinasi/destinations/pria-laot/prialaot-3.webp",
+        "/assets/destinasi/destinations/pria-laot/prialaot-4.webp"
+      ],
+      "rating": 4.7,
+      "price": "Rp 5.000",
+      "category": "Air Terjun",
+      "location": "Batee Shoek, Sukakarya, Sabang, Aceh",
+      "openTime": "08:00 - 17:00",
+      "visitors": "120+ pengunjung/hari",
+      "facilities": ["Jalur Trekking", "Area Foto", "Papan Informasi", "Parkir"],
+      "detailDescription": "Air Terjun Pria Laot adalah permata tersembunyi di tengah hutan tropis Sabang. Air terjun ini menawarkan pemandangan alam yang masih alami, dengan suara air yang menenangkan dan udara segar. Jalur trekking menuju air terjun cukup mudah, menjadikannya destinasi yang cocok untuk petualang pemula. Tempat ini ideal untuk fotografi dan meditasi di tengah alam.",
+      "map":"https://maps.app.goo.gl/VKzKvzHdEJnYEuc48"
+    },
+    {
+      "id": 9,
+      "name": "Pantai Tapak Gajah",
+      "description": "Pantai dengan bebatuan besar yang menyerupai tapak gajah. Formasi unik yang menjadi daya tarik tersendiri.",
+      "image": "/assets/destinasi/destinations/tapak-gajah/tapakgajah-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/tapak-gajah/tapakgajah-1.webp",
+        "/assets/destinasi/destinations/tapak-gajah/tapakgajah-2.webp",
+        "/assets/destinasi/destinations/tapak-gajah/tapakgajah-3.webp",
+        "/assets/destinasi/destinations/tapak-gajah/tapakgajah-4.webp"
+      ],
+      "rating": 4.4,
+      "price": "Gratis",
+      "category": "Pantai",
+      "location": "Ie Meulee, Sukajaya, Sabang, Aceh",
+      "openTime": "24 Jam",
+      "visitors": "200+ pengunjung/hari",
+      "facilities": ["Fotografi", "Area Piknik", "Toilet", "Parkir"],
+      "detailDescription": "Pantai Tapak Gajah dikenal karena formasi bebatuan besar yang menyerupai jejak gajah, menciptakan pemandangan yang unik dan menarik. Pantai ini menawarkan suasana tenang dengan ombak yang lembut, cocok untuk bersantai dan berfoto. Pengunjung dapat menikmati keindahan alam sambil menjelajahi bebatuan yang menjadi ciri khas pantai ini.",
+      "map":"https://maps.app.goo.gl/qa3w8UeHtYGaM8qk6"
+    },
+    {
+      "id": 10,
+      "name": "Pantai Anoi Itam",
+      "description": "Pantai dengan pasir hitam vulkanik yang unik. Keindahan yang berbeda dengan pemandangan laut yang eksotis.",
+      "image": "/assets/destinasi/destinations/pantai-anoi-itam/pantaianoiitam-1.webp",
+      "gallery": [
+        "/assets/destinasi/destinations/pantai-anoi-itam/pantaianoiitam-1.webp",
+        "/assets/destinasi/destinations/pantai-anoi-itam/pantaianoiitam-2.webp",
+        "/assets/destinasi/destinations/pantai-anoi-itam/pantaianoiitam-3.webp",
+        "/assets/destinasi/destinations/pantai-anoi-itam/pantaianoiitam-4.webp"
+      ],
+      "rating": 4.5,
+      "price": "Gratis",
+      "category": "Pantai",
+      "location": "Anoe Itam, Sukajaya, Sabang, Aceh",
+      "openTime": "24 Jam",
+      "visitors": "220+ pengunjung/hari",
+      "facilities": ["Fotografi", "Area Piknik", "Toilet", "Parkir"],
+      "detailDescription": "Pantai Anoi Itam menonjol dengan pasir hitam vulkaniknya yang langka, menciptakan kontras indah dengan air laut biru. Pantai ini menawarkan pemandangan eksotis dan suasana tenang, ideal untuk bersantai dan berfoto. Dekat dengan Benteng Anoi Itam, tempat ini juga kaya akan nilai sejarah dan budaya.",
+      "map":"https://maps.app.goo.gl/feeZ3RsrxjfnhEkN8"
+    }
+  ]
+}

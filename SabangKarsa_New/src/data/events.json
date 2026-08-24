@@ -1,0 +1,216 @@
+{
+  "en": [
+    {
+      "id": 1,
+      "name": "Sabang City Tourism Ambassador Election 2025",
+      "description": "The annual event to select Sabang tourism ambassadors with the Grand Final at Sabang Fair.",
+      "image": "/assets/destinasi/events/pp25/pp25-1.webp",
+      "gallery": [
+        "/assets/destinasi/events/pp25/pp25-1.webp",
+        "/assets/destinasi/events/pp25/pp25-2.webp",
+        "/assets/destinasi/events/pp25/pp25-3.webp",
+        "/assets/destinasi/events/pp25/pp25-4.webp"
+      ],
+      "date": "2025-07-05",
+      "time": "08:00 - 21:00",
+      "location": "Sabang Fair Open Stage & Sabang Mayor's Hall",
+      "category": "Tourism Ambassador Election",
+      "price": "Free",
+      "organizer": "Sabang City Tourism Office",
+      "contact": "dispar@sabangkota.go.id",
+      "rating": 4.7,
+      "detailDescription": "The Sabang Tourism Ambassador Election 2025 selects young generations as tourism ambassadors. After auditions and quarantine, Irfan Hidayatullah and Humaira were chosen as winners. They will play a role in promoting Sabang tourism at regional, national, and international levels."
+    },
+    {
+      "id": 2,
+      "name": "Sabang Marine Festival 2025 (TBD)",
+      "description": "A vibrant Sabang cultural and marine festival featuring sea parades, MSME exhibitions, and cultural attractions.",
+      "image": "/assets/destinasi/events/smf25/smf25-1.webp",
+      "gallery": [
+        "/assets/destinasi/events/smf25/smf25-1.webp",
+        "/assets/destinasi/events/smf25/smf25-2.webp",
+        "/assets/destinasi/events/smf25/smf25-3.webp",
+        "/assets/destinasi/events/smf25/smf25-4.webp"
+      ],
+      "date": "2025-03-01",
+      "time": "Morning - Night",
+      "location": "Menara Merah Putih, CT-1 & CT-3 Pier, Sabang Beach",
+      "category": "Cultural & Marine Festival",
+      "price": "Free",
+      "organizer": "Sabang Tourism Office, BPKS, Ministry of Tourism and Creative Economy",
+      "contact": "dispar@sabangkota.go.id",
+      "rating": 4.9,
+      "detailDescription": "The Sabang Marine Festival celebrates cultural and marine richness through ship parades, water sports competitions, traditional art performances, and beach clean-up activities. This event reinforces Sabang as a world-class marine tourism destination."
+    },
+    {
+      "id": 3,
+      "name": "Sabang Open Diving Festival 2022",
+      "description": "An open diving competition in Sabang for athletes and diving enthusiasts.",
+      "image": "/assets/destinasi/events/sodf22/sodf22-1.webp",
+      "gallery": [
+        "/assets/destinasi/events/sodf22/sodf22-1.webp",
+        "/assets/destinasi/events/sodf22/sodf22-2.webp",
+        "/assets/destinasi/events/sodf22/sodf22-3.webp",
+        "/assets/destinasi/events/sodf22/sodf22-4.webp"
+      ],
+      "date": "2022-11-19",
+      "time": "Not available",
+      "location": "Gapang Beach, Iboih Village, Sabang",
+      "category": "Water Sports Competition",
+      "price": "Not available",
+      "organizer": "Sabang City Tourism Office",
+      "contact": "sabangopendivingfestival@gmail.com",
+      "rating": 4.6,
+      "detailDescription": "The Sabang Open Diving Festival brings together divers from various regions with OBA 5 Point and Fin Swimming competition categories. Beyond the competition, this event promotes Sabang's underwater beauty as one of the best diving destinations."
+    },
+    {
+      "id": 4,
+      "name": "Sabang KOM - Tour de Sabang 2024",
+      "description": "A road bike racing event with a challenging route from Sabang Monument to Kilometer Zero.",
+      "image": "/assets/destinasi/events/tds24/tds24-1.webp",
+      "gallery": [
+        "/assets/destinasi/events/tds24/tds24-1.webp",
+        "/assets/destinasi/events/tds24/tds24-2.webp",
+        "/assets/destinasi/events/tds24/tds24-3.webp",
+        "/assets/destinasi/events/tds24/tds24-4.webp"
+      ],
+      "date": "2024-03-02",
+      "time": "07:00 - Finish",
+      "location": "Weh Island, Sabang",
+      "category": "Sports & Sport Tourism",
+      "price": "Free",
+      "organizer": "Aceh Road Bike Community (RBA), Sabang Tourism Office",
+      "contact": "info@rbaaceh.id",
+      "rating": 4.8,
+      "detailDescription": "Tour de Sabang covers a 31.9 km route with six participant categories. This event promotes sport tourism, boosts the local economy, and attracts domestic tourists to Sabang."
+    },
+    {
+      "id": 5,
+      "name": "Sabang City Anniversary",
+      "description": "The annual celebration of Sabang City's anniversary featuring traditional ceremonies, culinary festivals, and public entertainment.",
+      "image": "/assets/destinasi/events/hs/hs-1.webp",
+      "gallery": [
+        "/assets/destinasi/events/hs/hs-1.webp",
+        "/assets/destinasi/events/hs/hs-2.webp",
+        "/assets/destinasi/events/hs/hs-3.webp",
+        "/assets/destinasi/events/hs/hs-4.webp"
+      ],
+      "date": "2025-06-24",
+      "time": "Full day",
+      "location": "Sabang City",
+      "category": "Culture & Entertainment",
+      "price": "Free",
+      "organizer": "Sabang City Government",
+      "contact": "humas@sabangkota.go.id",
+      "rating": 4.9,
+      "detailDescription": "The Sabang City Anniversary celebration features traditional ceremonies, cultural performances, culinary festivals, and entertainment stages. The event serves as a platform for tourism promotion, cultural preservation, and community economic growth."
+    }
+  ],
+  "id": [
+    {
+      "id": 1,
+      "name": "Pemilihan Putra Putri Pariwisata Kota Sabang 2025",
+      "description": "Ajang tahunan pemilihan duta wisata Sabang dengan puncak acara Grand Final di Sabang Fair.",
+      "image": "/assets/destinasi/events/pp25/pp25-1.webp",
+      "gallery": [
+        "/assets/destinasi/events/pp25/pp25-1.webp",
+        "/assets/destinasi/events/pp25/pp25-2.webp",
+        "/assets/destinasi/events/pp25/pp25-3.webp",
+        "/assets/destinasi/events/pp25/pp25-4.webp"
+      ],
+      "date": "2025-07-05",
+      "time": "08:00 - 21:00",
+      "location": "Tribun Terbuka Sabang Fair & Aula Walikota Sabang",
+      "category": "Pemilihan Duta Wisata",
+      "price": "Gratis",
+      "organizer": "Dinas Pariwisata Kota Sabang",
+      "contact": "dispar@sabangkota.go.id",
+      "rating": 4.7,
+      "detailDescription": "Pemilihan Putra Putri Pariwisata Sabang 2025 memilih generasi muda sebagai duta wisata. Setelah melalui audisi dan karantina, Irfan Hidayatullah dan Humaira terpilih sebagai pemenang. Mereka akan berperan dalam promosi pariwisata Sabang di tingkat regional, nasional, hingga internasional."
+    },
+    {
+      "id": 2,
+      "name": "Sabang Marine Festival 2025 (TBD)",
+      "description": "Festival budaya dan bahari Sabang yang meriah dengan parade laut, pameran UMKM, dan atraksi budaya.",
+      "image": "/assets/destinasi/events/smf25/smf25-1.webp",
+      "gallery": [
+        "/assets/destinasi/events/smf25/smf25-1.webp",
+        "/assets/destinasi/events/smf25/smf25-2.webp",
+        "/assets/destinasi/events/smf25/smf25-3.webp",
+        "/assets/destinasi/events/smf25/smf25-4.webp"
+      ],
+      "date": "2025-03-01",
+      "time": "Pagi - Malam",
+      "location": "Menara Merah Putih, Dermaga CT-1 & CT-3, Pantai Sabang",
+      "category": "Festival Budaya & Bahari",
+      "price": "Gratis",
+      "organizer": "Dinas Pariwisata Sabang, BPKS, Kemenparekraf",
+      "contact": "dispar@sabangkota.go.id",
+      "rating": 4.9,
+      "detailDescription": "Sabang Marine Festival merayakan kekayaan budaya dan bahari melalui parade kapal, kompetisi olahraga air, pertunjukan seni tradisional, hingga aksi bersih pantai. Acara ini menegaskan Sabang sebagai destinasi wisata bahari kelas dunia."
+    },
+    {
+      "id": 3,
+      "name": "Sabang Open Diving Festival 2022",
+      "description": "Kompetisi selam terbuka di Sabang untuk atlet dan penghobi olahraga selam.",
+      "image": "/assets/destinasi/events/sodf22/sodf22-1.webp",
+      "gallery": [
+        "/assets/destinasi/events/sodf22/sodf22-1.webp",
+        "/assets/destinasi/events/sodf22/sodf22-2.webp",
+        "/assets/destinasi/events/sodf22/sodf22-3.webp",
+        "/assets/destinasi/events/sodf22/sodf22-4.webp"
+      ],
+      "date": "2022-11-19",
+      "time": "Belum tersedia",
+      "location": "Pantai Gapang, Gampong Iboih, Sabang",
+      "category": "Kompetisi Olahraga Air",
+      "price": "Tidak tersedia",
+      "organizer": "Dinas Pariwisata Kota Sabang",
+      "contact": "sabangopendivingfestival@gmail.com",
+      "rating": 4.6,
+      "detailDescription": "Sabang Open Diving Festival mempertemukan atlet selam dari berbagai daerah dengan kategori lomba OBA 5 Point dan Fin Swimming. Selain kompetisi, acara ini mempromosikan keindahan bawah laut Sabang sebagai destinasi selam terbaik."
+    },
+    {
+      "id": 4,
+      "name": "Sabang KOM - Tour de Sabang 2024",
+      "description": "Ajang balap sepeda jalan raya dengan rute menantang dari Tugu Sabang ke Kilometer Nol.",
+      "image": "/assets/destinasi/events/tds24/tds24-1.webp",
+      "gallery": [
+        "/assets/destinasi/events/tds24/tds24-1.webp",
+        "/assets/destinasi/events/tds24/tds24-2.webp",
+        "/assets/destinasi/events/tds24/tds24-3.webp",
+        "/assets/destinasi/events/tds24/tds24-4.webp"
+      ],
+      "date": "2024-03-02",
+      "time": "07:00 - Selesai",
+      "location": "Pulau Weh, Sabang",
+      "category": "Olahraga & Sport Tourism",
+      "price": "Gratis",
+      "organizer": "Komunitas Road Bike Aceh (RBA), Dinas Pariwisata Sabang",
+      "contact": "info@rbaaceh.id",
+      "rating": 4.8,
+      "detailDescription": "Tour de Sabang menempuh rute 31,9 km dengan enam kategori peserta. Acara ini mempromosikan sport tourism, meningkatkan ekonomi lokal, serta menarik wisatawan domestik ke Sabang."
+    },
+    {
+      "id": 5,
+      "name": "Hari Ulang Tahun Kota Sabang",
+      "description": "Perayaan tahunan HUT Kota Sabang dengan prosesi adat, festival kuliner, dan hiburan rakyat.",
+      "image": "/assets/destinasi/events/hs/hs-1.webp",
+      "gallery": [
+        "/assets/destinasi/events/hs/hs-1.webp",
+        "/assets/destinasi/events/hs/hs-2.webp",
+        "/assets/destinasi/events/hs/hs-3.webp",
+        "/assets/destinasi/events/hs/hs-4.webp"
+      ],
+      "date": "2025-06-24",
+      "time": "Sehari penuh",
+      "location": "Kota Sabang",
+      "category": "Budaya & Hiburan",
+      "price": "Gratis",
+      "organizer": "Pemerintah Kota Sabang",
+      "contact": "humas@sabangkota.go.id",
+      "rating": 4.9,
+      "detailDescription": "Perayaan HUT Kota Sabang menampilkan upacara adat, seni tradisional, festival kuliner, dan panggung hiburan. Acara ini menjadi sarana promosi wisata, penguatan budaya, dan peningkatan ekonomi masyarakat."
+    }
+  ]
+}

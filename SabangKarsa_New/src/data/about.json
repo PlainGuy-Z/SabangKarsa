@@ -1,0 +1,62 @@
+{
+  "en": [
+    {
+      "id": 1,
+      "name": "Ghufran Indika",
+      "role": "Founder & CEO",
+      "image": "/assets/images/ghufran.png",
+      "bio": "Ghufran, founder of SabangKarsa, is committed to promoting Sabang to the world."
+    },
+    {
+      "id": 2,
+      "name": "Dea Zasqia P. Malau",
+      "role": "Branding & Content Manager",
+      "image": "/assets/images/dea.png",
+      "bio": "Dea, manages branding and content, ensuring the platform’s identity are well delivered."
+    },
+    {
+      "id": 3,
+      "name": "Shafa Disya Aulia",
+      "role": "Back-End Developer",
+      "image": "/assets/images/shafa.png",
+      "bio": "Shafa manages SabangKarsa’s backend and maintenance, ensuring the system runs stably and efficiently."
+    },
+    {
+      "id": 4,
+      "name": "Dian Islami",
+      "role": "Front-End Developer",
+      "image": "/assets/images/dian.png",
+      "bio": "Dian handles SabangKarsa’s frontend development, delivering an optimal interface and user experience."
+    }
+  ],
+  "id": [
+    {
+      "id": 1,
+      "name": "Ghufran Indika",
+      "role": "Founder & CEO",
+      "image": "/assets/images/ghufran.png",
+      "bio": "Ghufran, founder SabangKarsa, berkomitmen mempromosikan Sabang ke dunia."
+    },
+    {
+      "id": 2,
+      "name": "Dea Zasqia P. Malau",
+      "role": "Branding & Content Manager",
+      "image": "/assets/images/dea.png",
+      "bio": "Dea mengelola branding dan konten, memastikan identitas platform tersampaikan dengan baik."
+    },
+    {
+      "id": 3,
+      "name": "Shafa Disya Aulia",
+      "role": "Back-End Developer",
+      "image": "/assets/images/shafa.png",
+      "bio": "Shafa mengelola pengembangan dan pemeliharaan backend, menjamin sistem berjalan stabil."
+    },
+    {
+      "id": 4,
+      "name": "Dian Islami",
+      "role": "Front-End Developer",
+      "image": "/assets/images/dian.png",
+      "bio": "Dian, mengembangkan frontend SabangKarsa, menghadirkan tampilan dan interaksi yang optimal."
+    }
+  ]
+}

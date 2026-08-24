@@ -1,0 +1,264 @@
+{
+  "en": [
+    {
+      "id": 1,
+      "name": "Sabang Chocolate Banana Chips",
+      "description": "Chocolate banana chips produced by Cot Bau MSME, Sabang.",
+      "image": "/assets/destinasi/stroll/stroll1/1.webp",
+      "gallery": [
+        "/assets/destinasi/stroll/stroll1/1.webp",
+        "/assets/destinasi/stroll/stroll1/2.webp",
+        "/assets/destinasi/stroll/stroll1/3.webp"
+      ],
+      "location": "Cot Bau Village, Suka Jaya District, Sabang City",
+      "category": "Snack",
+      "price": "Rp 15,000 - Rp 18,000",
+      "rating": 4.6,
+      "detailDescription": "This chip is a flagship MSME product supported by the government and Customs, produced in thousands of packs per month as a Pulau Weh specialty snack."
+    },
+    {
+      "id": 2,
+      "name": "Sabang Fair View",
+      "description": "Tourist spot with stunning ocean and wave panoramas.",
+      "image": "/assets/destinasi/stroll/stroll2/1.webp",
+      "gallery": [
+        "/assets/destinasi/stroll/stroll2/1.webp",
+        "/assets/destinasi/stroll/stroll2/2.webp"
+      ],
+      "location": "Sabang, Aceh",
+      "category": "Attraction",
+      "price": "Free",
+      "rating": 4.7,
+      "detailDescription": "A favorite spot for relaxing, taking photos, and enjoying sunsets with a lively atmosphere of vendors and visitors."
+    },
+    {
+      "id": 3,
+      "name": "Octopus Satay Pak Ajo",
+      "description": "Legendary octopus satay with a unique taste since the 1980s.",
+      "image": "/assets/destinasi/stroll/stroll3/1.webp",
+      "gallery": [
+        "/assets/destinasi/stroll/stroll3/1.webp",
+        "/assets/destinasi/stroll/stroll3/2.webp",
+        "/assets/destinasi/stroll/stroll3/3.webp",
+        "/assets/destinasi/stroll/stroll3/4.webp"
+      ],
+      "location": "Perdagangan Road, Kasih Beach & Culinary Tourism Park",
+      "category": "Food",
+      "price": "Rp 20,000",
+      "rating": 4.8,
+      "detailDescription": "Octopus meat is marinated in secret spices then grilled until tender, selling thousands of skewers daily as Sabang's culinary icon."
+    },
+    {
+      "id": 4,
+      "name": "Sabang Bakpia",
+      "description": "Soft Sabang bakpia with various fillings.",
+      "image": "/assets/destinasi/stroll/stroll4/1.webp",
+      "gallery": [
+        "/assets/destinasi/stroll/stroll4/1.webp",
+        "/assets/destinasi/stroll/stroll4/2.webp"
+      ],
+      "location": "Sabang, Aceh",
+      "category": "Snack",
+      "price": "Rp 20,000",
+      "rating": 4.7,
+      "detailDescription": "Bakpia with flavors from mung bean to coffee and durian, a favorite souvenir for visitors to Sabang."
+    },
+    {
+      "id": 5,
+      "name": "Zero Kilometer Fruit Salad",
+      "description": "Signature fruit salad with sweet-spicy palm sugar sauce.",
+      "image": "/assets/destinasi/stroll/stroll5/1.webp",
+      "gallery": [
+        "/assets/destinasi/stroll/stroll5/1.webp",
+        "/assets/destinasi/stroll/stroll5/2.webp",
+        "/assets/destinasi/stroll/stroll5/3.webp"
+      ],
+      "location": "Zero Kilometer Monument, Sabang",
+      "category": "Food",
+      "price": "Rp 15,000",
+      "rating": 4.0,
+      "detailDescription": "Fresh fruit mixed with palm sugar, chili, peanuts, and sago sauce, creating a unique sweet-spicy taste."
+    },
+    {
+      "id": 6,
+      "name": "Sabang Noodle Soup",
+      "description": "Signature Pulau Weh noodle soup with fish topping.",
+      "image": "/assets/destinasi/stroll/stroll6/1.webp",
+      "gallery": [
+        "/assets/destinasi/stroll/stroll6/1.webp",
+        "/assets/destinasi/stroll/stroll6/2.webp",
+        "/assets/destinasi/stroll/stroll6/3.webp",
+        "/assets/destinasi/stroll/stroll6/4.webp"
+      ],
+      "location": "Sejahtera Noodle Soup, Sabang Balohan Road",
+      "category": "Food",
+      "price": "Rp 13,000 - Rp 16,000",
+      "rating": 4.5,
+      "detailDescription": "Served boiled or fried with diced fish, bean sprouts, and scallions, popular among tourists."
+    },
+    {
+      "id": 7,
+      "name": "Sabang Mie Seudap",
+      "description": "Fresh preservative-free noodles with savory broth.",
+      "image": "/assets/destinasi/stroll/stroll7/1.webp",
+      "gallery": [
+        "/assets/destinasi/stroll/stroll7/1.webp",
+        "/assets/destinasi/stroll/stroll7/2.webp",
+        "/assets/destinasi/stroll/stroll7/3.webp"
+      ],
+      "location": "Perdagangan Road, Sabang",
+      "category": "Food",
+      "price": "Rp 15,000",
+      "rating": 4.8,
+      "detailDescription": "Homemade noodles served with sliced meat and rich chicken broth, a tourist favorite."
+    },
+    {
+      "id": 8,
+      "name": "Nyak Lah Acehnese Noodles",
+      "description": "Authentic Acehnese noodles with choice of meat or seafood.",
+      "image": "/assets/destinasi/stroll/stroll8/1.webp",
+      "gallery": [
+        "/assets/destinasi/stroll/stroll8/1.webp",
+        "/assets/destinasi/stroll/stroll8/2.webp",
+        "/assets/destinasi/stroll/stroll8/3.webp",
+        "/assets/destinasi/stroll/stroll8/4.webp"
+      ],
+      "location": "Sabang, Aceh",
+      "category": "Food",
+      "price": "Rp 13,000",
+      "rating": 4.4,
+      "detailDescription": "Thick yellow noodles cooked with Acehnese spices, popular among locals and tourists."
+    }
+  ],
+  "id": [
+    {
+      "id": 1,
+      "name": "Keripik Pisang Coklat Sabang",
+      "description": "Keripik pisang coklat produksi UMKM Cot Bau, Sabang.",
+      "image": "/assets/destinasi/stroll/stroll1/1.webp",
+      "gallery": [
+        "/assets/destinasi/stroll/stroll1/1.webp",
+        "/assets/destinasi/stroll/stroll1/2.webp",
+        "/assets/destinasi/stroll/stroll1/3.webp"
+      ],
+      "location": "Desa Cot Bau, Kecamatan Suka Jaya, Kota Sabang",
+      "category": "Cemilan",
+      "price": "Rp 15.000 - Rp 18.000",
+      "rating": 4.6,
+      "detailDescription": "Keripik ini merupakan produk unggulan UMKM binaan pemerintah dan Bea Cukai, diproduksi ribuan bungkus per bulan sebagai camilan khas Pulau Weh."
+    },
+    {
+      "id": 2,
+      "name": "Sabang Fair View",
+      "description": "Spot wisata dengan panorama laut dan ombak indah.",
+      "image": "/assets/destinasi/stroll/stroll2/1.webp",
+      "gallery": [
+        "/assets/destinasi/stroll/stroll2/1.webp",
+        "/assets/destinasi/stroll/stroll2/2.webp"
+      ],
+      "location": "Sabang, Aceh",
+      "category": "Atraksi",
+      "price": "Gratis",
+      "rating": 4.7,
+      "detailDescription": "Tempat favorit untuk bersantai, berfoto, dan menikmati matahari terbenam dengan suasana ramai pedagang dan wisatawan."
+    },
+    {
+      "id": 3,
+      "name": "Sate Gurita Pak Ajo",
+      "description": "Sate gurita legendaris dengan rasa khas sejak 1980-an.",
+      "image": "/assets/destinasi/stroll/stroll3/1.webp",
+      "gallery": [
+        "/assets/destinasi/stroll/stroll3/1.webp",
+        "/assets/destinasi/stroll/stroll3/2.webp",
+        "/assets/destinasi/stroll/stroll3/3.webp",
+        "/assets/destinasi/stroll/stroll3/4.webp"
+      ],
+      "location": "Jalan Perdagangan, Pantai Kasih & Taman Wisata Kuliner",
+      "category": "Makanan",
+      "price": "Rp 20.000",
+      "rating": 4.8,
+      "detailDescription": "Daging gurita direndam bumbu rahasia lalu dibakar hingga empuk, terjual ribuan tusuk per hari dan jadi ikon kuliner Sabang."
+    },
+    {
+      "id": 4,
+      "name": "Bakpia Sabang",
+      "description": "Bakpia lembut khas Sabang dengan isian beragam.",
+      "image": "/assets/destinasi/stroll/stroll4/1.webp",
+      "gallery": [
+        "/assets/destinasi/stroll/stroll4/1.webp",
+        "/assets/destinasi/stroll/stroll4/2.webp"
+      ],
+      "location": "Sabang, Aceh",
+      "category": "Cemilan",
+      "price": "Rp 20.000",
+      "rating": 4.7,
+      "detailDescription": "Bakpia dengan varian rasa kacang hijau, kopi, hingga durian, jadi oleh-oleh favorit wisatawan dari Sabang."
+    },
+    {
+      "id": 5,
+      "name": "Rujak Nol Kilometer",
+      "description": "Rujak buah khas Sabang dengan saus gula aren pedas manis.",
+      "image": "/assets/destinasi/stroll/stroll5/1.webp",
+      "gallery": [
+        "/assets/destinasi/stroll/stroll5/1.webp",
+        "/assets/destinasi/stroll/stroll5/2.webp",
+        "/assets/destinasi/stroll/stroll5/3.webp"
+      ],
+      "location": "Titik Nol Kilometer, Sabang",
+      "category": "Makanan",
+      "price": "Rp 15.000",
+      "rating": 4.0,
+      "detailDescription": "Perpaduan buah segar dengan saus gula aren, cabai, kacang, dan sagu, menciptakan cita rasa manis pedas yang unik."
+    },
+    {
+      "id": 6,
+      "name": "Mie Kocok Sabang",
+      "description": "Mie kocok khas Pulau Weh dengan topping ikan.",
+      "image": "/assets/destinasi/stroll/stroll6/1.webp",
+      "gallery": [
+        "/assets/destinasi/stroll/stroll6/1.webp",
+        "/assets/destinasi/stroll/stroll6/2.webp",
+        "/assets/destinasi/stroll/stroll6/3.webp",
+        "/assets/destinasi/stroll/stroll6/4.webp"
+      ],
+      "location": "Warung Mie Kocok Sejahtera, Jalan Sabang Balohan",
+      "category": "Makanan",
+      "price": "Rp 13.000 - Rp 16.000",
+      "rating": 4.5,
+      "detailDescription": "Disajikan rebus atau goreng dengan potongan ikan, tauge, dan daun bawang, populer di kalangan wisatawan."
+    },
+    {
+      "id": 7,
+      "name": "Mie Seudap Sabang",
+      "description": "Mie segar tanpa pengawet dengan kuah gurih.",
+      "image": "/assets/destinasi/stroll/stroll7/1.webp",
+      "gallery": [
+        "/assets/destinasi/stroll/stroll7/1.webp",
+        "/assets/destinasi/stroll/stroll7/2.webp",
+        "/assets/destinasi/stroll/stroll7/3.webp"
+      ],
+      "location": "Jalan Perdagangan, Sabang",
+      "category": "Makanan",
+      "price": "Rp 15.000",
+      "rating": 4.8,
+      "detailDescription": "Mie buatan lokal disajikan dengan irisan daging dan kuah kaldu ayam gurih, jadi salah satu favorit wisatawan."
+    },
+    {
+      "id": 8,
+      "name": "Mie Aceh Nyak Lah",
+      "description": "Mie Aceh otentik dengan pilihan daging atau seafood.",
+      "image": "/assets/destinasi/stroll/stroll8/1.webp",
+      "gallery": [
+        "/assets/destinasi/stroll/stroll8/1.webp",
+        "/assets/destinasi/stroll/stroll8/2.webp",
+        "/assets/destinasi/stroll/stroll8/3.webp",
+        "/assets/destinasi/stroll/stroll8/4.webp"
+      ],
+      "location": "Sabang, Aceh",
+      "category": "Makanan",
+      "price": "Rp 13.000",
+      "rating": 4.4,
+      "detailDescription": "Mie kuning tebal dimasak dengan bumbu khas Aceh, populer di kalangan lokal dan wisatawan."
+    }
+  ]
+}

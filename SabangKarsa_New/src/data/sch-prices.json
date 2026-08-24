@@ -1,0 +1,58 @@
+{
+    "en": [
+        {
+            "id": 1,
+            "prices": [
+                {"category": "Infant", "price": "4,200"},
+                {"category": "Economy Adult", "price": "35,000"},
+                {"category": "VIP Child", "price": "48,000"},
+                {"category": "VIP Adult", "price": "65,000"},
+                {"category": "Bicycle", "price": "29,000"},
+                {"category": "Motorcycle ≤1 person", "price": "62,000"},
+                {"category": "Rickshaw ≤1 person", "price": "145,000"},
+                {"category": "Private Car ≤5 people", "price": "457,000"},
+                {"category": "Bus ≤16 people", "price": "985,000"}
+            ]
+        },
+        {
+            "id": 2,
+            "prices": [
+                {"category": "Infants 0-2 Years (Non Seat)", "price": "15,000"},
+                {"category": "Sabang ID Card (Child)", "price": "55,000"},
+                {"category": "Sabang ID Card (Adult)", "price": "65,000"},
+                {"category": "Executive Child (2-10 Years Old)", "price": "85,000"},
+                {"category": "Executive Adult", "price": "100,000"},
+                {"category": "VIP Child (2-10 Years Old)", "price": "110,000"},
+                {"category": "VIP Adult", "price": "125,000"}
+            ]
+        }
+    ],
+    "id": [
+        {
+            "id": 1,
+            "prices": [
+                {"category": "Bayi", "price": "4.200"},
+                {"category": "Dewasa Ekonomi", "price": "35.000"},
+                {"category": "Anak VIP", "price": "48.000"},
+                {"category": "Dewasa VIP", "price": "65.000"},
+                {"category": "Sepeda", "price": "29.000"},
+                {"category": "Motor ≤1 orang", "price": "62.000"},
+                {"category": "Becak ≤1 orang", "price": "145.000"},
+                {"category": "Mobil pribadi ≤5 orang", "price": "457.000"},
+                {"category": "Bus ≤16 orang", "price": "985.000"}
+            ]
+        },
+        {
+            "id": 2,
+            "prices": [
+                {"category": "Balita 0-2 Tahun (Tanpa Kursi)", "price": "15.000"},
+                {"category": "KTP Sabang (Anak)", "price": "55.000"},
+                {"category": "KTP Sabang (Dewasa)", "price": "65.000"},
+                {"category": "Eksekutif Anak (2-10 Tahun)", "price": "85.000"},
+                {"category": "Eksekutif Dewasa", "price": "100.000"},
+                {"category": "VIP Anak (2-10 Tahun)", "price": "110.000"},
+                {"category": "VIP Dewasa", "price": "125.000"}
+            ]
+        }
+    ]
+}
