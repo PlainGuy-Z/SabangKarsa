@@ -115,8 +115,16 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
     isLanguageDropdownOpen,
   ]);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
+  const handleLogout = async () => {
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL;
+      await fetch(`${apiUrl}/auth/logout`, {
+        method: "POST",
+        credentials: "include"
+      });
+    } catch (e) {
+      console.error(e);
+    }
     localStorage.removeItem("user");
     localStorage.removeItem("chatbot");
     setUser(null);

@@ -77,17 +77,11 @@ export default function PesananPage() {
       setError(null);
       try {
         const [rentalRes, penginapanRes, tourguideRes] = await Promise.all([
-          fetch(`${API_URL}/booking/rental/me`, {
-            headers: { Authorization: `Bearer ${token}` },
-          }).then((r) => r.json()),
+          fetch(`${API_URL}/booking/rental/me`, { credentials: "include" }).then((r) => r.json()),
 
-          fetch(`${API_URL}/booking/penginapan`, {
-            headers: { Authorization: `Bearer ${token}` },
-          }).then((r) => r.json()),
+          fetch(`${API_URL}/booking/penginapan`, { credentials: "include" }).then((r) => r.json()),
 
-          fetch(`${API_URL}/booking/tour-guide/me`, {
-            headers: { Authorization: `Bearer ${token}` },
-          }).then((r) => r.json()),
+          fetch(`${API_URL}/booking/tour-guide/me`, { credentials: "include" }).then((r) => r.json()),
         ]);
 
         setRentalBookings(Array.isArray(rentalRes) ? rentalRes : []);

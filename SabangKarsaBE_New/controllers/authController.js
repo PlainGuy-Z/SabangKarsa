@@ -26,8 +26,14 @@
         { expiresIn: "1d" }
       );
 
+      res.cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 24 * 60 * 60 * 1000
+      });
+
       res.status(201).json({ 
-        token, 
         user: { 
           id: user._id, 
           name: user.name, 
@@ -58,10 +64,26 @@
         { expiresIn: "1d" }
       );
 
-      res.status(200).json({ token, user: { id: user._id, name: user.name, role: user.role } });
+      res.cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 24 * 60 * 60 * 1000
+      });
+
+      res.status(200).json({ user: { id: user._id, name: user.name, role: user.role } });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
+  };
+
+  exports.logout = (req, res) => {
+    res.clearCookie('token', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict'
+    });
+    res.status(200).json({ message: "Logout berhasil" });
   };
   exports.getAllUsers = async (req, res) => {
     try {

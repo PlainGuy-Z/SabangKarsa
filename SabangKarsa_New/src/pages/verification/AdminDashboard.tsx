@@ -53,9 +53,7 @@ export default function AdminDashboard() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`${API_URL}/admin/users`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-      });
+      const res = await fetch(`${API_URL}/admin/users`, { credentials: "include" });
       if (!res.ok) {
         if (res.status === 403) throw new Error(translator("ad-msg-1"));
         else throw new Error(translator("ad-msg-2"));
@@ -79,10 +77,8 @@ export default function AdminDashboard() {
     try {
       const res = await fetch(`${API_URL}/admin/users/${userId}/role`, {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        },
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify({ role: newRole })
       });
       if (!res.ok) {
@@ -103,10 +99,8 @@ export default function AdminDashboard() {
     try {
       const res = await fetch(`${API_URL}/admin/verifikasi/${verifikasiId}/status`, {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        },
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify({ status: newStatus })
       });
       if (!res.ok) throw new Error(t("ad-msg-8"));

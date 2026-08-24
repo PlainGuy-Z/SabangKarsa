@@ -31,12 +31,16 @@ const helmet = require('helmet');
 app.use(helmet());
 
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN?.split(',') || ['http://localhost:5173'],
+  origin: process.env.NODE_ENV === 'production' 
+    ? (process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : ['http://localhost:5173']) 
+    : true,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
 app.use(cors(corsOptions));
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 app.use(express.json());
 
 if (process.env.NODE_ENV !== 'production') {

@@ -76,21 +76,21 @@ export default function PemesananPage() {
       setError(null);
       try {
         const [rentalRes, penginapanRes, tourguideRes] = await Promise.all([
-          fetch(`${API_URL}/booking/rental/seller`, { headers: { Authorization: `Bearer ${token}` } })
+          fetch(`${API_URL}/booking/rental/seller`, { credentials: "include" })
             .then((r) => r.json())
             .then((data) => {
               const dataArr = data.data;
               return Array.isArray(dataArr) ? dataArr : []
             }),
 
-          fetch(`${API_URL}/booking/penginapan/seller`, { headers: { Authorization: `Bearer ${token}` } })
+          fetch(`${API_URL}/booking/penginapan/seller`, { credentials: "include" })
             .then((r) => r.json())
             .then((data) => {
               const dataArr = data.data;
               return Array.isArray(dataArr) ? dataArr : []
             }),
 
-          fetch(`${API_URL}/booking/tour-guide/seller`, { headers: { Authorization: `Bearer ${token}` } })
+          fetch(`${API_URL}/booking/tour-guide/seller`, { credentials: "include" })
             .then((r) => r.json())
             .then((data) => {
               const dataArr = data.data;

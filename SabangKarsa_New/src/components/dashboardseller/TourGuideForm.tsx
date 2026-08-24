@@ -18,7 +18,6 @@ interface TourGuideData {
 }
 
 interface TourGuideFormProps {
-  token: string | null;
   user: {
     id: string;
     name: string;
@@ -32,7 +31,7 @@ interface TourGuideFormProps {
   setter: (data: EditData) => void;
 }
 
-export default function TourGuideForm({ token, user, setActiveForm, editData, setter }: TourGuideFormProps) {
+export default function TourGuideForm({ user, setActiveForm, editData, setter }: TourGuideFormProps) {
   const [tourGuideData, setTourGuideData] = useState<TourGuideData>({
     name: '',
     no_hp: '',
@@ -103,13 +102,13 @@ export default function TourGuideForm({ token, user, setActiveForm, editData, se
       if (newEditData) {
         await fetch(`${apiUrl}/tourguides/${newEditData._id}`, {
           method: 'PUT',
-          headers: { Authorization: `Bearer ${token}` },
+          credentials: "include",
           body: form
         });
       } else {
         await fetch(`${apiUrl}/tourguides`, {
           method: 'POST',
-          headers: { Authorization: `Bearer ${token}` },
+          credentials: "include",
           body: form
         });
       }

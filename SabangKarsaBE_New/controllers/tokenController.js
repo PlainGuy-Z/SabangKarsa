@@ -1,12 +1,16 @@
 const jwt = require("jsonwebtoken");
 
 exports.checkToken = async (req, res) => {
-    const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-        return res.status(401).json({ error: "Token tidak ditemukan" });
+    let token;
+    if (req.cookies && req.cookies.token) {
+        token = req.cookies.token;
+    } else if (req.headers.authorization && req.headers.authorization.startsWith("Bearer ")) {
+        token = req.headers.authorization.split(" ")[1];
     }
 
-    const token = authHeader.split(" ")[1];
+    if (!token) {
+        return res.status(401).json({ error: "Token tidak ditemukan" });
+    }
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);

@@ -74,9 +74,9 @@ export default function BookingRentalPage() {
       const res = await fetch(`${API_URL}/booking/rental`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
         },
+        credentials: "include",
         body: JSON.stringify({
           rental: id,
           tanggalMulai,

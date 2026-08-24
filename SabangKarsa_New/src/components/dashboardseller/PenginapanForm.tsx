@@ -27,14 +27,13 @@ interface PenginapanData {
 }
 
 interface PenginapanFormProps {
-  token: string | null;
   user: { id: string; name: string; email: string; no_hp: string; alamat: string; role: string; };
   setActiveForm: () => void;
   setter: (data: EditData) => void;
   editData?: EditData;
 }
 
-export default function PenginapanForm({ token, user, setActiveForm, editData, setter }: PenginapanFormProps) {
+export default function PenginapanForm({ user, setActiveForm, editData, setter }: PenginapanFormProps) {
   const [penginapanData, setPenginapanData] = useState<PenginapanData>({
     nama: '',
     lokasi: '',
@@ -125,13 +124,13 @@ export default function PenginapanForm({ token, user, setActiveForm, editData, s
       if (newEditData) {
         await fetch(`${apiUrl}/penginapan/${newEditData._id}`, {
           method: 'PUT',
-          headers: { Authorization: `Bearer ${token}` },
+          credentials: "include",
           body: form
         });
       } else {
         await fetch(`${apiUrl}/penginapan`, {
           method: 'POST',
-          headers: { Authorization: `Bearer ${token}` },
+          credentials: "include",
           body: form
         });
       }

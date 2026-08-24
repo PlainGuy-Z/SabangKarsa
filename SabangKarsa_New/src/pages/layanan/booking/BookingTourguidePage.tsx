@@ -77,12 +77,11 @@ export default function BookingTourguidePage() {
 
     try {
       setLoading(true);
-      const token = localStorage.getItem("token");
 
       const res = await axios.post(
         `${API_URL}/booking/tour-guide`,
         { tourGuide: id, tanggalMulai, tanggalSelesai, lokasiJemput, totalHarga },
-        { headers: { Authorization: `Bearer ${token}` } }
+        { withCredentials: true }
       );
 
       window.location.href = res.data.payment.redirect_url;

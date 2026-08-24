@@ -54,20 +54,17 @@ function App() {
   }));
   
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
 
-    if (token) {
-      const checkToken = async (token: string) => {
+    if (user) {
+      const checkToken = async () => {
         try {
           const apiUrl = import.meta.env.VITE_API_URL;
           const response = await axios.get<TokenRes>(`${apiUrl}/token`, {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
+            withCredentials: true
           });
           
           if (!response.data.active) {
-            localStorage.removeItem("token");
             localStorage.removeItem("user");
             localStorage.removeItem("chatbot");
             window.location.href = "/";
@@ -76,13 +73,12 @@ function App() {
         catch (error) {
           const err = error as AxiosError;
           console.error(err);
-          localStorage.removeItem("token");
           localStorage.removeItem("user");
           localStorage.removeItem("chatbot");
           window.location.href = "/";
         }
       }
-      checkToken(token);
+      checkToken();
     }
   }, []);
 

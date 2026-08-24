@@ -62,12 +62,12 @@ export function LoginPage() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(formData),
       });
       const result = await response.json();
 
-      if (response.ok && result.token) {
-        localStorage.setItem("token", result.token);
+      if (response.ok && result.user) {
         localStorage.setItem("user", JSON.stringify(result.user));
         navigate("/", { replace: true });
         window.location.reload();

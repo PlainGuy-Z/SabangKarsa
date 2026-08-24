@@ -3,6 +3,7 @@ const passport = require("passport");
 const {
   register,
   login,
+  logout,
   getAllUsers,
   updateProfile,
   checkPhoneNumber,
@@ -13,6 +14,7 @@ const router = express.Router();
 
 router.post("/register", register);
 router.post("/login", login);
+router.post("/logout", logout);
 
 // Google login
 router.get(

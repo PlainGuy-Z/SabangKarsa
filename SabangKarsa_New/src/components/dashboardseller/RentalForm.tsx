@@ -17,7 +17,6 @@ interface RentalData {
 }
 
 interface RentalFormProps {
-  token: string | null;
   user: {
     id: string;
     name: string;
@@ -31,7 +30,7 @@ interface RentalFormProps {
   editData?: EditData;
 }
 
-export default function RentalForm({ token, user, setActiveForm, editData, setter }: RentalFormProps) {
+export default function RentalForm({ user, setActiveForm, editData, setter }: RentalFormProps) {
   const [rentalData, setRentalData] = useState<RentalData>({
     name: '',
     type: '',
@@ -104,14 +103,14 @@ export default function RentalForm({ token, user, setActiveForm, editData, sette
         // Update data (PUT)
         await fetch(`${apiUrl}/rental/${newEditData._id}`, {
           method: 'PUT',
-          headers: { Authorization: `Bearer ${token}` },
+          credentials: "include",
           body: form
         });
       } else {
         // Tambah data baru (POST)
         await fetch(`${apiUrl}/rental`, {
           method: 'POST',
-          headers: { Authorization: `Bearer ${token}` },
+          credentials: "include",
           body: form
         });
       }

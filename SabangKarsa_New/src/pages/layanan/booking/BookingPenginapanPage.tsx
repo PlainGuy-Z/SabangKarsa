@@ -71,9 +71,9 @@ export default function BookingPenginapanPage() {
       const res = await fetch(`${API_URL}/booking/penginapan`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
         },
+        credentials: "include",
         body: JSON.stringify({
           penginapan: id,
           check_in_date: checkIn,

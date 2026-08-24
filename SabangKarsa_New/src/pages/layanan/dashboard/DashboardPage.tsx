@@ -96,11 +96,7 @@ export default function DashboardPage() {
 
   const handleDelete = async (type: 'rental' | 'penginapan' | 'tourguide', data: any) => {
     try {
-      await axios.delete(`${API_URL}/${type === "tourguide" ? "tourguides" : type}/${data._id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
+      await axios.delete(`${API_URL}/${type === "tourguide" ? "tourguides" : type}/${data._id}`, { withCredentials: true })
       
       window.location.reload();
     } catch (error) {
@@ -296,7 +292,6 @@ export default function DashboardPage() {
             >
               {currentForm === 'rental' && (
                 <RentalForm 
-                  token={token} 
                   user={user} 
                   setActiveForm={handleCloseForm} 
                   editData={editData} 
@@ -305,7 +300,6 @@ export default function DashboardPage() {
               )}
               {currentForm === 'tourguide' && (
                 <TourGuideForm 
-                  token={token} 
                   user={user} 
                   setActiveForm={handleCloseForm} 
                   editData={editData} 
@@ -314,7 +308,6 @@ export default function DashboardPage() {
               )}
               {currentForm === 'penginapan' && (
                 <PenginapanForm 
-                  token={token} 
                   user={user} 
                   setActiveForm={handleCloseForm} 
                   editData={editData} 

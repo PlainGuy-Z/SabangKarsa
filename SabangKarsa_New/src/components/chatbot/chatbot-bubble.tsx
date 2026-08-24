@@ -57,9 +57,7 @@ export function BotBubble({
               message,
             },
             {
-              headers: {
-                Authorization: `Bearer ${token || ""}`,
-              },
+              withCredentials: true
             }
           );
           const response = res.data.response || t("chatbot-err-msg-3");
