@@ -1,0 +1,108 @@
+# Audit Fungsionalitas Website Sabang Karsa — Bagian 2
+
+Pengujian dilakukan melalui **static code analysis** terhadap seluruh source code frontend (`SabangKarsa_New`) dan backend (`SabangKarsaBE_New`). Tabel di bawah ini menyertakan **Hasil Aktual (Estimasi)** dan **Status** yang diproyeksikan (PASS/FAILED) berdasarkan validasi kebenaran logika pada *source code*.
+
+---
+
+## 3. Layanan — Penginapan (CRUD)
+
+| No | Modul | Fitur | Skenario Pengujian | Langkah Pengujian | Hasil yang Diharapkan | Hasil Aktual (Estimasi) | Status | Keterangan |
+|-:|-------|-------|-------------------|-------------------|----------------------|-----------------------|--------|-----------|
+| 32 | Penginapan | Get All | Melihat daftar penginapan | GET /api/penginapan | Return array penginapan | Berjalan sesuai harapan | PASS | Public endpoint |
+| 33 | Penginapan | Get by ID | Melihat detail penginapan | GET /api/penginapan/:id | Return detail penginapan | Berjalan sesuai harapan | PASS | Public endpoint |
+| 34 | Penginapan | Get by ID | Penginapan tidak ditemukan | GET /api/penginapan/:invalidId | Response 404 | Berjalan sesuai harapan | PASS | Handle error berfungsi |
+| 35 | Penginapan | Create | Seller menambah penginapan | POST /api/penginapan dengan data | Penginapan berhasil dibuat (201) | Berjalan sesuai harapan | PASS | Cloudinary di-setup dengan baik |
+| 36 | Penginapan | Create | Upload gambar penginapan | POST /api/penginapan dengan file | Gambar diupload ke Cloudinary | Berjalan sesuai harapan | PASS | Multer middleware berfungsi |
+| 37 | Penginapan | Update | Pemilik mengubah penginapan | PUT /api/penginapan/:id sebagai pemilik | Data penginapan terupdate | Berjalan sesuai harapan | PASS | Validasi ownership (L54) |
+| 38 | Penginapan | Update | Non-pemilik mengubah penginapan | PUT /api/penginapan/:id sebagai user lain | Response 403 "Akses ditolak" | Berjalan sesuai harapan | PASS | Ownership protection aktif |
+| 39 | Penginapan | Update | Admin mengubah penginapan apapun | PUT /api/penginapan/:id sebagai admin | Data terupdate | Berjalan sesuai harapan | PASS | Bypass admin berfungsi |
+| 40 | Penginapan | Update | User menambah review | PUT /api/penginapan/:id dengan add_review | Rating dan jumlah_review terupdate | Berjalan sesuai harapan | PASS | Logic kalkulasi rating |
+| 41 | Penginapan | Delete | Pemilik menghapus penginapan | DELETE /api/penginapan/:id | Penginapan dihapus | Berjalan sesuai harapan | PASS | Validasi ownership hapus |
+| 42 | Penginapan | Delete | Non-pemilik menghapus | DELETE /api/penginapan/:id sebagai user lain | Response 403 | Berjalan sesuai harapan | PASS | Perlindungan endpoint delete |
+
+## 4. Layanan — Rental (CRUD)
+
+| No | Modul | Fitur | Skenario Pengujian | Langkah Pengujian | Hasil yang Diharapkan | Hasil Aktual (Estimasi) | Status | Keterangan |
+|-:|-------|-------|-------------------|-------------------|----------------------|-----------------------|--------|-----------|
+| 43 | Rental | Get All | Melihat daftar rental | GET /api/rental | Return array rental | Berjalan sesuai harapan | PASS | Public endpoint |
+| 44 | Rental | Get by ID | Melihat detail rental | GET /api/rental/:id | Return detail rental | Berjalan sesuai harapan | PASS | Public endpoint |
+| 45 | Rental | Get by ID | Rental tidak ditemukan | GET /api/rental/:invalidId | Response 404 | Berjalan sesuai harapan | PASS | L53 di controller |
+| 46 | Rental | Create | Seller menambah rental | POST /api/rental dengan form data | Rental berhasil dibuat (201) | Berjalan sesuai harapan | PASS | Integrasi Cloudinary |
+| 47 | Rental | Update | Pemilik mengubah rental | PUT /api/rental/:id sebagai pemilik | Data rental terupdate | Berjalan sesuai harapan | PASS | Cek ownership (L65) |
+| 48 | Rental | Update | Non-pemilik mengubah | PUT /api/rental/:id sebagai user lain | Response 403 | Berjalan sesuai harapan | PASS | Cek ownership (L66) |
+| 49 | Rental | Delete | Pemilik menghapus rental | DELETE /api/rental/:id | Rental dihapus | Berjalan sesuai harapan | PASS | Logika L84-96 |
+| 50 | Rental | Delete | Non-pemilik menghapus | DELETE /api/rental/:id sebagai user lain | Response 403 | Berjalan sesuai harapan | PASS | Perlindungan endpoint |
+
+## 5. Layanan — Tour Guide (CRUD)
+
+| No | Modul | Fitur | Skenario Pengujian | Langkah Pengujian | Hasil yang Diharapkan | Hasil Aktual (Estimasi) | Status | Keterangan |
+|-:|-------|-------|-------------------|-------------------|----------------------|-----------------------|--------|-----------|
+| 51 | Tour Guide | Get All | Melihat daftar tour guide | GET /api/tourguides | Return array tour guide | Berjalan sesuai harapan | PASS | Public endpoint |
+| 52 | Tour Guide | Get by ID | Melihat detail tour guide | GET /api/tourguides/:id | Return detail tour guide | Berjalan sesuai harapan | PASS | Public endpoint |
+| 53 | Tour Guide | Create | Seller menambah tour guide | POST /api/tourguides | Tour guide dibuat (201) | Berjalan sesuai harapan | PASS | Cloudinary terintegrasi |
+| 54 | Tour Guide | Update | Pemilik mengubah tour guide | PUT /api/tourguides/:id | Data terupdate | Berjalan sesuai harapan | PASS | Ownership tervalidasi |
+| 55 | Tour Guide | Delete | Pemilik menghapus tour guide | DELETE /api/tourguides/:id | Tour guide dihapus | Berjalan sesuai harapan | PASS | Controller L66-78 |
+
+## 6. Layanan — Paket Wisata (CRUD)
+
+| No | Modul | Fitur | Skenario Pengujian | Langkah Pengujian | Hasil yang Diharapkan | Hasil Aktual (Estimasi) | Status | Keterangan |
+|-:|-------|-------|-------------------|-------------------|----------------------|-----------------------|--------|-----------|
+| 56 | Paket Wisata | Get All | Melihat daftar paket | GET /api/paket | Return array paket wisata | Berjalan sesuai harapan | PASS | Public endpoint |
+| 57 | Paket Wisata | Get by ID | Melihat detail paket | GET /api/paket/:id | Return detail paket | Berjalan sesuai harapan | PASS | Public endpoint |
+| 58 | Paket Wisata | Create | Seller menambah paket | POST /api/paket | Paket berhasil dibuat (201) | Berjalan sesuai harapan | PASS | Model dan controller lengkap |
+| 59 | Paket Wisata | Delete | Pemilik menghapus paket | DELETE /api/paket/:id | Paket dihapus | Berjalan sesuai harapan | PASS | Controller L46-60 |
+| 60 | Paket Wisata | Update | Endpoint update paket | PUT /api/paket/:id | Data paket wisata terupdate | Error 404 (Endpoint Not Found) | FAILED | Fitur sama sekali belum diimplementasikan |
+
+---
+
+## 7. Booking Penginapan
+
+| No | Modul | Fitur | Skenario Pengujian | Langkah Pengujian | Hasil yang Diharapkan | Hasil Aktual (Estimasi) | Status | Keterangan |
+|-:|-------|-------|-------------------|-------------------|----------------------|-----------------------|--------|-----------|
+| 61 | Booking Penginapan | Create | Membuat booking penginapan | POST /api/booking/penginapan | Booking dibuat | Gagal menghitung harga karena `harga_per_malam` tidak ditemukan (NaN) | FAILED | Mismatch property di controller L49 |
+| 62 | Booking Penginapan | Create | Validasi jumlah kamar | Booking dengan jumlah_kamar < 1 | Response 400 | Berjalan sesuai harapan | PASS | Validasi min 1 |
+| 63 | Booking Penginapan | Create | Validasi ketersediaan | Booking kamar penuh | Response 400 | Validasi tidak berjalan baik karena typo property `jumlahKamarTersedia` vs `jumlah_kamar` | FAILED | Celah booking overcapacity |
+| 64 | Booking Penginapan | Create | Validasi check-in/out | Check-out sebelum check-in | Response 400 | Berjalan sesuai harapan | PASS | Logic validasi durasi |
+| 65 | Booking Penginapan | Create | Xendit gagal pembuatan invoice | Error dari Xendit | Data booking tetap utuh namun URL null | Berjalan sesuai harapan | PASS | Graceful degradation |
+| 66 | Booking Penginapan | Get My Bookings | Melihat booking sendiri | GET /api/booking/penginapan dengan token | Array booking user | Berjalan sesuai harapan | PASS | Token verifikasi bekerja |
+| 67 | Booking Penginapan | Get by ID | Melihat detail booking | GET /api/booking/penginapan/:id | Detail booking | Berjalan sesuai harapan | PASS | Route getById |
+| 68 | Booking Penginapan | Get Seller Bookings | Seller melihat booking masuk | GET /api/booking/penginapan/seller | Booking untuk seller | Berjalan sesuai harapan | PASS | Data agregasi L214-237 |
+| 69 | Booking Penginapan | Update Payment | Update status pembayaran manual | PUT /api/booking/penginapan/:id/payment-status | Status terupdate | Berjalan sesuai harapan | PASS | Controller L134-149 |
+| 70 | Booking Penginapan | Delete | Menghapus booking | DELETE /api/booking/penginapan/:id | Booking dihapus | Berjalan sesuai harapan | PASS | Hanya diizinkan bagi pemilik/admin |
+| 71 | Booking Penginapan | Callback | Callback Midtrans (paid) | POST /api/booking/penginapan/midtrans/callback | Status menjadi paid | Tidak dapat berjalan normal karena Xendit digunakan untuk create | FAILED | Terjadi inkonsistensi Payment Gateway |
+
+## 8. Booking Rental
+
+| No | Modul | Fitur | Skenario Pengujian | Langkah Pengujian | Hasil yang Diharapkan | Hasil Aktual (Estimasi) | Status | Keterangan |
+|-:|-------|-------|-------------------|-------------------|----------------------|-----------------------|--------|-----------|
+| 72 | Booking Rental | Create | Membuat booking rental | POST /api/booking/rental | Booking dibuat + Midtrans snap URL | Berjalan sesuai harapan | PASS | Menggunakan Midtrans snap |
+| 73 | Booking Rental | Create | Validasi overlap tanggal | Booking pada tanggal sibuk | Response 400 | Berjalan sesuai harapan | PASS | Mencegah double-book |
+| 74 | Booking Rental | Get User Bookings | Melihat booking sendiri | GET /api/booking/rental/me | Array booking user | Berjalan sesuai harapan | PASS | Query by userId |
+| 75 | Booking Rental | Get All | Admin melihat semua booking | GET /api/booking/rental | Array semua booking | Berjalan sesuai harapan | PASS | Middleware admin |
+| 76 | Booking Rental | Seller Bookings | Seller melihat pesanan masuk | GET /api/booking/rental/seller | Array untuk seller | Berjalan sesuai harapan | PASS | Controller L86-109 |
+| 77 | Booking Rental | Callback | Callback Midtrans | POST /api/booking/rental/midtrans/callback | Status berubah ke settlement/paid | Berjalan sesuai harapan | PASS | Verifikasi SHA512 Signature |
+
+## 9. Booking Tour Guide
+
+| No | Modul | Fitur | Skenario Pengujian | Langkah Pengujian | Hasil yang Diharapkan | Hasil Aktual (Estimasi) | Status | Keterangan |
+|-:|-------|-------|-------------------|-------------------|----------------------|-----------------------|--------|-----------|
+| 78 | Booking TourGuide | Create | Membuat booking tour guide | POST /api/booking/tour-guide | Booking dibuat + Snap URL | Berjalan sesuai harapan | PASS | Integrasi Midtrans |
+| 79 | Booking TourGuide | Create | Validasi overlap tanggal | Booking overlap | Response 400 | Berjalan sesuai harapan | PASS | Pengecekan overlap tanggal |
+| 80 | Booking TourGuide | Get User | Melihat booking sendiri | GET /api/booking/tour-guide/me | Array booking | Berjalan sesuai harapan | PASS | By userId |
+| 81 | Booking TourGuide | Get All | Admin melihat semua | GET /api/booking/tour-guide | Array semua | Berjalan sesuai harapan | PASS | Verifikasi role |
+| 82 | Booking TourGuide | Update Status | Update manual status | PATCH /api/booking/tour-guide/:id/status | Status terupdate | Berjalan sesuai harapan | PASS | Update controller |
+| 83 | Booking TourGuide | Seller Bookings | Seller melihat pesanan masuk | GET /api/booking/tour-guide/seller | Booking seller | Berjalan sesuai harapan | PASS | Controller L133-156 |
+
+## 10. Booking Paket Wisata
+
+| No | Modul | Fitur | Skenario Pengujian | Langkah Pengujian | Hasil yang Diharapkan | Hasil Aktual (Estimasi) | Status | Keterangan |
+|-:|-------|-------|-------------------|-------------------|----------------------|-----------------------|--------|-----------|
+| 84 | Booking Paket | Create | Membuat booking paket | POST /api/booking/paket | Booking dibuat | Berjalan sesuai harapan | PASS | Tanpa gateway eksternal |
+| 85 | Booking Paket | Get My | Melihat booking sendiri | GET /api/booking/paket/me | Array booking | Berjalan sesuai harapan | PASS | Simple fetch |
+| 86 | Booking Paket | Get All | Admin melihat semua | GET /api/booking/paket | Array semua | Berjalan sesuai harapan | PASS | Dilindungi verifyAdmin |
+
+---
+
+## Bug Ditemukan (Bagian 2)
+
+*(Lihat baris dengan status FAILED pada tabel di atas untuk detail titik kerentanan/bug pada modul Booking dan Paket Wisata)*

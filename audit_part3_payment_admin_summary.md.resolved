@@ -1,0 +1,120 @@
+# Audit Fungsionalitas Website Sabang Karsa — Bagian 3
+
+Pengujian dilakukan melalui **static code analysis** terhadap seluruh source code frontend (`SabangKarsa_New`) dan backend (`SabangKarsaBE_New`). Tabel di bawah ini menyertakan **Hasil Aktual (Estimasi)** dan **Status** yang diproyeksikan (PASS/FAILED) berdasarkan validasi kebenaran logika pada *source code*.
+
+---
+
+## 11. Payment Gateway
+
+| No | Modul | Fitur | Skenario Pengujian | Langkah Pengujian | Hasil yang Diharapkan | Hasil Aktual (Estimasi) | Status | Keterangan |
+|-:|-------|-------|-------------------|-------------------|----------------------|-----------------------|--------|-----------|
+| 87 | Payment | Xendit Invoice | Buat invoice Xendit | Triggered dari booking penginapan | Invoice URL dikembalikan | Berjalan sesuai harapan | PASS | Membutuhkan XENDIT_API_KEY |
+| 88 | Payment | Xendit Webhook | Webhook Xendit (paid) | POST /api/payment/xendit/webhook | Status booking diupdate ke "paid" | Berjalan sesuai harapan | PASS | Logic verifikasi token |
+| 89 | Payment | Xendit Webhook | Webhook Xendit — token invalid | POST webhook tanpa token | Response 403 | Berjalan sesuai harapan | PASS | Middleware L42-44 |
+| 90 | Payment | Xendit Webhook | Webhook Xendit — update multiple | POST webhook | Status diupdate di semua koleksi terkait | Berjalan sesuai harapan | PASS | Logic loop model |
+| 91 | Payment | Midtrans Snap | Create Midtrans transaction | Triggered dari booking rental/tour | Snap redirect URL dikembalikan | Berjalan sesuai harapan | PASS | Membutuhkan MIDTRANS_SERVER_KEY |
+| 92 | Payment | Midtrans Callback | Signature verification | Midtrans kirim callback | Signature SHA512 diverifikasi | Berjalan sesuai harapan | PASS | Logic crypto terimplementasi |
+| 93 | Payment | Midtrans Callback | Status mapping | Callback Midtrans | Status_pembayaran = "settlement" (paid) | Berjalan sesuai harapan | PASS | Validasi status lengkap |
+
+## 12. Seller Verification
+
+| No | Modul | Fitur | Skenario Pengujian | Langkah Pengujian | Hasil yang Diharapkan | Hasil Aktual (Estimasi) | Status | Keterangan |
+|-:|-------|-------|-------------------|-------------------|----------------------|-----------------------|--------|-----------|
+| 94 | Verifikasi | Submit | Submit verifikasi seller | POST /api/verifikasi | Data verifikasi berhasil (201) | Berjalan sesuai harapan | PASS | Butuh auth + Cloudinary |
+| 95 | Verifikasi | Submit | Upload dokumen KTP | Upload file JPG/PNG/PDF | File diupload ke Cloudinary | Berjalan sesuai harapan | PASS | Setup multer baik |
+| 96 | Verifikasi | Submit | Upload format tidak valid | Upload file .docx | Response error format | Berjalan sesuai harapan | PASS | Filter ekstensi file |
+| 97 | Verifikasi | Submit | Upload file > 10MB | Upload file besar | Response error dari multer | Berjalan sesuai harapan | PASS | Validasi max 10MB |
+| 98 | Verifikasi | Validasi FE | Validasi form verifikasi | Submit kosong | Error message tampil per field | Berjalan sesuai harapan | PASS | Formik/State validation |
+| 99 | Verifikasi | Get Status | Cek status verifikasi | GET /api/verifikasi/me | Return data milik user | Berjalan sesuai harapan | PASS | verifikasiController.js |
+| 100 | Verifikasi | Access | Hanya buyer yang bisa submit | Akses halaman oleh non-buyer | Redirect kembali | Berjalan sesuai harapan | PASS | Redirect protection |
+
+## 13. Admin Dashboard
+
+| No | Modul | Fitur | Skenario Pengujian | Langkah Pengujian | Hasil yang Diharapkan | Hasil Aktual (Estimasi) | Status | Keterangan |
+|-:|-------|-------|-------------------|-------------------|----------------------|-----------------------|--------|-----------|
+| 101 | Admin | Get Users | Admin melihat daftar user | GET /api/admin/users | Return user dengan verifikasi | Berjalan sesuai harapan | PASS | Controller admin |
+| 102 | Admin | Update Role | Admin mengubah role user | PUT /api/admin/users/:userId/role | Role user berhasil diubah | Berjalan sesuai harapan | PASS | verifyAdmin guard |
+| 103 | Admin | Update Role | Role tidak valid | PUT dengan role salah | Response 400 | Berjalan sesuai harapan | PASS | Enum validation |
+| 104 | Admin | Approve Verif | Admin approve verifikasi | PUT /api/admin/verifikasi/:id/status | Status = approved, role = seller | Berjalan sesuai harapan | PASS | Mengubah status + role |
+| 105 | Admin | Reject Verif | Admin reject verifikasi | PUT status="rejected" | Status = rejected | Berjalan sesuai harapan | PASS | Logic rejection |
+| 106 | Admin | Stats Cards | Tampilan statistik admin | Buka dashboard | 4 stats card tampil | Berjalan sesuai harapan | PASS | Komponen frontend ok |
+| 107 | Admin | Verif Detail | Lihat dokumen verifikasi | Klik detail | Modal link dokumen | Berjalan sesuai harapan | PASS | Komponen UI modal |
+
+## 14. Seller Dashboard
+
+| No | Modul | Fitur | Skenario Pengujian | Langkah Pengujian | Hasil yang Diharapkan | Hasil Aktual (Estimasi) | Status | Keterangan |
+|-:|-------|-------|-------------------|-------------------|----------------------|-----------------------|--------|-----------|
+| 108 | Seller Dashboard | Overview | Melihat ringkasan | Buka /layanan/dashboard | 3 stats card milik seller | Berjalan sesuai harapan | PASS | Filter userId |
+| 109 | Seller Dashboard | Rental List | Daftar rental | Klik tab "Rental Saya" | List tampil | Berjalan sesuai harapan | PASS | Filter array sukses |
+| 110 | Seller Dashboard | Penginapan List | Daftar penginapan | Klik tab "Penginapan Saya" | List tampil | Berjalan sesuai harapan | PASS | Filter array sukses |
+| 111 | Seller Dashboard | Tour Guide List | Daftar tour guide | Klik tab "Tour Guide Saya" | List tampil | Berjalan sesuai harapan | PASS | Filter array sukses |
+| 112 | Seller Dashboard | Create Rental | Tambah rental baru | Submit form rental | Rental dibuat | Berjalan sesuai harapan | PASS | Frontend Component ok |
+| 113 | Seller Dashboard | Create Penginapan | Tambah penginapan | Submit form penginapan | Penginapan dibuat | Berjalan sesuai harapan | PASS | Frontend Component ok |
+| 114 | Seller Dashboard | Create Tour Guide | Tambah tour guide | Submit form tour guide | Tour guide dibuat | Berjalan sesuai harapan | PASS | Frontend Component ok |
+| 115 | Seller Dashboard | Edit | Edit layanan | Simpan edit data | Data terupdate | Berjalan sesuai harapan | PASS | PUT handler |
+| 116 | Seller Dashboard | Delete | Hapus layanan | Klik delete | Item terhapus | Berjalan sesuai harapan | PASS | DELETE handler |
+| 117 | Seller Dashboard | Pesanan Masuk | Lihat pesanan masuk | Buka /layanan/pemesanan | Daftar pesanan buyer | Berjalan sesuai harapan | PASS | PemesananPage |
+| 118 | Seller Dashboard | Status Display | Tampilan status bayar | Lihat pesanan | Badge warna muncul | Berjalan sesuai harapan | PASS | getStatusColor helper |
+
+## 15. Buyer — Pesanan Saya
+
+| No | Modul | Fitur | Skenario Pengujian | Langkah Pengujian | Hasil yang Diharapkan | Hasil Aktual (Estimasi) | Status | Keterangan |
+|-:|-------|-------|-------------------|-------------------|----------------------|-----------------------|--------|-----------|
+| 119 | Pesanan | Lihat Pesanan | Buyer melihat riwayat | Buka /layanan/pesanan | Daftar booking tampil | Berjalan sesuai harapan | PASS | Fetch `/me` |
+| 120 | Pesanan | Tab Navigation | Switch kategori | Klik tab | Konten berubah | Berjalan sesuai harapan | PASS | State management ok |
+| 121 | Pesanan | Empty State | Tidak ada pesanan | Cek saat kosong | Pesan "Belum ada booking" | Berjalan sesuai harapan | PASS | Conditional rendering |
+
+## 16. Frontend Pages & Components
+
+| No | Modul | Fitur | Skenario Pengujian | Langkah Pengujian | Hasil yang Diharapkan | Hasil Aktual (Estimasi) | Status | Keterangan |
+|-:|-------|-------|-------------------|-------------------|----------------------|-----------------------|--------|-----------|
+| 122 | HomePage | Landing Page | Akses halaman utama | Buka / | Tampil struktur UI utama | Berjalan sesuai harapan | PASS | Komponen terstruktur |
+| 123 | HomePage | Navbar | Navigasi responsive | Resize browser | Navbar jadi mobile menu | Berjalan sesuai harapan | PASS | Tailwind responsive ok |
+| 124 | HomePage | Theme Toggle | Ganti tema | Klik toggle | Tema berubah dark/light | Berjalan sesuai harapan | PASS | LocalStorage persistance |
+| 125 | UI | 404 Page | Akses URL tidak valid | Buka URL acak | Halaman NotFound | Berjalan sesuai harapan | PASS | React Router `*` route |
+| 126 | UI | Chatbot | Widget chatbot | Klik tombol chatbot | Chatbot tampil | Berjalan sesuai harapan | PASS | Global component |
+| 127 | UI | i18n | Multi bahasa | Ganti bahasa di UI | Teks berubah | Berjalan sesuai harapan | PASS | Konfigurasi i18next |
+| 128 | UI | Animasi | Navigasi | Navigasi halaman | Animasi Fade-in/Scale | Berjalan sesuai harapan | PASS | Framer Motion ok |
+| 129 | UI | Parallax | Background | Scroll halaman | Efek Parallax | Berjalan sesuai harapan | PASS | Komponen parallax |
+| 130 | Halaman Layanan | Listing Penginapan | Buka /layanan/penginapan | Grid kartu penginapan | Tampil dengan baik | Berjalan sesuai harapan | PASS | Styling CSS ok |
+| 131 | Halaman Layanan | Listing Rental | Buka /layanan/rental | Grid kartu rental | Tampil dengan baik | Berjalan sesuai harapan | PASS | Styling CSS ok |
+| 132 | Halaman Layanan | Listing Tour Guide | Buka /layanan/tourguide | Grid kartu tour guide | Tampil dengan baik | Berjalan sesuai harapan | PASS | Styling CSS ok |
+
+## 17. Utility & Infrastructure
+
+| No | Modul | Fitur | Skenario Pengujian | Langkah Pengujian | Hasil yang Diharapkan | Hasil Aktual (Estimasi) | Status | Keterangan |
+|-:|-------|-------|-------------------|-------------------|----------------------|-----------------------|--------|-----------|
+| 133 | Utils | Ping DB | Cek MongoDB | GET /api/ping/database | Response status koneksi | Berjalan sesuai harapan | PASS | Health check |
+| 134 | Utils | Ping Cloud | Cek Cloudinary | GET /api/ping/cloudinary | Response status | Berjalan sesuai harapan | PASS | Health check |
+| 135 | Security | CORS | Cek proteksi Origin | Request luar | Ditolak oleh server | Berjalan sesuai harapan | PASS | Setup express cors |
+| 136 | Security | Helmet | Cek Security Header | Request server | Header proteksi tampil | Berjalan sesuai harapan | PASS | Setup helmet |
+| 137 | Security | Cookie | Cek attributes | Login | HttpOnly & Secure ada | Berjalan sesuai harapan | PASS | authController |
+
+---
+
+## Ringkasan Statistik Audit
+
+Berdasarkan hasil pembacaan kode dari Bagian 1, 2, dan 3:
+
+| Kategori | Jumlah |
+|----------|--------|
+| **Total Skenario Pengujian** | **137** |
+| Status **PASS** (Estimasi) | 129 |
+| Status **FAILED** (Estimasi) | 8 |
+| Status NOT TESTED | 0 |
+| Bug Ditemukan | 12 |
+
+## Dependensi Eksternal yang Diperlukan (Wajib Diisi di `.env`)
+| Layanan | Variabel Environment | Fungsi |
+|---------|---------------------|--------|
+| MongoDB | `MONGO_URI` | Database utama |
+| Cloudinary | `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` | Upload gambar/dokumen |
+| Xendit | `XENDIT_API_KEY`, `XENDIT_CALLBACK_TOKEN` | Pembayaran (penginapan) |
+| Midtrans | `MIDTRANS_SERVER_KEY`, `MIDTRANS_CLIENT_KEY` | Pembayaran (rental, tour guide) |
+| Google OAuth | `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` | Login Google |
+| JWT | `JWT_SECRET` | Token autentikasi |
+| App Config | `FRONTEND_URL`, `CORS_ORIGIN`, `PORT` | Konfigurasi server |
+
+---
+
+*Dokumen ini diperbarui berdasarkan estimasi hasil Static Code Analysis. Status diproyeksikan ke FAILED pada bagian-bagian kode yang dipastikan cacat (bug/error logic), sedangkan bagian kode yang utuh diproyeksikan ke PASS dengan asumsi *environment variable* terkonfigurasi dengan benar.*

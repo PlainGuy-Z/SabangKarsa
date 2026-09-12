@@ -246,7 +246,7 @@ export function Footer() {
 
             <div className="border-t border-border pt-8 text-center">
               <p className="text-muted-foreground dark:text-muted-foreground">
-                ©2025 SabangKarsa. All rights reserved.
+                ©2026 SabangKarsa. All rights reserved.
               </p>
             </div>
           </div>

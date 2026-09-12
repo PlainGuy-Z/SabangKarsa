@@ -1,0 +1,66 @@
+# Audit Fungsionalitas Website Sabang Karsa — Bagian 1
+
+## Informasi Proyek
+
+| Item | Detail |
+|------|--------|
+| Frontend | React 19 + Vite 7 + TypeScript + TailwindCSS 4 |
+| Backend | Node.js + Express 4 + MongoDB (Mongoose 7) |
+| Auth | JWT (HttpOnly Cookie) + Google OAuth (Passport) |
+| Payment | Xendit (invoice) + Midtrans (snap) |
+| Upload | Cloudinary via Multer |
+| Deployment | Vercel (FE) + VPS (BE) |
+
+## Metode Pengujian
+
+Pengujian dilakukan melalui **static code analysis** terhadap seluruh source code frontend (`SabangKarsa_New`) dan backend (`SabangKarsaBE_New`). Tabel di bawah ini menyertakan **Hasil Aktual (Estimasi)** dan **Status** yang diproyeksikan (PASS/FAILED) berdasarkan validasi kebenaran logika pada *source code*.
+
+---
+
+## 1. Authentication & Authorization
+
+| No | Modul | Fitur | Skenario Pengujian | Langkah Pengujian | Hasil yang Diharapkan | Hasil Aktual (Estimasi) | Status | Keterangan |
+|-:|-------|-------|-------------------|-------------------|----------------------|-----------------------|--------|-----------|
+| 1 | Authentication | Register | Register dengan data valid | Isi name, email, password, role, no_hp, alamat → klik Register | User berhasil terdaftar, cookie JWT di-set, redirect ke home | Berjalan sesuai harapan, data tersimpan di MongoDB | PASS | Endpoint POST /api/auth/register tersedia |
+| 2 | Authentication | Register | Register dengan email duplikat | Masukkan email yang sudah terdaftar | Sistem menolak dengan pesan "Email sudah terdaftar" (400) | Validasi berfungsi dan menolak request | PASS | Validasi duplikat email ada di authController.js |
+| 3 | Authentication | Register | Register dengan role tidak valid | Kirim role selain buyer/seller | Sistem menolak dengan pesan "Role tidak valid" (400) | Validasi berfungsi dan menolak request | PASS | Validasi role ada di authController.js |
+| 4 | Authentication | Register | Register dengan password < 8 karakter | Masukkan password pendek di frontend | Frontend menolak dengan pesan error | Frontend memblokir, tetapi jika di-bypass, backend meloloskan password 1 karakter | FAILED | Backend tidak memvalidasi panjang minimum password |
+| 5 | Authentication | Register | Register tanpa field wajib | Kirim data tanpa name/email/password | Mongoose validation error (500) | Mengembalikan Mongoose error 500 alih-alih pesan 400 Bad Request | FAILED | Kurang validasi input eksplisit di Controller |
+| 6 | Authentication | Login | Login dengan credential valid | Masukkan email dan password valid → klik Login | User berhasil login, cookie JWT di-set, redirect ke home | Berjalan sesuai harapan | PASS | Endpoint POST /api/auth/login tersedia |
+| 7 | Authentication | Login | Login dengan password salah | Masukkan email valid + password salah | Sistem menolak dengan "Password salah" (400) | Berjalan sesuai harapan | PASS | Validasi password bcrypt berfungsi dengan baik |
+| 8 | Authentication | Login | Login dengan email tidak terdaftar | Masukkan email yang tidak ada | Sistem menolak dengan "User tidak ditemukan" (404) | Berjalan sesuai harapan | PASS | Pengecekan user berhasil |
+| 9 | Authentication | Login | Login dengan field kosong | Submit form tanpa mengisi email/password | Frontend menolak (HTML required attribute) | Frontend berhasil memblokir | PASS | Atribut `required` ada di LoginPage.tsx |
+| 10 | Authentication | Logout | Logout user | Klik tombol logout | Cookie token dihapus, user diarahkan ke halaman utama | Berjalan sesuai harapan | PASS | clearCookie berfungsi normal |
+| 11 | Authentication | Google OAuth | Login via Google | Klik tombol login Google | User login, redirect ke frontend dengan token | Token bocor via URL parameter & diarahkan ke URL hardcoded `jaksabang.xyz` | FAILED | Berpotensi mengancam keamanan token |
+| 12 | Authentication | Google OAuth | Google OAuth — user baru | Login Google dengan email baru | User baru dibuat dengan role "buyer" | User dibuat, namun menggunakan password dummy "-" yang rentan | PASS | Berhasil, meski dari sisi keamanan kurang ideal |
+| 13 | Authentication | Token Check | Cek validitas token | GET /api/token dengan cookie valid | Response {active: true, token: "..."} | Berjalan sesuai harapan | PASS | Menggunakan cookie parser |
+| 14 | Authentication | Token Check | Token expired/invalid | GET /api/token dengan token kadaluarsa | Response {active: false} dengan status 200 | Berjalan sesuai harapan | PASS | Error handling jwt berjalan baik |
+| 15 | Authentication | Token Verification | Auto-logout saat token invalid | Buka aplikasi dengan token kadaluarsa | localStorage dibersihkan, redirect ke "/" | Berjalan sesuai harapan | PASS | Global routing guard di FE berjalan |
+| 16 | Authentication | JWT | JWT HttpOnly Cookie | Login → periksa cookie | Token disimpan sebagai HttpOnly cookie | Berjalan sesuai harapan | PASS | Flag httpOnly=true aktif di res.cookie |
+| 17 | Authentication | Role | Role user: buyer, seller, admin | Periksa User model | Enum: ["buyer", "seller", "admin"] | Berjalan sesuai harapan | PASS | Mongoose schema sesuai |
+| 18 | Authorization | Proteksi API | Akses API tanpa token | GET /api/auth/users tanpa cookie | Response 401 "Token tidak ditemukan" | Berjalan sesuai harapan | PASS | Middleware `verifyToken` menolak request |
+| 19 | Authorization | Proteksi API | Akses API dengan token invalid | GET /api/auth/users dengan token rusak | Response 403 "Token tidak valid" | Berjalan sesuai harapan | PASS | JWT verifikasi gagal & mereturn 403 |
+| 20 | Authorization | Admin Guard | Non-admin akses endpoint admin | GET /api/admin/users dengan role buyer | Response 403 "Hanya admin yang diizinkan" | Berjalan sesuai harapan | PASS | Middleware `verifyAdmin` berjalan sukses |
+| 21 | Authorization | Proteksi Halaman FE | Buyer akses seller dashboard | Navigate ke /layanan/dashboard sebagai buyer | Redirect kembali (navigate(-1)) | Berjalan sesuai harapan | PASS | Logic `if (role !== "seller") navigate(-1)` |
+| 22 | Authorization | Proteksi Halaman FE | Non-admin akses admin dashboard | Navigate ke /admin/dashboard sebagai buyer | Redirect kembali (navigate(-1)) | Berjalan sesuai harapan | PASS | Logic berjalan normal |
+| 23 | Authorization | Proteksi Halaman FE | User belum login akses booking | Navigate ke /penginapan/:id/booking tanpa login | Redirect ke /login | Berjalan sesuai harapan | PASS | Redirect ke halaman auth berfungsi |
+| 24 | Authentication | Rate Limiting | Brute force login | Kirim 11+ request login dalam 15 menit | Response "Terlalu banyak percobaan login" | Berjalan sesuai harapan | PASS | Express-rate-limit dikonfigurasi 10 max/15m |
+| 25 | Authentication | Rate Limiting | Rate limit global | Kirim 101+ request API dalam 15 menit | Response "Terlalu banyak request" | Berjalan sesuai harapan | PASS | Global limiter dikonfigurasi 100 max/15m |
+
+---
+
+## 2. User Management
+
+| No | Modul | Fitur | Skenario Pengujian | Langkah Pengujian | Hasil yang Diharapkan | Hasil Aktual (Estimasi) | Status | Keterangan |
+|-:|-------|-------|-------------------|-------------------|----------------------|-----------------------|--------|-----------|
+| 26 | User | Get Profile | Melihat profil user yang login | GET /api/auth/me dengan token valid | Return data user tanpa password | Endpoint crash (`ReferenceError: User is not defined`) | FAILED | `User` model tidak di-import di file authRoutes.js |
+| 27 | User | Update Profile | Mengubah data profil | PUT /api/auth/update dengan {name, no_hp, alamat} | Data user terupdate | Berjalan sesuai harapan | PASS | Query `findByIdAndUpdate` tereksekusi normal |
+| 28 | User | Update Profile | Update profil tanpa token | PUT /api/auth/update tanpa autentikasi | Response 401 | Berjalan sesuai harapan | PASS | Dilindungi oleh middleware token |
+| 29 | User | Check Phone | Cek nomor HP sudah dipakai | POST /api/auth/check-phone dengan {no_hp} | Response {used: true/false} | Berjalan sesuai harapan | PASS | Pengecekan count berjalan sempurna |
+| 30 | User | Get All Users | Admin melihat semua user | GET /api/auth/users dengan token admin | Return daftar user tanpa password | Berjalan sesuai harapan | PASS | Berhasil membuang field password dalam query |
+| 31 | User | Get All Users | Non-admin melihat semua user | GET /api/auth/users dengan token buyer | Response 403 "Hanya admin yang boleh mengakses" | Berjalan sesuai harapan | PASS | Ditolak oleh cek role |
+
+---
+
+## Ringkasan Perbaikan
+Semua pengujian yang berstatus **FAILED** di atas membutuhkan perbaikan pada *source code* agar dapat berjalan sesuai ekspektasi. Item dengan status **PASS** diproyeksikan akan sukses saat aplikasi berjalan asalkan tidak ada masalah pada koneksi ke *database*.
