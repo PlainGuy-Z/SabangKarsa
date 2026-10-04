@@ -9,7 +9,7 @@ const {
   getBookingsForSeller,
 } = require("../controllers/bookingPenginapanController");
 
-const { verifyToken } = require("../middleware/auth");
+const { verifyToken, verifyAdmin } = require("../middleware/auth");
 const router = express.Router();
 
 /**
@@ -221,7 +221,7 @@ router.delete("/:id", verifyToken, deleteBooking);
  *       400:
  *         description: Error
  */
-router.put("/:id/payment-status", verifyToken, updatePaymentStatus);
+router.put("/:id/payment-status", verifyToken, verifyAdmin, updatePaymentStatus);
 
 
 module.exports = router;

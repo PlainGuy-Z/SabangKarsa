@@ -3,19 +3,14 @@ const User = require("../models/User");
 
 exports.ajukanVerifikasi = async (req, res) => {
   try {
-    console.log("Memulai ajukanVerifikasi untuk user:", req.user?.id);
     if (!req.user || !req.user.id) {
-      console.log("Autentikasi gagal");
       return res.status(401).json({ error: "Autentikasi gagal" });
     }
 
     const userId = req.user.id;
-    console.log("req.body:", req.body); // tambahkan debug
-    console.log("req.files:", req.files);
 
     const existing = await VerifikasiSeller.findOne({ user: userId });
     if (existing) {
-      console.log("Pengajuan sudah ada");
       return res.status(400).json({ error: "Pengajuan verifikasi sudah ada" });
     }
 
@@ -23,7 +18,6 @@ exports.ajukanVerifikasi = async (req, res) => {
     const { no_rekening, nama_rekening } = req.body;
 
     if (!npwp || !ktp || !dokumenBisnis) {
-      console.log("Dokumen tidak lengkap");
       return res.status(400).json({ error: "Semua dokumen harus diunggah" });
     }
 
@@ -35,7 +29,6 @@ exports.ajukanVerifikasi = async (req, res) => {
       no_rekening,
       nama_rekening,
     });
-    console.log("Dokumen berhasil disimpan ke MongoDB:", newRequest);
 
     res
       .status(201)

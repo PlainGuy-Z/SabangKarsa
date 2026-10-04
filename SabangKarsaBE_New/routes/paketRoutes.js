@@ -3,6 +3,7 @@ const {
   createPaket,
   getAllPaket,
   getPaketById,
+  updatePaket,
   deletePaket
 } = require("../controllers/paketController");
 
@@ -104,6 +105,49 @@ router.get("/:id", getPaketById);
  *         description: Error input
  */
 router.post("/", verifyToken, upload.single("gambar"), createPaket);
+
+/**
+ * @swagger
+ * /api/paket/{id}:
+ *   put:
+ *     summary: Update paket wisata berdasarkan ID
+ *     tags: [PaketWisata]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID paket wisata
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nama:
+ *                 type: string
+ *               deskripsi:
+ *                 type: string
+ *               hargaPerOrang:
+ *                 type: number
+ *               durasi:
+ *                 type: string
+ *               gambar:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       200:
+ *         description: Paket wisata berhasil diupdate
+ *       403:
+ *         description: Akses ditolak
+ *       404:
+ *         description: Paket wisata tidak ditemukan
+ */
+router.put("/:id", verifyToken, upload.single("gambar"), updatePaket);
 
 /**
  * @swagger

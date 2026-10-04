@@ -46,7 +46,7 @@ exports.createBooking = async (req, res) => {
       return res.status(400).json({ error: "Tanggal check-in dan check-out tidak valid" });
     }
 
-    const total_harga = penginapanData.harga_per_malam * lamaInap * jumlah_kamar;
+    const total_harga = penginapanData.hargaPerMalam * lamaInap * jumlah_kamar;
 
     // Step 3: Buat booking di DB
     const booking = await Booking.create({
@@ -69,7 +69,7 @@ exports.createBooking = async (req, res) => {
         externalID: booking._id.toString(),
         amount: total_harga,
         payerEmail: req.user.email,
-        description: `Booking ${penginapanData.nama_penginapan} - ${jumlah_kamar} kamar, ${lamaInap} malam`,
+        description: `Booking ${penginapanData.nama} - ${jumlah_kamar} kamar, ${lamaInap} malam`,
         invoiceDuration: 86400, // 24 hours
         successRedirectURL: `${process.env.FRONTEND_URL}/bookings?payment=success`,
         failureRedirectURL: `${process.env.FRONTEND_URL}/bookings?payment=failed`,
@@ -148,50 +148,11 @@ exports.updatePaymentStatus = async (req, res) => {
   }
 };
 
+// NOTE: Booking penginapan menggunakan Xendit, bukan Midtrans.
+// Webhook Xendit di-handle oleh paymentController.handleWebhook
+// Handler ini dipertahankan untuk backward compatibility tapi tidak aktif.
 exports.handleMidtransCallback = async (req, res) => {
-  try {
-    const { order_id, transaction_status, status_code, gross_amount, signature_key } = req.body;
-
-    const serverKey = process.env.MIDTRANS_SERVER_KEY;
-    if (serverKey && signature_key) {
-      const crypto = require('crypto');
-      const hash = crypto.createHash('sha512')
-        .update(order_id + status_code + gross_amount + serverKey)
-        .digest('hex');
-      if (hash !== signature_key) {
-        return res.status(403).json({ error: 'Invalid signature' });
-      }
-    }
-
-    const booking = await Booking.findOne({ payment_id: order_id });
-    if (!booking)
-      return res.status(404).json({ error: "Booking tidak ditemukan" });
-
-    if (
-      transaction_status === "capture" ||
-      transaction_status === "settlement"
-    ) {
-      booking.status_pembayaran = "paid";
-      // Kurangi jumlahKamarTersedia
-      const penginapan = await Penginapan.findById(booking.penginapan);
-      if (penginapan) {
-        if (penginapan.jumlahKamarTersedia >= booking.jumlah_kamar) {
-          penginapan.jumlahKamarTersedia -= booking.jumlah_kamar;
-          await penginapan.save();
-        } else {
-          return res.status(400).json({ error: "Kamar tidak cukup tersedia" });
-        }
-      }
-    } else if (["cancel", "deny", "expire"].includes(transaction_status)) {
-      booking.status_pembayaran = "failed";
-    }
-
-    await booking.save();
-    res.status(200).json({ message: "Callback processed" });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
+  res.status(200).json({ message: "This endpoint is deprecated. Penginapan uses Xendit webhook." });
 };
 exports.deleteBooking = async (req, res) => {
   try {

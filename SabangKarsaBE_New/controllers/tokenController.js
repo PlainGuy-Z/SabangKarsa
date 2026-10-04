@@ -28,7 +28,6 @@ exports.checkToken = async (req, res) => {
     } catch (error) {
         return res.status(200).json({
             active: false,
-            token,
         });
     }
 }

@@ -35,13 +35,14 @@ const corsOptions = {
     ? (process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : ['http://localhost:5173']) 
     : true,
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
 app.use(cors(corsOptions));
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 app.use(express.json());
+app.use(passport.initialize());
 
 if (process.env.NODE_ENV !== 'production') {
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
@@ -90,7 +91,6 @@ app.use("/api/payments", paymentRoutes); // NEW: Payment routes
 
 
 
-app.use(passport.initialize());
 // root endpoint
 app.get("/", (req, res) => {
   res.send("API is running...");

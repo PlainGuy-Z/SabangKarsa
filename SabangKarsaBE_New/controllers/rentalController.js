@@ -2,8 +2,6 @@ const Rental = require("../models/Rental");
 
 //  Buat rental
 exports.createRental = async (req, res) => {
-  console.log("👉 BODY:", req.body);
-  console.log("👉 FILE:", req.file);
   try {
     const { name, type, harga, deskripsi, namaPenyedia, no_telepon } = req.body;
 

@@ -1,5 +1,6 @@
 const express = require("express");
 const passport = require("passport");
+const User = require("../models/User");
 const {
   register,
   login,
@@ -31,7 +32,13 @@ router.get(
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
-    res.redirect(`https://jaksabang.xyz/auth/success?token=${token}`);
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 24 * 60 * 60 * 1000
+    });
+    res.redirect(`${process.env.FRONTEND_URL || 'https://jaksabang.xyz'}/auth/success`);
   }
 );
 

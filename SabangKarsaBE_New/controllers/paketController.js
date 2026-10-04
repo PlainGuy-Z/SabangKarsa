@@ -42,6 +42,30 @@ exports.getPaketById = async (req, res) => {
   }
 };
 
+// ✅ Update paket (hanya pemilik atau admin)
+exports.updatePaket = async (req, res) => {
+  try {
+    const paket = await PaketWisata.findById(req.params.id);
+    if (!paket) return res.status(404).json({ error: "Paket tidak ditemukan" });
+
+    if (paket.penyedia.toString() !== req.user.id && req.user.role !== "admin") {
+      return res.status(403).json({ error: "Akses ditolak" });
+    }
+
+    const { nama, deskripsi, hargaPerOrang, durasi } = req.body;
+    if (nama) paket.nama = nama;
+    if (deskripsi) paket.deskripsi = deskripsi;
+    if (hargaPerOrang) paket.hargaPerOrang = hargaPerOrang;
+    if (durasi) paket.durasi = durasi;
+    if (req.file) paket.gambar = req.file.path;
+
+    await paket.save();
+    res.json(paket);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 // ✅ Hapus paket (hanya pemilik)
 exports.deletePaket = async (req, res) => {
   try {

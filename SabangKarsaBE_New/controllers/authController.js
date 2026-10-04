@@ -4,6 +4,12 @@
   exports.register = async (req, res) => {
     const { name, email, password, role, no_hp, alamat } = req.body;
     try {
+      if (!name || !email || !password || !role) {
+        return res.status(400).json({ error: "Semua field wajib harus diisi (name, email, password, role)" });
+      }
+      if (password.length < 8) {
+        return res.status(400).json({ error: "Password minimal 8 karakter" });
+      }
       if (role && !['buyer', 'seller'].includes(role)) {
         return res.status(400).json({ error: "Role tidak valid" });
       }
@@ -21,7 +27,7 @@
       });
 
       const token = jwt.sign(
-        { id: user._id, role: user.role },
+        { id: user._id, role: user.role, email: user.email, name: user.name },
         process.env.JWT_SECRET,
         { expiresIn: "1d" }
       );
@@ -59,7 +65,7 @@
       if (!match) return res.status(400).json({ error: "Password salah" });
 
       const token = jwt.sign(
-        { id: user._id, role: user.role },
+        { id: user._id, role: user.role, email: user.email, name: user.name },
         process.env.JWT_SECRET,
         { expiresIn: "1d" }
       );

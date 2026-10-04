@@ -65,9 +65,6 @@ export default function BookingPenginapanPage() {
       setError('');
       setLoading(true);
 
-      const token = localStorage.getItem('token');
-      if (!token) throw new Error(t("bp-err-msg-3"));
-
       const res = await fetch(`${API_URL}/booking/penginapan`, {
         method: 'POST',
         headers: {
@@ -88,12 +85,11 @@ export default function BookingPenginapanPage() {
         throw new Error(data.error || t("bp-err-msg-4"));
       }
 
-      if (data.payment?.redirect_url) {
-        // Redirect ke Midtrans
-        window.location.href = data.payment.redirect_url;
+      if (data.payment_url) {
+        // Redirect ke Xendit payment page
+        window.location.href = data.payment_url;
       } else {
-        alert(t("bp-err-msg-5"));
-        // console.log('Booking data:', data.booking);
+        alert(data.message || t("bp-err-msg-5"));
       }
     } catch (e: any) {
       setError(e.message || t("bp-err-msg-6"));

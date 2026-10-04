@@ -1,4 +1,3 @@
-const e = require("cors");
 const mongoose = require("mongoose");
 
 const penginapanSchema = new mongoose.Schema({

@@ -17,7 +17,7 @@ async (accessToken, refreshToken, profile, done) => {
       user = await User.create({
         name: profile.displayName,
         email: profile.emails[0].value,
-        password: "-", // dummy, karena login via Google
+        password: require('crypto').randomBytes(32).toString('hex'), // dummy, karena login via Google
         role: "buyer", // default
         no_hp: "-",
         alamat: "-"
@@ -34,6 +34,11 @@ async (accessToken, refreshToken, profile, done) => {
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
-passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => done(err, user));
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (err) {
+    done(err, null);
+  }
 });
