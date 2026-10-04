@@ -9,24 +9,24 @@
     },
     {
       "id": 2,
-      "name": "Dea Zasqia P. Malau",
+      "name": "Abd Ghofur",
       "role": "Branding & Content Manager",
       "image": "/assets/images/dea.png",
-      "bio": "Dea, manages branding and content, ensuring the platform’s identity are well delivered."
+      "bio": "Ghofur, manages branding and content, ensuring the platform’s identity are well delivered."
     },
     {
       "id": 3,
-      "name": "Shafa Disya Aulia",
+      "name": "Muhammad Azlan",
       "role": "Back-End Developer",
-      "image": "/assets/images/shafa.png",
-      "bio": "Shafa manages SabangKarsa’s backend and maintenance, ensuring the system runs stably and efficiently."
+      "image": "/assets/images/azlan.png",
+      "bio": "Azlan manages SabangKarsa’s backend and maintenance, ensuring the system runs stably and efficiently."
     },
     {
       "id": 4,
-      "name": "Dian Islami",
+      "name": "Teuku Fikram Al Syahbanna",
       "role": "Front-End Developer",
       "image": "/assets/images/dian.png",
-      "bio": "Dian handles SabangKarsa’s frontend development, delivering an optimal interface and user experience."
+      "bio": "Fikram handles SabangKarsa’s frontend development, delivering an optimal interface and user experience."
     }
   ],
   "id": [

@@ -6,6 +6,12 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./swagger/swagger");
 dotenv.config();
 
+// Custom DNS Servers (Google DNS & Cloudflare DNS)
+if (process.env.NODE_ENV !== "production") {
+  const dns = require("node:dns");
+  dns.setServers(["8.8.8.8", "1.1.1.1"]);
+}
+
 const authRoutes = require("./routes/authRoutes");
 const rentalRoutes = require("./routes/rentalRoutes");
 const bookingRentalRoutes = require("./routes/bookingRentalRoutes");
@@ -19,6 +25,7 @@ const verifikasiSellerRoutes = require("./routes/verifikasiSellerRoutes");
 const tokenRoutes = require("./routes/tokenRoutes");
 const paymentRoutes = require("./routes/paymentRoutes"); // NEW: Payment routes
 const app = express();
+app.set("trust proxy", 1);
 const passport = require("passport");
 require("./config/passport"); 
 const utilsRoutes = require('./routes/utilsRoutes');
@@ -31,11 +38,17 @@ const helmet = require('helmet');
 app.use(helmet());
 
 const corsOptions = {
-  origin: process.env.NODE_ENV === 'production' 
-    ? (process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : ['http://localhost:5173']) 
-    : true,
+  origin: function (origin, callback) {
+    if (!origin || (process.env.NODE_ENV !== 'production')) return callback(null, true);
+    const allowedOrigins = process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',').map(o => o.trim()) : ['http://localhost:5173', 'https://sabangkarsa.com'];
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
 app.use(cors(corsOptions));
@@ -50,13 +63,12 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 
-
 const rateLimit = require('express-rate-limit');
 
 // Rate limiter global: 100 request per 15 menit per IP
 const globalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 100,
+  max: 500,
   message: { error: 'Terlalu banyak request, coba lagi nanti' }
 });
 
@@ -97,6 +109,14 @@ app.get("/", (req, res) => {
 });
 
 
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    message: "SabangKarsa API is running"
+  });
+});
+
+
 // Global error handler
 app.use((err, req, res, next) => {
   console.error('❌ Unhandled Error:', err);
@@ -107,15 +127,19 @@ app.use((err, req, res, next) => {
   });
 });
 
+const PORT = process.env.PORT || 3001;
+
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log("✅ MongoDB connected");
-    app.listen(process.env.PORT, () => {
-      console.log(`🚀 Server running at http://localhost:${process.env.PORT}`);
+
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`🚀 Server running on port ${PORT}`);
     });
   })
   .catch((err) => {
     console.error("❌ MongoDB connection error:", err);
+    process.exit(1);
   });
 
 

@@ -1,9 +1,9 @@
 const Booking = require("../models/Booking");
 const Penginapan = require("../models/Penginapan");
-const { Xendit } = require('xendit-node');
+const { Invoice } = require('xendit-node');
 
-// Initialize Xendit
-const xendit = new Xendit({
+// Initialize Xendit Invoice client (v7)
+const invoiceClient = new Invoice({
   secretKey: process.env.XENDIT_SECRET_KEY,
 });
 
@@ -34,7 +34,7 @@ exports.createBooking = async (req, res) => {
     });
 
     const totalKamarTerbooking = overlappingBookings.reduce((sum, b) => sum + b.jumlah_kamar, 0);
-    if (totalKamarTerbooking + jumlah_kamar > penginapanData.jumlah_kamar) {
+    if (totalKamarTerbooking + jumlah_kamar > penginapanData.jumlahKamarTersedia) {
       return res.status(400).json({ error: "Kamar tidak tersedia pada tanggal tersebut" });
     }
 
@@ -59,20 +59,19 @@ exports.createBooking = async (req, res) => {
       status_pembayaran: 'pending',
     });
 
-    // Step 4: Create Xendit Invoice
+    // Step 4: Create Xendit Invoice (v7 API)
     try {
-      const { Invoice } = xendit;
-      const invoiceSpecificOptions = {};
-      const i = new Invoice(invoiceSpecificOptions);
-
-      const invoice = await i.createInvoice({
-        externalID: booking._id.toString(),
-        amount: total_harga,
-        payerEmail: req.user.email,
-        description: `Booking ${penginapanData.nama} - ${jumlah_kamar} kamar, ${lamaInap} malam`,
-        invoiceDuration: 86400, // 24 hours
-        successRedirectURL: `${process.env.FRONTEND_URL}/bookings?payment=success`,
-        failureRedirectURL: `${process.env.FRONTEND_URL}/bookings?payment=failed`,
+      const invoice = await invoiceClient.createInvoice({
+        data: {
+          externalId: booking._id.toString(),
+          amount: total_harga,
+          payerEmail: req.user.email || 'customer@sabangkarsa.com',
+          description: `Booking ${penginapanData.nama} - ${jumlah_kamar} kamar, ${lamaInap} malam`,
+          invoiceDuration: 86400, // 24 hours
+          successRedirectUrl: `${process.env.FRONTEND_URL}/pesanan?payment=success`,
+          failureRedirectUrl: `${process.env.FRONTEND_URL}/pesanan?payment=failed`,
+          currency: 'IDR',
+        },
       });
 
       // Update booking with payment info
@@ -85,7 +84,7 @@ exports.createBooking = async (req, res) => {
         success: true,
         message: 'Booking berhasil dibuat',
         booking,
-        payment_url: invoice.invoice_url,
+        payment_url: invoice.invoiceUrl,
       });
 
     } catch (xenditError) {
@@ -99,6 +98,7 @@ exports.createBooking = async (req, res) => {
         payment_url: null,
       });
     }
+
 
 
   } catch (err) {

@@ -16,13 +16,13 @@ export default function BookingRentalPage() {
   const { t } = useTranslation();
   const { theme } = useTheme();
   
-  if (userData.role !== "buyer") {
-    navigate(-1);
-  }
-
-  if (!userData.id) {
-    navigate("/login");
-  }
+  useEffect(() => {
+    if (userData.role !== "buyer") {
+      navigate(-1);
+    } else if (!userData.id) {
+      navigate("/login");
+    }
+  }, [userData, navigate]);
 
   const API_URL = import.meta.env.VITE_API_URL;
   const { id } = useParams<{ id: string }>();
@@ -68,8 +68,7 @@ export default function BookingRentalPage() {
     try {
       setError('');
       setLoading(true);
-      const token = localStorage.getItem('token');
-      if (!token) throw new Error(t("br-err-msg-3"));
+      if (!userData.id) throw new Error(t("br-err-msg-3"));
 
       const res = await fetch(`${API_URL}/booking/rental`, {
         method: 'POST',

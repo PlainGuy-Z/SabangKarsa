@@ -232,10 +232,10 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
     <header
       id={id}
       ref={ref}
-      className="fixed top-0 left-0 xl:left-25 right-0 xl:right-25 z-50"
+      className="fixed top-0 left-0 right-0 z-50"
     >
-      <div className="mx-auto max-w-8xl px-2 sm:px-4 py-1 sm:py-2">
-        <div className={`navbar-glass flex items-center justify-between rounded-full px-4 sm:px-6 xl:px-3 2xl:px-6 py-2 sm:py-3 shadow-lg border ${theme === "light" ? "border-gray-200" : "border-gray-700/50"} min-h-[50px] sm:min-h-[55px]`}>
+      <div className="mx-auto max-w-[1440px] px-2 sm:px-4 lg:px-8 xl:px-12 py-2 sm:py-3 md:py-4">
+        <div className={`navbar-glass flex items-center justify-between rounded-full px-4 sm:px-6 xl:px-4 2xl:px-8 py-2 sm:py-3 shadow-lg border ${theme === "light" ? "border-gray-200" : "border-gray-700/50"} min-h-[50px] sm:min-h-[55px]`}>
           <div
             className="flex items-center gap-2 sm:gap-3 group cursor-pointer"
             onClick={() => navigate("/")}

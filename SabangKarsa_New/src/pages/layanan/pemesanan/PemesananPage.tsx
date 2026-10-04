@@ -62,10 +62,8 @@ export default function PemesananPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const token = localStorage.getItem('token');
-
   useEffect(() => {
-    if (!token) {
+    if (!userData.id) {
       setError(t("usrbook-err-msg-1"));
       setLoading(false);
       return;
@@ -110,7 +108,7 @@ export default function PemesananPage() {
     };
 
     fetchData();
-  }, [token, t]);
+  }, [userData.id, t]);
 
   const getStatusColor = (status: string) => {
     switch (status?.toLowerCase()) {

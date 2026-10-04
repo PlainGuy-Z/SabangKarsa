@@ -1,11 +1,9 @@
-const { Xendit } = require('xendit-node');
+const { Invoice } = require('xendit-node');
 
-// Initialize Xendit
-const xendit = new Xendit({
+// Initialize Xendit Invoice client (v7)
+const invoiceClient = new Invoice({
   secretKey: process.env.XENDIT_SECRET_KEY,
 });
-
-const { Invoice } = xendit;
 
 // Create Xendit Invoice
 exports.createInvoice = async (req, res) => {
@@ -18,28 +16,28 @@ exports.createInvoice = async (req, res) => {
       });
     }
 
-    const invoiceSpecificOptions = {};
-    const i = new Invoice(invoiceSpecificOptions);
-
-    const invoice = await i.createInvoice({
-      externalID: externalId,
-      amount: amount,
-      payerEmail: payerEmail,
-      description: description || `Payment for booking ${externalId}`,
-      invoiceDuration: 86400, // 24 hours
-      successRedirectURL: `${process.env.FRONTEND_URL}/bookings?payment=success`,
-      failureRedirectURL: `${process.env.FRONTEND_URL}/bookings?payment=failed`,
+    const invoice = await invoiceClient.createInvoice({
+      data: {
+        externalId: externalId,
+        amount: amount,
+        payerEmail: payerEmail,
+        description: description || `Payment for booking ${externalId}`,
+        invoiceDuration: 86400, // 24 hours
+        successRedirectUrl: `${process.env.FRONTEND_URL}/pesanan?payment=success`,
+        failureRedirectUrl: `${process.env.FRONTEND_URL}/pesanan?payment=failed`,
+        currency: 'IDR',
+      },
     });
 
     console.log('✅ Xendit invoice created:', invoice.id);
 
     res.json({
       id: invoice.id,
-      external_id: invoice.external_id,
-      invoice_url: invoice.invoice_url,
+      external_id: invoice.externalId,
+      invoice_url: invoice.invoiceUrl,
       status: invoice.status,
       amount: invoice.amount,
-      expiry_date: invoice.expiry_date,
+      expiry_date: invoice.expiryDate,
     });
   } catch (error) {
     console.error('❌ Xendit create invoice error:', error);
@@ -48,6 +46,7 @@ exports.createInvoice = async (req, res) => {
     });
   }
 };
+
 
 // Handle Xendit Webhook
 exports.handleWebhook = async (req, res) => {
@@ -70,11 +69,18 @@ exports.handleWebhook = async (req, res) => {
     const BookingRental = require('../models/BookingRental');
     const BookingTourGuide = require('../models/BookingTourGuide');
 
-    // Try to find booking in all collections
-    let booking = await Booking.findById(external_id);
-    if (!booking) booking = await BookingPaket.findById(external_id);
-    if (!booking) booking = await BookingRental.findById(external_id);
-    if (!booking) booking = await BookingTourGuide.findById(external_id);
+    // Try to find booking in all collections.
+    // Note: external_id for Penginapan is the ObjectId, but for Rental and TourGuide it's a custom string (e.g. ORDER-xxx) which we saved in payment_id (during create transaction)
+    let booking;
+    // Check Penginapan first (where external_id is the _id)
+    if (external_id.match(/^[0-9a-fA-F]{24}$/)) {
+      booking = await Booking.findById(external_id);
+      if (!booking) booking = await BookingPaket.findById(external_id);
+    }
+    
+    // If not found, check other collections by payment_id
+    if (!booking) booking = await BookingRental.findOne({ payment_id: external_id });
+    if (!booking) booking = await BookingTourGuide.findOne({ payment_id: external_id });
 
     if (booking) {
       // Update payment status based on Xendit status
@@ -103,14 +109,11 @@ exports.checkPaymentStatus = async (req, res) => {
   try {
     const { invoiceId } = req.params;
 
-    const invoiceSpecificOptions = {};
-    const i = new Invoice(invoiceSpecificOptions);
-
-    const invoice = await i.getInvoice({ invoiceID: invoiceId });
+    const invoice = await invoiceClient.getInvoiceById({ invoiceId: invoiceId });
 
     res.json({
       id: invoice.id,
-      external_id: invoice.external_id,
+      external_id: invoice.externalId,
       status: invoice.status,
       amount: invoice.amount,
     });

@@ -28,17 +28,17 @@ router.get(
   (req, res) => {
     const jwt = require("jsonwebtoken");
     const token = jwt.sign(
-      { id: req.user._id, role: req.user.role },
+      { id: req.user._id, role: req.user.role, email: req.user.email, name: req.user.name },
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      secure: true,
+      sameSite: 'none',
       maxAge: 24 * 60 * 60 * 1000
     });
-    res.redirect(`${process.env.FRONTEND_URL || 'https://jaksabang.xyz'}/auth/success`);
+    res.redirect(`${process.env.FRONTEND_URL || 'https://sabangkarsa.com'}/auth/success`);
   }
 );
 

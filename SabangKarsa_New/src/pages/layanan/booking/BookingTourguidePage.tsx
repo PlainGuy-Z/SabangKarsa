@@ -27,13 +27,13 @@ export default function BookingTourguidePage() {
   const { t } = useTranslation();
   const { theme } = useTheme();
   
-  if (userData.role !== "buyer") {
-    navigate(-1);
-  }
-
-  if (!userData.id) {
-    navigate("/login");
-  }
+  useEffect(() => {
+    if (userData.role !== "buyer") {
+      navigate(-1);
+    } else if (!userData.id) {
+      navigate("/login");
+    }
+  }, [userData, navigate]);
 
   const { id } = useParams<{ id: string }>();
   const [tourGuide, setTourGuide] = useState<TourGuide | null>(null);

@@ -63,10 +63,8 @@ export default function PesananPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const token = localStorage.getItem('token');
-
   useEffect(() => {
-    if (!token) {
+    if (!userData.id) {
       setError(t("book-err-msg-1"));
       setLoading(false);
       return;
@@ -100,7 +98,7 @@ export default function PesananPage() {
     };
 
     fetchData();
-  }, [token, t]);
+  }, [userData.id, t]);
 
   // helper function
   const renderItemName = (item: string | { nama: string; name: string }) =>

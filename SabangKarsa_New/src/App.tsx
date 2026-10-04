@@ -25,7 +25,7 @@ import PenginapanDetailPage from "./pages/layanan/penginapan/PenginapanDetailPag
 import DetailRentalPage from "./pages/layanan/rentaldansupir/DetailRentalPage";
 import DetailTourGuidePage from "./pages/layanan/tourguide/DetailTourGuidePage";
 import BookingPenginapanPage from "./pages/layanan/booking/BookingPenginapanPage";
-import BookingRentalPage from "./pages/layanan/booking/BoookingRentalPage";
+import BookingRentalPage from "./pages/layanan/booking/BookingRentalPage";
 import BookingTourguidePage from "./pages/layanan/booking/BookingTourguidePage";
 import PemesananPage from "./pages/layanan/pemesanan/PemesananPage";
 import PesananPage from "./pages/layanan/pemesanan/PesananPage";
