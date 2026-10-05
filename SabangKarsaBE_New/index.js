@@ -63,14 +63,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 
-// Fallback rewrite middleware for frontend requests missing '/api' prefix
-app.use((req, res, next) => {
-  if (!req.path.startsWith('/api') && req.path !== '/' && req.path !== '/health') {
-    req.url = '/api' + req.url;
-  }
-  next();
-});
-
 const rateLimit = require('express-rate-limit');
 
 // Rate limiter global: 100 request per 15 menit per IP
@@ -89,25 +81,51 @@ const authLimiter = rateLimit({
 
 app.use('/api/', globalLimiter);
 app.use('/api/auth/login', authLimiter);
+app.use('/auth/login', authLimiter);
 app.use('/api/auth/register', authLimiter);
+app.use('/auth/register', authLimiter);
 
-
-
-// routes
+// routes (mendukung dengan & tanpa prefix /api)
 app.use("/api/auth", authRoutes);
+app.use("/auth", authRoutes);
+
 app.use("/api/rental", rentalRoutes);
+app.use("/rental", rentalRoutes);
+
 app.use("/api/booking/rental", bookingRentalRoutes);
+app.use("/booking/rental", bookingRentalRoutes);
+
 app.use("/api/penginapan", penginapanRoutes);
+app.use("/penginapan", penginapanRoutes);
+
 app.use("/api/tourguides", tourGuideRoutes);
+app.use("/tourguides", tourGuideRoutes);
+
 app.use("/api/booking/tour-guide", bookingTourGuideRoutes);
+app.use("/booking/tour-guide", bookingTourGuideRoutes);
+
 app.use("/api/booking/penginapan", bookingPenginapanRoutes);
+app.use("/booking/penginapan", bookingPenginapanRoutes);
+
 app.use("/api/booking/paket", bookingPaketRoutes);
+app.use("/booking/paket", bookingPaketRoutes);
+
 app.use("/api/paket", paketRoutes);
+app.use("/paket", paketRoutes);
+
 app.use("/api/verifikasi", verifikasiSellerRoutes); 
+app.use("/verifikasi", verifikasiSellerRoutes); 
+
 app.use('/api', utilsRoutes);
+
 app.use("/api/token", tokenRoutes);
+app.use("/token", tokenRoutes);
+
 app.use('/api/admin', adminUserRoutes);
-app.use("/api/payments", paymentRoutes); // NEW: Payment routes
+app.use('/admin', adminUserRoutes);
+
+app.use("/api/payments", paymentRoutes);
+app.use("/payments", paymentRoutes);
 
 
 
