@@ -8,7 +8,8 @@ import { ThemeToggle } from '@/components/theme-toogle';
 import { Footer } from '@/components/layouts/footer';
 import type { UserData } from '@/types/userData';
 import { useTranslation } from "react-i18next";
-import "../../../i18n/i18n"
+import "../../../i18n/i18n";
+import { API_URL } from "@/lib/api";
 
 export default function BookingRentalPage() {
   const navigate = useNavigate();
@@ -24,7 +25,6 @@ export default function BookingRentalPage() {
     }
   }, [userData, navigate]);
 
-  const API_URL = import.meta.env.VITE_API_URL;
   const { id } = useParams<{ id: string }>();
 
   const [rental, setRental] = useState<any>(null);

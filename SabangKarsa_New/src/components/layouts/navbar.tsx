@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import logoNav from "/assets/images/SabangKarsa.png";
 import { useTranslation } from "react-i18next";
+import { API_URL } from "@/lib/api";
 import "../../i18n/i18n"
 
 export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
@@ -117,8 +118,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
 
   const handleLogout = async () => {
     try {
-      const apiUrl = import.meta.env.VITE_API_URL;
-      await fetch(`${apiUrl}/auth/logout`, {
+      await fetch(`${API_URL}/auth/logout`, {
         method: "POST",
         credentials: "include"
       });

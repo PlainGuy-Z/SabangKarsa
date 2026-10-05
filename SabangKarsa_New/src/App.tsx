@@ -33,6 +33,7 @@ import { NotFound } from "./pages/NotFound";
 import axios, { AxiosError } from "axios";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { API_URL } from "./lib/api";
 import { useEffect } from "react";
 
 interface TokenRes {
@@ -59,8 +60,7 @@ function App() {
     if (user) {
       const checkToken = async () => {
         try {
-          const apiUrl = import.meta.env.VITE_API_URL;
-          const response = await axios.get<TokenRes>(`${apiUrl}/token`, {
+          const response = await axios.get<TokenRes>(`${API_URL}/token`, {
             withCredentials: true
           });
           

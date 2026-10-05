@@ -5,7 +5,8 @@ import { ThemeToggle } from "@/components/theme/theme-toogle";
 import { Eye, EyeOff, Mail, Lock} from "lucide-react";
 import type { UserData } from '@/types/userData';
 import { useTranslation } from "react-i18next";
-import "../../i18n/i18n"
+import "../../i18n/i18n";
+import { API_URL } from "@/lib/api";
 
 export function LoginPage() {
   const navigate = useNavigate();
@@ -24,7 +25,6 @@ export function LoginPage() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const API_URL = import.meta.env.VITE_API_URL;
   const { t } = useTranslation();
 
   // Mouse tracking for parallax effect

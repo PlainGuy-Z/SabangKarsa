@@ -6,9 +6,8 @@ import {  Map, Search, Filter } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import { useTranslation } from "react-i18next";
-import "../../../i18n/i18n"
-
-const API_URL = import.meta.env.VITE_API_URL;
+import "../../../i18n/i18n";
+import { API_URL } from "@/lib/api";
 
 interface TourGuide {
   _id: string;
