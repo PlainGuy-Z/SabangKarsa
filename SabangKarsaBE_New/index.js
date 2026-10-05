@@ -63,6 +63,14 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 
+// Fallback rewrite middleware for frontend requests missing '/api' prefix
+app.use((req, res, next) => {
+  if (!req.path.startsWith('/api') && req.path !== '/' && req.path !== '/health') {
+    req.url = '/api' + req.url;
+  }
+  next();
+});
+
 const rateLimit = require('express-rate-limit');
 
 // Rate limiter global: 100 request per 15 menit per IP
