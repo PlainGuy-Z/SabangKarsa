@@ -9,9 +9,9 @@
     },
     {
       "id": 2,
-      "name": "Abd Ghofur",
+      "name": "Abd. Gofur",
       "role": "Branding & Content Manager",
-      "image": "/assets/images/dea.png",
+      "image": "/assets/images/gofur.png",
       "bio": "Ghofur, manages branding and content, ensuring the platform’s identity are well delivered."
     },
     {
@@ -25,7 +25,7 @@
       "id": 4,
       "name": "Teuku Fikram Al Syahbanna",
       "role": "Front-End Developer",
-      "image": "/assets/images/dian.png",
+      "image": "/assets/images/fikram.png",
       "bio": "Fikram handles SabangKarsa’s frontend development, delivering an optimal interface and user experience."
     }
   ],
@@ -39,24 +39,24 @@
     },
     {
       "id": 2,
-      "name": "Dea Zasqia P. Malau",
+      "name": "Abd. Gofur",
       "role": "Branding & Content Manager",
-      "image": "/assets/images/dea.png",
+      "image": "/assets/images/gofur.png",
       "bio": "Dea mengelola branding dan konten, memastikan identitas platform tersampaikan dengan baik."
     },
     {
       "id": 3,
-      "name": "Shafa Disya Aulia",
+      "name": "Muhammad Azlan",
       "role": "Back-End Developer",
-      "image": "/assets/images/shafa.png",
-      "bio": "Shafa mengelola pengembangan dan pemeliharaan backend, menjamin sistem berjalan stabil."
+      "image": "/assets/images/azlan.png",
+      "bio": "Azlan mengelola pengembangan dan pemeliharaan backend, menjamin sistem berjalan stabil."
     },
     {
       "id": 4,
-      "name": "Dian Islami",
+      "name": "Teuku Fikram Al Syahbanna",
       "role": "Front-End Developer",
-      "image": "/assets/images/dian.png",
-      "bio": "Dian, mengembangkan frontend SabangKarsa, menghadirkan tampilan dan interaksi yang optimal."
+      "image": "/assets/images/fikram.png",
+      "bio": "Fikram, mengembangkan frontend SabangKarsa, menghadirkan tampilan dan interaksi yang optimal."
     }
   ]
 }
