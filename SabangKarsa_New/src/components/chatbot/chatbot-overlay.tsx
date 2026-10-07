@@ -125,10 +125,10 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
             <div className="flex flex-col w-full h-full">
                 {/* Header */}
                 <div className={`bg-gradient-to-r ${theme === "light" ? "bg-emerald-500" : "bg-emerald-500"} p-4 rounded-t-2xl`}>
-                    <h1 className="font-bold text-lg text-white flex items-center gap-2">
+                    <h2 className="font-bold text-lg text-white flex items-center gap-2">
                         <Bot className="w-6 h-6" />
                         {t("chatbot-header")}
-                    </h1>
+                    </h2>
                     <p className="text-emerald-100 text-sm mt-1">{t("chatbot-tagline")}</p>
                 </div>
                 

@@ -1,6 +1,8 @@
+import { PageIntro } from "@/components/experience/page-intro";
+import { useCopy } from "@/components/experience/use-copy";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { MapPin, Mail, Phone, Users } from "lucide-react";
+import { MapPin, Mail, Phone } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import data from "../../data/about.json";
@@ -18,6 +20,7 @@ interface TeamMember {
 
 export function AboutUs() {
   const { t, i18n } = useTranslation();
+  const copy = useCopy();
 
   const lang = (
     i18n.language ||
@@ -35,50 +38,7 @@ export function AboutUs() {
     <div className="min-h-screen bg-background">
       <Navbar id="navbar" />
 
-      {/* Hero Section */}
-      <section className="relative [background:linear-gradient(to_right,oklch(0.4771_0.0777_205.67/0.8),oklch(0.5809_0.0963_194.83/0.8))] text-white overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <img
-            src="/assets/destinasi/pantaiiboih.webp"
-            alt="Sabang"
-            loading="lazy"
-            className="w-full h-full object-cover opacity-40"
-          />
-        </div>
-        <div className="container mx-auto max-w-7xl px-4 py-32 md:py-36 flex flex-col items-center">
-          <motion.h1
-            className="text-4xl md:text-6xl font-bold text-center mb-6"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            {t("about-header-1")}
-          </motion.h1>
-          <motion.p
-            className="text-lg md:text-xl text-center max-w-3xl mb-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            {t("about-tagline")}
-          </motion.p>
-          <motion.div
-            className="flex flex-wrap gap-4 justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <div className="flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm">
-              <Users className="w-5 h-5" />
-              <span>{t("about-point-1")}</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm">
-              <MapPin className="w-5 h-5" />
-              <span>{t("about-point-2")}</span>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <PageIntro title={copy("Dari Sabang, untuk perjalananmu.", "From Sabang, for your journey.")} description={copy("Mendekatkan wisatawan dengan tempat, layanan, dan cerita di Sabang.", "Connecting travellers with the places, services, and stories of Sabang.")} image="/assets/images/sabanglogin.webp" />
 
       {/* Mission & Vision Section */}
       <section className="py-12 px-4">

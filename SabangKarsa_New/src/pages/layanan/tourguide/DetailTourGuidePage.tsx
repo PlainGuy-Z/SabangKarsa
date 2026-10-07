@@ -1,3 +1,4 @@
+import { ServiceDetailHero } from '@/components/experience/service-detail-hero';
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -7,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Phone, MapPin, Instagram } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { NotFound } from "@/pages/NotFound";
-import { Transition } from "@/pages/TransitionPage";
+
 import type { UserData } from "@/types/userData";
 import "../../../i18n/i18n";
 import { API_URL } from "@/lib/api";
@@ -53,7 +54,7 @@ export default function DetailTourGuidePage() {
 
   if (loading) {
     return (
-      <Transition message={t("dtg-loading")} onComplete={() => navigate(`/layanan/tourguide/${id}`)} />
+      <div role="status" className="sk-detail-loading">{t("dtg-loading")}</div>
     );
   }
 
@@ -67,14 +68,7 @@ export default function DetailTourGuidePage() {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <section className="relative h-[50vh] overflow-hidden">
-        <img src={guide.foto} alt={guide.name} className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/40"></div>
-        <div className="absolute bottom-8 left-8 text-white">
-          <motion.h1 className="text-3xl md:text-5xl font-bold mb-2">{guide.name}</motion.h1>
-          <p className="text-lg">{guide.kataKata}</p>
-        </div>
-      </section>
+      <ServiceDetailHero title={guide.name} image={guide.foto} subtitle={guide.wilayah} back="/layanan/tourguide" portrait />
 
       <section className="container mx-auto max-w-4xl py-10 px-4">
         <motion.div

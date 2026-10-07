@@ -32,7 +32,7 @@ export default function DashboardPage() {
 
   const token = localStorage.getItem('token');
   const [searchParams] = useSearchParams();
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(() => window.matchMedia('(max-width: 900px)').matches);
   const [editData, setEditData] = useState<EditData>({key: "", data: null});
 
   // Get current tab and form from URL params
@@ -145,7 +145,7 @@ export default function DashboardPage() {
       <SellerSidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
       
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 min-w-0 flex flex-col overflow-hidden">
         {/* Header */}
         <SellerHeader 
           title={pageInfo.title}

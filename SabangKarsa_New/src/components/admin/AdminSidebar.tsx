@@ -44,7 +44,7 @@ export function AdminSidebar({ isCollapsed, setIsCollapsed }: AdminSidebarProps)
     <motion.div
       initial={false}
       animate={{ width: isCollapsed ? 80 : 280 }}
-      className="h-screen bg-admin-card border-r border-admin flex flex-col"
+      className="sk-workspace-sidebar h-screen bg-admin-card border-r border-admin flex flex-col shrink-0"
     >
       {/* Header */}
       <div className="p-3 border-b border-admin">
@@ -71,6 +71,7 @@ export function AdminSidebar({ isCollapsed, setIsCollapsed }: AdminSidebarProps)
           <Button
             variant="ghost"
             size="sm"
+            aria-label={isCollapsed ? "Expand navigation" : "Collapse navigation"}
             onClick={() => setIsCollapsed(!isCollapsed)}
             className="p-2"
           >
@@ -93,6 +94,7 @@ export function AdminSidebar({ isCollapsed, setIsCollapsed }: AdminSidebarProps)
             return (
               <motion.button
                 key={item.id}
+                title={item.label}
                 onClick={() => {
                   setActiveItem(item.id);
                   if (item.path) navigate(item.path);

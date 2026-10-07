@@ -21,7 +21,7 @@ export function AdminHeader({
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-admin-card border-b border-admin px-6 py-4"
+      className="sk-workspace-header bg-admin-card border-b border-admin px-6 py-4"
     >
       <div className="flex items-center justify-between">
         <div>

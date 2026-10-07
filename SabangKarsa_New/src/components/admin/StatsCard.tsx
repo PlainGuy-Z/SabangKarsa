@@ -44,7 +44,7 @@ export function StatsCard({ title, value, icon: Icon, color }: StatsCardProps) {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       whileHover={{ scale: 1.02 }}
-      className="bg-admin-card rounded-lg border border-admin p-6 transition-all duration-200 hover:shadow-lg"
+      className="sk-stat bg-admin-card rounded-lg border border-admin p-6 transition-all duration-200 hover:shadow-lg"
     >
       <div className="flex items-center justify-between">
         <div className="flex-1">

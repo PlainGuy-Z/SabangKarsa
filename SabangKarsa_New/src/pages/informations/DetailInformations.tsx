@@ -115,7 +115,7 @@ export function DetailInformations() {
       <Navbar id="navbar" />
 
       {/* Hero Section */}
-      <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
+      <section id="main-content" tabIndex={-1} className="relative h-[70vh] min-h-[500px] overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <img

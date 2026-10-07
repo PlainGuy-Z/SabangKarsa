@@ -1,13 +1,14 @@
+import { ServiceDetailHero } from '@/components/experience/service-detail-hero';
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Star, MapPin, Phone, Mail, BedDouble, Landmark } from "lucide-react";
+import { Star, Phone, Mail, BedDouble, Landmark } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { NotFound } from "@/pages/NotFound";
-import { Transition } from "@/pages/TransitionPage";
+
 import type { UserData } from "@/types/userData";
 import "../../../i18n/i18n";
 import { API_URL } from "@/lib/api";
@@ -22,7 +23,6 @@ export default function PenginapanDetailPage() {
   const user = JSON.parse(localStorage.getItem("user") || "{}") as UserData;
   const token = localStorage.getItem("token");
   const { t } = useTranslation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchDetail = async () => {
@@ -78,11 +78,11 @@ export default function PenginapanDetailPage() {
 
   if (loading) {
     return (
-      <Transition message={t("pd-loading")} onComplete={() => navigate(`/layanan/penginapan/${id}`)} />
+      <div role="status" className="sk-detail-loading">{t("pd-loading")}</div>
     );
   }
 
-  if (penginapan.error) {
+  if (!penginapan || penginapan.error) {
     return (
       <NotFound title="Data" message={t("pd-not-found")} buttonText={t("back-btn")} buttonRoute="/layanan/penginapan" />
     );
@@ -93,30 +93,7 @@ export default function PenginapanDetailPage() {
       <Navbar />
 
       {/* Hero Image */}
-      <section className="relative h-[60vh] min-h-[400px]">
-        <img
-          src={penginapan.gambar}
-          alt={penginapan.nama}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40"></div>
-        <div className="absolute bottom-8 left-8 text-white">
-          <motion.h1
-            className="text-3xl md:text-5xl font-bold mb-2"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            {penginapan.nama}
-          </motion.h1>
-          <div className="flex items-center gap-2 text-sm text-gray-300">
-            <MapPin className="w-4 h-4" />
-            <span>
-              {penginapan.lokasi} · {penginapan.tipePeningapan}
-            </span>
-          </div>
-        </div>
-      </section>
+      <ServiceDetailHero title={penginapan.nama} image={penginapan.gambar} subtitle={`${penginapan.lokasi} · ${penginapan.tipePeningapan}`} back="/layanan/penginapan" />
 
       {/* Detail Section */}
       <section className="py-10 px-4">
@@ -216,7 +193,7 @@ export default function PenginapanDetailPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="bg-card border border-border rounded-2xl p-6 space-y-4 shadow">
+            <div className="sk-booking-summary bg-card border border-border rounded-2xl p-6 space-y-4 shadow">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-1">
                   <Star className="w-5 h-5 text-yellow-400 fill-current" />

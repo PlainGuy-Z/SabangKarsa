@@ -1,5 +1,6 @@
+import { ServiceDetailHero } from '@/components/experience/service-detail-hero';
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
@@ -7,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import type { UserData } from "@/types/userData";
 import { NotFound } from "@/pages/NotFound";
-import { Transition } from "@/pages/TransitionPage";
+
 import "../../../i18n/i18n";
 import { API_URL } from "@/lib/api";
 
@@ -33,7 +34,6 @@ export default function DetailRentalPage() {
   const user = JSON.parse(localStorage.getItem("user") || "{}") as UserData;
   const token = localStorage.getItem("token");
   const { t } = useTranslation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRental = async () => {
@@ -52,7 +52,7 @@ export default function DetailRentalPage() {
 
   if (loading) {
     return (
-      <Transition message={t("dr-loading")} onComplete={() => navigate(`/layanan/rental/${id}`)} />
+      <div role="status" className="sk-detail-loading">{t("dr-loading")}</div>
     );
   }
 
@@ -67,27 +67,7 @@ export default function DetailRentalPage() {
       <Navbar />
 
       {/* Hero Image */}
-      <section className="relative h-[60vh] min-h-[400px]">
-        <img
-          src={rental.gambar}
-          alt={rental.name}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40"></div>
-        <div className="absolute bottom-8 left-8 text-white">
-          <motion.h1
-            className="text-3xl md:text-5xl font-bold mb-2"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            {rental.name}
-          </motion.h1>
-          <div className="text-sm text-gray-300">
-            {t("dr-type")}: {rental.type} · {t("dr-provider")}: {rental.namaPenyedia}
-          </div>
-        </div>
-      </section>
+      <ServiceDetailHero title={rental.name} image={rental.gambar} subtitle={`${rental.type} · ${rental.namaPenyedia}`} back="/layanan/rental" />
 
       {/* Detail Section */}
       <section className="py-10 px-4">

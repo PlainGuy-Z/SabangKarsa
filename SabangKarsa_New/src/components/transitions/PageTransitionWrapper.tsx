@@ -1,28 +1,25 @@
-import { type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { useLocation } from "react-router-dom";
-import { TransitionPage } from "../../pages/TransitionPage";
-import { usePageTransition } from "@/hooks/usePageTransition";
+import { MotionConfig } from "framer-motion";
 
-interface PageTransitionWrapperProps {
-  children: ReactNode;
-}
-
-export function PageTransitionWrapper({ children }: PageTransitionWrapperProps) {
-  const location = useLocation();
-  const { isTransitioning, completeTransition, duration } = usePageTransition({
-    duration: 4000,
-    excludeRoutes: ['/login', '/register']
-  });
-
-  if (isTransitioning) {
-    return (
-      <TransitionPage 
-        onComplete={completeTransition}
-        duration={duration}
-        targetPage={location.pathname}
-      />
-    );
-  }
-
-  return <>{children}</>;
+/** Keep navigation immediate; respect motion preferences throughout the app. */
+export function PageTransitionWrapper({ children }: { children: ReactNode }) {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (hash) document.getElementById(hash.slice(1))?.scrollIntoView();
+    else window.scrollTo(0, 0);
+  }, [pathname, hash]);
+  const kind =
+    pathname === "/"
+      ? "home"
+      : ["/login", "/register"].includes(pathname)
+        ? "auth"
+        : /dashboard|pemesanan|pesanan|booking|verification/.test(pathname)
+          ? "workspace"
+          : "public";
+  return (
+    <MotionConfig reducedMotion="user">
+      <div className={`sk-app sk-app-${kind}`}>{children}</div>
+    </MotionConfig>
+  );
 }
