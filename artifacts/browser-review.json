@@ -1,0 +1,49 @@
+{
+  "checks": [
+    "Hero keeps both original local video sources",
+    "Transparent navbar at page top",
+    "Light mode uses a white page background",
+    "Floating navbar appears after scroll",
+    "Floating navbar is fully rounded",
+    "Navbar causes no content layout shift",
+    "Desktop submenu opens on hover",
+    "Pointer can cross the gap to submenu",
+    "Hover submenu closes after pointer leaves",
+    "Keyboard enters submenu links",
+    "Escape closes submenu and returns focus",
+    "Four detailed destination cards restored",
+    "Destination descriptions, prices and ratings are present",
+    "Mobile has no horizontal overflow",
+    "Touch opens mobile navigation",
+    "Open mobile menu has an opaque white background",
+    "Mobile exposes all three service routes",
+    "Mobile Escape restores menu-button focus",
+    "No horizontal overflow at 320px",
+    "No horizontal overflow at 375px",
+    "No horizontal overflow at 768px",
+    "No horizontal overflow at 1024px",
+    "No horizontal overflow at 1280px",
+    "Reduced motion disables autoplay",
+    "Reduced motion disables navbar transitions",
+    "Video can still be played explicitly",
+    "Pause control works",
+    "English copy and destination data remain supported",
+    "Home images all load",
+    "No accessibility violations in the modified home and navbar"
+  ],
+  "accessibility": [
+    {
+      "mode": "desktop-light",
+      "violations": []
+    },
+    {
+      "mode": "desktop-dark",
+      "violations": []
+    },
+    {
+      "mode": "mobile-light",
+      "violations": []
+    }
+  ],
+  "errors": []
+}
