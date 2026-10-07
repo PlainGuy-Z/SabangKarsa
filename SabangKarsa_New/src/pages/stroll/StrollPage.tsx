@@ -1,3 +1,5 @@
+import { PageIntro } from '@/components/experience/page-intro';
+import { useCopy } from '@/components/experience/use-copy';
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -23,6 +25,7 @@ const strollData: StrollItem[] = localStorage.getItem("language")?.toLowerCase()
 
 export function StrollPage() {
   const [items, setItems] = useState<StrollItem[]>([]);
+  const copy = useCopy();
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -34,38 +37,7 @@ export function StrollPage() {
       <Navbar id="navbar" />
 
       {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="/assets/destinasi/pantaiiboih.webp"
-            alt="Stroll Background"
-            className="w-full h-full object-cover scale-110 transition-transform duration-700 hover:scale-105"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.src = "/assets/destinasi/pantaiiboih.webp";
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 dark:from-black/90 dark:via-black/60 dark:to-black/30"></div>
-        </div>
-        <motion.div
-          className="absolute bottom-8 left-4 md:left-8 right-4 md:right-8 z-10"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          <div className="relative p-8 text-white">
-            <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/10 to-white/5 dark:from-white/10 dark:via-white/5 dark:to-white/2 backdrop-blur-xl rounded-3xl border border-white/20 dark:border-white/10 shadow-2xl"></div>
-            <div className="relative z-10">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-white to-white/80 dark:from-white dark:via-gray-100 dark:to-gray-300 bg-clip-text text-transparent">
-                {t("spg-header")}
-              </h1>
-              <p className="text-lg md:text-xl text-white/90 dark:text-white/80 max-w-2xl">
-                {t("spg-line")}
-              </p>
-            </div>
-          </div>
-        </motion.div>
-      </section>
+      <PageIntro title={copy("Singgah sebentar. Kenang lebih lama.", "Take a little detour.")} description={copy("Jelajahi tempat santai dan kuliner yang menemani harimu di Sabang.", "Explore places to unwind and local flavours for your days in Sabang.")} image="/assets/destinasi/destinations/sumur-tiga/pantaisumurtiga-1.webp" />
 
       {/* Stroll Items Grid */}
       <section className="py-12 px-4">

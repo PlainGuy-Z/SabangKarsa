@@ -31,7 +31,7 @@ export function VerificationSuccessPage() {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="max-w-lg w-full bg-gradient-to-b from-[oklch(0.5809_0.0963_194.83)] to-[oklch(0.8588_0.0371_172.63)] dark:bg-gray-900 rounded-lg shadow-lg p-8 text-center"
+        className="sk-verification-success max-w-lg w-full bg-card border border-border rounded-lg p-8 text-center"
       >
         {/* Success Icon */}
         <motion.div
@@ -50,7 +50,7 @@ export function VerificationSuccessPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
-          className="text-2xl font-bold text-white mb-4"
+          className="text-2xl font-bold text-foreground mb-4"
         >
           {t("vs-success")}
         </motion.h1>
@@ -62,7 +62,7 @@ export function VerificationSuccessPage() {
           transition={{ delay: 0.4, duration: 0.5 }}
           className="space-y-4 mb-8"
         >
-          <p className="text-white">
+          <p className="text-foreground">
             {t("vs-thanks")}
           </p>
           
@@ -77,8 +77,8 @@ export function VerificationSuccessPage() {
           </div>
 
           <div className="text-left bg-emerald-200 dark:bg-emerald-200 rounded-lg p-4">
-            <h3 className="font-medium text-white mb-2">{t("vs-next-steps")}</h3>
-            <ul className="text-sm text-white space-y-1">
+            <h3 className="font-medium text-foreground mb-2">{t("vs-next-steps")}</h3>
+            <ul className="text-sm text-foreground space-y-1">
               <li>• {t("vs-step-1")}</li>
               <li>• {t("vs-step-2")}</li>
               <li>• {t("vs-step-3")}</li>

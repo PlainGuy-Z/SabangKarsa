@@ -132,7 +132,7 @@ export function SellerSidebar({ isCollapsed, setIsCollapsed }: SellerSidebarProp
     <motion.div
       initial={false}
       animate={{ width: isCollapsed ? 80 : 280 }}
-      className="h-screen bg-admin-card border-r border-admin flex flex-col"
+      className="sk-workspace-sidebar h-screen bg-admin-card border-r border-admin flex flex-col shrink-0"
     >
       {/* Header */}
       <div className="p-3 border-b border-admin">
@@ -159,6 +159,7 @@ export function SellerSidebar({ isCollapsed, setIsCollapsed }: SellerSidebarProp
           <Button
             variant="ghost"
             size="sm"
+            aria-label={isCollapsed ? "Expand navigation" : "Collapse navigation"}
             onClick={() => setIsCollapsed(!isCollapsed)}
             className="p-2"
           >
@@ -182,6 +183,7 @@ export function SellerSidebar({ isCollapsed, setIsCollapsed }: SellerSidebarProp
             return (
               <motion.button
                 key={item.id}
+                title={item.label}
                 onClick={() => handleMenuClick(item)}
                 className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg text-left transition-all duration-200 ${
                   isActive
@@ -217,6 +219,7 @@ export function SellerSidebar({ isCollapsed, setIsCollapsed }: SellerSidebarProp
             return (
               <motion.button
                 key={item.id}
+                title={item.label}
                 onClick={() => handleMenuClick(item)}
                 className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg text-left transition-all duration-200 ${
                   isActive

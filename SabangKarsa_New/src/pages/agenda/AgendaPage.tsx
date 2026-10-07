@@ -1,3 +1,5 @@
+import { PageIntro } from '@/components/experience/page-intro';
+import { useCopy } from '@/components/experience/use-copy';
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -25,6 +27,7 @@ export function AgendaPage() {
   const [events, setEvents] = useState<Event[]>([]);
   const language = localStorage.getItem("language");
   const eventsData: Event[] = language?.toLowerCase() === "id" ? data.id : data.en;
+  const copy = useCopy();
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -46,47 +49,7 @@ export function AgendaPage() {
 
       {/* Hero Section */}
       {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[400px] overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <img
-            src="/assets/destinasi/pantaiiboih.webp"
-            alt="Informasi Sabang"
-            className="w-full h-full object-cover scale-110"
-          />
-        </div>
-
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
-
-        {/* Content */}
-        <div className="relative z-10 h-full flex items-center justify-center text-center text-white px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto"
-          >
-            <motion.h1
-              className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              {t("agendapg-h-1")} <span className="text-emerald-800">   {t("agendapg-h-2")}</span>
-            </motion.h1>
-            <motion.p
-              className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-                {t("agendapg-p")}
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
+      <PageIntro title={copy("Cerita yang menghidupkan pulau.", "The island comes to life.")} description={copy("Kenali kegiatan dan perayaan yang menjadi bagian dari cerita Sabang.", "Get to know the events and celebrations that are part of Sabang\u2019s story.")} image="/assets/destinasi/events/smf25/smf25-1.webp" />
 
       {/* Events Grid */}
       <section className="py-12 px-4">

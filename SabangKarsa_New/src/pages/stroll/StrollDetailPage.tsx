@@ -65,7 +65,7 @@ export function StrollDetailPage() {
       <Navbar id="navbar" />
 
       {/* Hero Section */}
-      <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
+      <section id="main-content" tabIndex={-1} className="relative h-[70vh] min-h-[500px] overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={item.image}

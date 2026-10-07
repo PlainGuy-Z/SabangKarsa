@@ -94,7 +94,7 @@ export default function BookingTourguidePage() {
   if (!tourGuide) {
     return (
       <div className="min-h-screen bg-background">
-        <div className="bg-card bg-emerald-500 text-white dark:text-white">
+        <div className="sk-transaction-header">
           <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="flex items-center gap-2">
@@ -121,7 +121,7 @@ export default function BookingTourguidePage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-card bg-emerald-500 text-white dark:text-white">
+      <div className="sk-transaction-header">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="flex items-center gap-2">

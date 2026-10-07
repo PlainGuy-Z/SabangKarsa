@@ -1,8 +1,10 @@
-import { Bot } from "lucide-react"
+import { useCopy } from "@/components/experience/use-copy";
+import { MessageCircle } from "lucide-react"
 import { ChatbotOverlay } from "./chatbot-overlay"
 import { useState, useRef, useEffect, type RefObject } from "react"
 
 export function ChatbotButton({ navbar }: { navbar: RefObject<HTMLElement | null> }) {
+    const copy = useCopy();
     const [visibility, setVisibility] = useState(false);
     const overlayRef = useRef<HTMLDivElement | null>(null);
     const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -23,8 +25,8 @@ export function ChatbotButton({ navbar }: { navbar: RefObject<HTMLElement | null
         <>
             <ChatbotOverlay showOverlay={visibility} ref={overlayRef} navbar={navbar} button={buttonRef} />
             
-            <button ref={buttonRef} onClick={visibilityToggle} className="bg-emerald-500 hover:bg-emerald-500 dark:bg-emerald-500 dark:hover:bg-emerald-900/20 text-white z-50 shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-300 ease-out cursor-pointer fixed right-8 bottom-8 p-4 rounded-full">
-                <Bot className="w-6 h-6" />
+            <button ref={buttonRef} onClick={visibilityToggle} className="sk-chat-trigger" aria-label={copy("Buka asisten AI SabangKarsa", "Open SabangKarsa AI assistant")} aria-expanded={visibility}>
+                <MessageCircle size={19} /><span>{copy("Asisten perjalanan", "Travel assistant")}</span>
             </button>
         </>
     );

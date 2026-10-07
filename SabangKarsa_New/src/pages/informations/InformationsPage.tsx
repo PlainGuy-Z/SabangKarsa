@@ -1,3 +1,5 @@
+import { PageIntro } from '@/components/experience/page-intro';
+import { useCopy } from '@/components/experience/use-copy';
 import { useState } from "react";
 import { useTheme } from "@/components/theme/theme-provider";
 import { motion } from "framer-motion";
@@ -48,6 +50,7 @@ interface InformationData {
 
 
 export function InformationsPage() {
+  const copy = useCopy();
   const { t } = useTranslation();
   const { theme } = useTheme();
   const language = localStorage.getItem("language");
@@ -126,47 +129,7 @@ export function InformationsPage() {
     <div className="min-h-screen bg-background">
       <Navbar id="navbar" />
       {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[400px] overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <img
-            src="/assets/destinasi/pantaiiboih.webp"
-            alt="Informasi Sabang"
-            className="w-full h-full object-cover scale-110"
-          />
-        </div>
-
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
-
-        {/* Content */}
-        <div className="relative z-10 h-full flex items-center justify-center text-center text-white px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto"
-          >
-            <motion.h1
-              className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              {t("dipg-header-1")} <span className="text-emerald-800">{t("dipg-header-2")}</span>
-            </motion.h1>
-            <motion.p
-              className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              {t("dipg-line")}
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
+      <PageIntro title={copy("Bekal untuk perjalanan yang lebih tenang.", "A little knowledge before you go.")} description={copy("Informasi praktis untuk membantu merencanakan kunjunganmu ke Sabang.", "Practical information to help you plan your visit to Sabang.")} image="/assets/images/sectionhero.webp" />
       {/* Search and Filter Section */}
       <section className="py-8 px-4 bg-background border-b border-border">
         <div className="container mx-auto max-w-7xl">
