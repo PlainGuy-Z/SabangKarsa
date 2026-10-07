@@ -2,6 +2,7 @@
   "en": [
     {
       "id": 1,
+      "group": "core",
       "name": "Ghufran Indika",
       "role": "Founder & CEO",
       "image": "/assets/images/ghufran.png",
@@ -9,29 +10,65 @@
     },
     {
       "id": 2,
+      "group": "core",
       "name": "Abd. Gofur",
       "role": "Branding & Content Manager",
       "image": "/assets/images/gofur.png",
-      "bio": "Ghofur, manages branding and content, ensuring the platform’s identity are well delivered."
+      "bio": "Ghofur manages branding and content, ensuring the platform’s identity is well delivered."
     },
     {
       "id": 3,
+      "group": "core",
       "name": "Muhammad Azlan",
       "role": "Back-End Developer",
-      "image": "/assets/images/azlan.png",
+      "image": "/assets/images/SabangKarsa.png",
       "bio": "Azlan manages SabangKarsa’s backend and maintenance, ensuring the system runs stably and efficiently."
     },
     {
       "id": 4,
+      "group": "core",
       "name": "Teuku Fikram Al Syahbanna",
       "role": "Front-End Developer",
       "image": "/assets/images/fikram.png",
       "bio": "Fikram handles SabangKarsa’s frontend development, delivering an optimal interface and user experience."
+    },
+    {
+      "id": 5,
+      "group": "research",
+      "name": "Nurul Kamaly, M.A.P.",
+      "role": "Research Team",
+      "image": "/assets/images/nurul.png",
+      "bio": "Nurul Kamaly is part of the research team contributing to the development and implementation of the SabangKarsa research project."
+    },
+    {
+      "id": 6,
+      "group": "research",
+      "name": "Afrijal, M.I.P.",
+      "role": "Lead Researcher",
+      "image": "/assets/images/afrijal.png",
+      "bio": "Afrijal leads the research team and oversees the research activities and development of the SabangKarsa research project."
+    },
+    {
+      "id": 7,
+      "group": "research",
+      "name": "Husaini, M.Sc.",
+      "role": "Research Team",
+      "image": "/assets/images/husaini.png",
+      "bio": "Husaini is part of the research team contributing to the research and development of the SabangKarsa project."
+    },
+    {
+      "id": 8,
+      "group": "research",
+      "name": "Nabilah, S.Kom., M.T.",
+      "role": "Research Team",
+      "image": "/assets/images/nabilah.png",
+      "bio": "Nabilah is part of the research team contributing to the research and development of the SabangKarsa project."
     }
   ],
   "id": [
     {
       "id": 1,
+      "group": "core",
       "name": "Ghufran Indika",
       "role": "Founder & CEO",
       "image": "/assets/images/ghufran.png",
@@ -39,24 +76,59 @@
     },
     {
       "id": 2,
+      "group": "core",
       "name": "Abd. Gofur",
       "role": "Branding & Content Manager",
       "image": "/assets/images/gofur.png",
-      "bio": "Dea mengelola branding dan konten, memastikan identitas platform tersampaikan dengan baik."
+      "bio": "Ghofur mengelola branding dan konten, memastikan identitas platform tersampaikan dengan baik."
     },
     {
       "id": 3,
+      "group": "core",
       "name": "Muhammad Azlan",
       "role": "Back-End Developer",
-      "image": "/assets/images/azlan.png",
+      "image": "/assets/images/SabangKarsa.png",
       "bio": "Azlan mengelola pengembangan dan pemeliharaan backend, menjamin sistem berjalan stabil."
     },
     {
       "id": 4,
+      "group": "core",
       "name": "Teuku Fikram Al Syahbanna",
       "role": "Front-End Developer",
       "image": "/assets/images/fikram.png",
-      "bio": "Fikram, mengembangkan frontend SabangKarsa, menghadirkan tampilan dan interaksi yang optimal."
+      "bio": "Fikram mengembangkan frontend SabangKarsa, menghadirkan tampilan dan interaksi yang optimal."
+    },
+    {
+      "id": 5,
+      "group": "research",
+      "name": "Afrijal, M.I.P.",
+      "role": "Ketua Peneliti",
+      "image": "/assets/images/afrijal.png",
+      "bio": "Afrijal merupakan ketua peneliti yang mengoordinasikan kegiatan penelitian dan pengembangan proyek SabangKarsa."
+    },
+    {
+      "id": 6,
+      "group": "research",
+      "name": "Nurul Kamaly, M.A.P.",
+      "role": "Tim Peneliti",
+      "image": "/assets/images/nurul.png",
+      "bio": "Nurul Kamaly merupakan bagian dari tim peneliti yang berkontribusi dalam pengembangan dan pelaksanaan penelitian SabangKarsa."
+    },
+    {
+      "id": 7,
+      "group": "research",
+      "name": "Husaini, M.Sc.",
+      "role": "Tim Peneliti",
+      "image": "/assets/images/husaini.png",
+      "bio": "Husaini merupakan bagian dari tim peneliti yang berkontribusi dalam penelitian dan pengembangan proyek SabangKarsa."
+    },
+    {
+      "id": 8,
+      "group": "research",
+      "name": "Nabilah, S.Kom., M.T.",
+      "role": "Tim Peneliti",
+      "image": "/assets/images/nabilah.png",
+      "bio": "Nabilah merupakan bagian dari tim peneliti yang berkontribusi dalam penelitian dan pengembangan proyek SabangKarsa."
     }
   ]
 }
