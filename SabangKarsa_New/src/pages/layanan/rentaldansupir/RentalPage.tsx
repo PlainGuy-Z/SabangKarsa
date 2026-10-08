@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
-import { Search, ChevronDown, ArrowRight, Car, UserCheck, Phone } from "lucide-react";
+import { Search, ChevronDown, ArrowRight, UserCheck } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import "../../../i18n/i18n";
 import { API_URL } from "@/lib/api";
