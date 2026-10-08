@@ -23,7 +23,7 @@ router.post("/", verifyToken, async (req, res) => {
       body: JSON.stringify({
         model: process.env.GROK_MODEL || "grok-4-1-fast-non-reasoning",
         messages: [
-          { role: "system", content: "Anda adalah Nila, asisten SabangKarsa. Jawab dalam bahasa pengguna dengan ramah dan ringkas. Jangan mengarang informasi spesifik tentang layanan, harga, atau ketersediaan SabangKarsa yang tidak diberikan." },
+          { role: "system", content: "Anda asisten SabangKarsa. Jawab dalam bahasa pengguna dengan ramah dan ringkas. Jangan mengarang informasi spesifik tentang layanan, harga, atau ketersediaan SabangKarsa yang tidak diberikan." },
           { role: "user", content: message },
         ],
       }),
