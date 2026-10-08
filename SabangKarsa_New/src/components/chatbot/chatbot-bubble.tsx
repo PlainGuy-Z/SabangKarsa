@@ -3,6 +3,7 @@ import { useTheme } from "@/components/theme/theme-provider";
 import { DotLoader } from "react-spinners";
 import ReactMarkdown from "react-markdown";
 import axios from "axios";
+import { API_URL } from "@/lib/api";
 import { useTranslation } from "react-i18next";
 import "../../i18n/i18n"
 
@@ -52,7 +53,7 @@ export function BotBubble({
       const fetchReply = async () => {
         try {
           const res = await axios.post(
-            "https://api-jaksabang-chatbot.vercel.app/",
+            `${API_URL}/chatbot`,
             {
               message,
             },
@@ -76,7 +77,7 @@ export function BotBubble({
           } else {
             setResponse(
               `${errorObj.response?.status || "Error"}: ${
-                errorObj.response?.data?.message ||
+                errorObj.response?.data?.message || errorObj.response?.data?.error ||
                 errorObj.message ||
                 t("chatbot-err-msg-2")
               }`
