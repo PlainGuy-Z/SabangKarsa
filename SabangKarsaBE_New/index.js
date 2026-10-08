@@ -24,6 +24,7 @@ const paketRoutes = require("./routes/paketRoutes");
 const verifikasiSellerRoutes = require("./routes/verifikasiSellerRoutes");
 const tokenRoutes = require("./routes/tokenRoutes");
 const paymentRoutes = require("./routes/paymentRoutes"); // NEW: Payment routes
+const chatbotRoutes = require("./routes/chatbotRoutes");
 const app = express();
 app.set("trust proxy", 1);
 const passport = require("passport");
@@ -126,6 +127,7 @@ app.use('/admin', adminUserRoutes);
 
 app.use("/api/payments", paymentRoutes);
 app.use("/payments", paymentRoutes);
+app.use("/api/chatbot", chatbotRoutes);
 
 
 
