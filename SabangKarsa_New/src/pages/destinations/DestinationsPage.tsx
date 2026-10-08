@@ -9,6 +9,7 @@ import { Star, Camera, ChevronLeft, ChevronRight, Search, Filter } from "lucide-
 import data from "../../data/destinations.json";
 import { useTranslation } from "react-i18next";
 import "../../i18n/i18n"
+import "../explore.css";
 
 interface Destination {
   id: number;
@@ -96,7 +97,7 @@ export function DestinationsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="explore-page min-h-screen bg-background">
       <Navbar id="navbar" />
       
       {/* Hero Section */}
@@ -123,12 +124,12 @@ export function DestinationsPage() {
             className="max-w-4xl mx-auto"
           >
             <motion.h1
-              className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent"
+              className="text-4xl md:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              {t("destpg-h-1")} <span className="text-emerald-800">{t("destpg-h-2")}</span>
+              {t("destpg-h-1")} <span className="text-emerald-300">{t("destpg-h-2")}</span>
             </motion.h1>
             <motion.p
               className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto"
@@ -152,7 +153,7 @@ export function DestinationsPage() {
             transition={{ duration: 0.6 }}
           >
             {/* Search Bar */}
-            <div className="relative flex-1 max-w-md">
+            <div className="relative w-full lg:max-w-md lg:flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
               <input
                 type="text"
@@ -164,7 +165,7 @@ export function DestinationsPage() {
             </div>
 
             {/* Category Filter */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex w-full flex-wrap gap-2 lg:w-auto">
               {categories.map((category) => (
                 <button
                   key={category}
@@ -181,7 +182,7 @@ export function DestinationsPage() {
             </div>
 
             {/* Sort Dropdown */}
-            <div className="flex items-center gap-2">
+            <div className="flex w-full items-center gap-2 lg:w-auto">
               <Filter className="w-5 h-5 text-muted-foreground" />
               <select
                 value={sortBy}
@@ -201,18 +202,18 @@ export function DestinationsPage() {
       <section className="py-16 px-4">
         <div className="container mx-auto">
           <motion.div
-            className="mb-8 flex justify-between items-center"
+            className="mb-8 flex flex-wrap justify-between items-center gap-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground">
               {searchTerm || selectedCategory !== t("destpg-all") 
                 ? `${t("destpg-result")} (${filteredDestinations.length})`
                 : `${t("destpg-all-res")} (${allDestinations.length})`
               }
             </h2>
-            <div className="text-muted-foreground">
+            <div className="text-sm text-muted-foreground">
               {t("destpg-page-1")} {currentPage} {t("destpg-page-2")} {totalPages}
             </div>
           </motion.div>
@@ -221,7 +222,7 @@ export function DestinationsPage() {
             {currentDestinations.map((destination, index) => (
               <motion.div
                 key={destination.id}
-                className="group bg-card rounded-2xl overflow-hidden shadow-lg border border-border hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                className="explore-card group bg-card rounded-2xl overflow-hidden shadow-lg border border-border hover:shadow-2xl transition-all duration-300 cursor-pointer"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -232,7 +233,7 @@ export function DestinationsPage() {
                   <img
                     src={destination.image}
                     alt={destination.name}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.style.display = "none";
@@ -269,7 +270,7 @@ export function DestinationsPage() {
 
                   <div className="flex items-center justify-between">
                     <span className="flex flex-col">
-                      <span className="text-2xl font-bold text-emerald-700">{destination.price}</span>
+                    <span className="text-2xl font-bold text-emerald-700 dark:text-emerald-300">{destination.price}</span>
                       <span className="text-xs text-muted-foreground">{t("destpg-price")}</span>
                     </span>
                     <Button
@@ -308,7 +309,7 @@ export function DestinationsPage() {
           {/* Pagination */}
           {totalPages > 1 && (
             <motion.div
-              className="flex justify-center items-center gap-2"
+              className="flex flex-wrap justify-center items-center gap-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}

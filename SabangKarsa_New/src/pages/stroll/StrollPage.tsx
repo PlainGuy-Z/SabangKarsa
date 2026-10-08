@@ -9,6 +9,7 @@ import { Footer } from "@/components/layouts/footer";
 import data from "../../data/stroll.json";
 import { useTranslation } from "react-i18next";
 import "../../i18n/i18n"
+import "../explore.css";
 
 interface StrollItem {
   id: number;
@@ -30,7 +31,7 @@ export function StrollPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="explore-page min-h-screen bg-background">
       <Navbar id="navbar" />
 
       {/* Hero Section */}
@@ -56,7 +57,7 @@ export function StrollPage() {
           <div className="relative p-8 text-white">
             <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/10 to-white/5 dark:from-white/10 dark:via-white/5 dark:to-white/2 backdrop-blur-xl rounded-3xl border border-white/20 dark:border-white/10 shadow-2xl"></div>
             <div className="relative z-10">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-white to-white/80 dark:from-white dark:via-gray-100 dark:to-gray-300 bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 bg-gradient-to-r from-white via-white to-white/80 dark:from-white dark:via-gray-100 dark:to-gray-300 bg-clip-text text-transparent">
                 {t("spg-header")}
               </h1>
               <p className="text-lg md:text-xl text-white/90 dark:text-white/80 max-w-2xl">
@@ -71,7 +72,7 @@ export function StrollPage() {
       <section className="py-12 px-4">
         <div className="container mx-auto max-w-7xl">
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center"
+            className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-8 text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -82,7 +83,7 @@ export function StrollPage() {
             {items.map((item) => (
               <motion.div
                 key={item.id}
-                className="bg-card rounded-xl shadow-lg border border-border card-border-hover overflow-hidden"
+                className="explore-card bg-card rounded-2xl shadow-lg border border-border card-border-hover overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: item.id * 0.1 }}
@@ -101,10 +102,10 @@ export function StrollPage() {
                     {item.category}
                   </div>
                 </div>
-                <div className="p-6">
-                  <a href={`/stroll/${item.id}`} className="font-bold text-xl text-foreground mb-2 hover:text-emerald-600 transition-colors no-underline cursor-pointer duration-200">
+                <div className="p-6 flex flex-col flex-1">
+                  <Link to={`/stroll/${item.id}`} className="font-serif font-bold text-xl text-foreground mb-2 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors no-underline cursor-pointer duration-200">
                     {item.name}
-                  </a>
+                  </Link>
                   <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
                     {item.description}
                   </p>
@@ -112,7 +113,7 @@ export function StrollPage() {
                     <MapPin className="w-4 h-4" />
                     <span>{item.location}</span>
                   </div>
-                  <Link to={`/stroll/${item.id}`}>
+                  <Link to={`/stroll/${item.id}`} className="mt-auto">
                     <Button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white">
                       {t("spg-detail")}
                     </Button>

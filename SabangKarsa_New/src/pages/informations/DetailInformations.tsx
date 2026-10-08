@@ -162,7 +162,7 @@ export function DetailInformations() {
 
             {/* Title */}
             <motion.h1
-              className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+              className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -278,7 +278,7 @@ export function DetailInformations() {
               <div className="sticky top-24 space-y-6">
                 {/* Reading Progress */}
                 <div className="detail-box rounded-2xl p-6 shadow-lg">
-                  <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-serif font-semibold text-foreground mb-4 flex items-center gap-2">
                     <BookOpen className="w-5 h-5" />
                     {t("di-info")}
                   </h3>
@@ -310,7 +310,7 @@ export function DetailInformations() {
 
                 {/* Related Articles */}
                 <div className="detail-box rounded-2xl p-6 shadow-lg">
-                  <h3 className="text-lg font-semibold text-foreground mb-4">
+                  <h3 className="text-lg font-serif font-semibold text-foreground mb-4">
                     {t("di-related")}
                   </h3>
                   <div className="space-y-4">

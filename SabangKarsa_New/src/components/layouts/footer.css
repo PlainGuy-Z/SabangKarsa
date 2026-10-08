@@ -43,8 +43,8 @@
 
 /* ── Light Mode Default ─────────────────────────────────────── */
 .sk-footer {
-  color: #1e3a34;
-  background-color: var(--background);
+  color: #123e3a;
+  background-color: #e8f0e9;
 }
 
 .sk-footer-bg {
@@ -66,9 +66,9 @@
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.72) 0%,
-    rgba(244, 250, 248, 0.42) 50%,
-    rgba(230, 244, 241, 0.75) 100%
+    #edf3ea 0%,
+    rgba(232, 240, 233, 0.72) 50%,
+    #e8f0e9 100%
   );
   transition: background 0.3s ease;
 }

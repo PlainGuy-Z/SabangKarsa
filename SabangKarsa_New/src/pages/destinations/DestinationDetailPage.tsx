@@ -137,7 +137,7 @@ export function DestinationDetailPage() {
 
                 {/* Title */}
                 <motion.h1
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-white via-white to-white/80 dark:from-white dark:via-gray-100 dark:to-gray-300 bg-clip-text text-transparent leading-tight"
+                  className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-4 bg-gradient-to-r from-white via-white to-white/80 dark:from-white dark:via-gray-100 dark:to-gray-300 bg-clip-text text-transparent leading-tight"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
@@ -243,14 +243,14 @@ export function DestinationDetailPage() {
 
                 {/* Description and Details */}
                 <div className="detail-box rounded-2xl p-6 md:p-8 shadow-lg">
-                  <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
+                  <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-6">
                     {destination.name}
                   </h2>
                   <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-8">
                     {destination.detailDescription}
                   </p>
 
-                  <h3 className="text-xl font-bold text-foreground mb-4">
+                  <h3 className="text-xl font-serif font-bold text-foreground mb-4">
                     {t("dest-facility")}
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">

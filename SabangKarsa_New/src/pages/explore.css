@@ -1,0 +1,48 @@
+.explore-page > section:first-of-type {
+  isolation: isolate;
+}
+
+.explore-page .explore-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: 0 8px 28px rgba(15, 49, 44, 0.08);
+}
+
+.explore-page .explore-card:hover {
+  box-shadow: 0 16px 36px rgba(15, 49, 44, 0.15);
+}
+
+.explore-page .explore-card > div:last-child {
+  flex: 1;
+}
+
+.explore-page .explore-card p {
+  line-height: 1.65;
+}
+
+.explore-page a:focus-visible,
+.explore-page button:focus-visible,
+.explore-page input:focus-visible,
+.explore-page select:focus-visible {
+  outline: 2px solid #059669;
+  outline-offset: 3px;
+}
+
+.dark .explore-page .explore-card {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+}
+
+.dark .explore-page .explore-card:hover {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 640px) {
+  .explore-page > section:first-of-type {
+    min-height: 360px;
+  }
+
+  .explore-page > section:first-of-type h1 {
+    line-height: 1.12;
+  }
+}

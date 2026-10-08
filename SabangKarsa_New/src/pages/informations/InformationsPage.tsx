@@ -26,6 +26,7 @@ import { useTranslation } from "react-i18next";
 import schedule from "../../data/schedule.json";
 import prices from "../../data/sch-prices.json";
 import "../../i18n/i18n"
+import "../explore.css";
 
 interface Information {
   id: number;
@@ -123,7 +124,7 @@ export function InformationsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="explore-page min-h-screen bg-background">
       <Navbar id="navbar" />
       {/* Hero Section */}
       <section className="relative h-[60vh] min-h-[400px] overflow-hidden">
@@ -149,12 +150,12 @@ export function InformationsPage() {
             className="max-w-4xl mx-auto"
           >
             <motion.h1
-              className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent"
+              className="text-4xl md:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              {t("dipg-header-1")} <span className="text-emerald-800">{t("dipg-header-2")}</span>
+              {t("dipg-header-1")} <span className="text-emerald-300">{t("dipg-header-2")}</span>
             </motion.h1>
             <motion.p
               className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto"
@@ -177,7 +178,7 @@ export function InformationsPage() {
             transition={{ duration: 0.6 }}
           >
             {/* Search Bar */}
-            <div className="relative flex-1 max-w-md">
+            <div className="relative w-full lg:max-w-md lg:flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
               <input
                 type="text"
@@ -189,7 +190,7 @@ export function InformationsPage() {
             </div>
 
             {/* Category Filter */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex w-full flex-wrap gap-2 lg:w-auto">
               {categories.map((category) => (
                 <button
                   key={category}
@@ -206,7 +207,7 @@ export function InformationsPage() {
             </div>
 
             {/* Sort Dropdown */}
-            <div className="flex items-center gap-2">
+            <div className="flex w-full items-center gap-2 lg:w-auto">
               <Filter className="w-5 h-5 text-muted-foreground" />
               <select
                 value={sortBy}
@@ -233,7 +234,7 @@ export function InformationsPage() {
             {filteredInformation.map((info, index) => (
               <motion.article
                 key={info.id}
-                className="group bg-card rounded-2xl overflow-hidden shadow-lg border border-border hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+                className="explore-card group bg-card rounded-2xl overflow-hidden shadow-lg border border-border hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -415,14 +416,14 @@ export function InformationsPage() {
                 borderColor: 'var(--ferry-schedule-border)'
               }}
             >
-              <div className="flex px-6 py-4 items-center justify-between gap-2 w-full border-b border-black/50">
+              <div className="flex flex-wrap px-6 py-4 items-center justify-between gap-3 w-full border-b border-border">
                 <span className="flex gap-3 items-center">
                   <Clock className="w-7 h-7 text-emerald-700 dark:text-emerald-400" />
                   <h3 className="font-bold text-xl">
                     {scheduleType === "ferry" ? t("dipg-sch-ferry-boat") : t("dipg-sch-speed-boat")}
                   </h3>
                 </span>
-                <span className="flex gap-2">
+                <span className="flex flex-wrap gap-2">
                   <Button
                     variant="outline"
                     size="sm"
@@ -475,7 +476,7 @@ export function InformationsPage() {
                   {scheduleInformations[scheduleType].map((schedule, idx) => (
                     <div
                       key={idx}
-                      className="flex justify-between items-center py-3 gap-4 border-b border-black/50 last:border-b-0"
+                      className="flex flex-wrap justify-between items-center py-3 gap-4 border-b border-border last:border-b-0"
                     >
                       <span className="font-semibold w-fit text-foreground">
                         <p>{schedule.date}</p>
@@ -496,7 +497,7 @@ export function InformationsPage() {
                 </div>
 
                 <div className="mt-4 flex gap-2 flex-col items-center justify-center rounded-xl">
-                  <span className="w-full text-xl flex gap-3 items-center font-bold py-3 border-b border-black/50">
+                  <span className="w-full text-xl flex gap-3 items-center font-bold py-3 border-b border-border text-foreground">
                     <Ticket className="w-7 h-7 text-emerald-700 dark:text-emerald-400" />
                     {scheduleType === "ferry" ? t("dipg-price-ferry-boat") : t("dipg-price-speed-boat")}
                   </span>

@@ -9,6 +9,7 @@ import { Footer } from "@/components/layouts/footer";
 import data from "../../data/events.json";
 import { useTranslation } from "react-i18next";
 import "../../i18n/i18n"
+import "../explore.css";
 
 interface Event {
   id: number;
@@ -41,7 +42,7 @@ export function AgendaPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="explore-page min-h-screen bg-background">
       <Navbar id="navbar" />
 
       {/* Hero Section */}
@@ -69,12 +70,12 @@ export function AgendaPage() {
             className="max-w-4xl mx-auto"
           >
             <motion.h1
-              className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent"
+              className="text-4xl md:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              {t("agendapg-h-1")} <span className="text-emerald-800">   {t("agendapg-h-2")}</span>
+              {t("agendapg-h-1")} <span className="text-emerald-300"> {t("agendapg-h-2")}</span>
             </motion.h1>
             <motion.p
               className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto"
@@ -92,7 +93,7 @@ export function AgendaPage() {
       <section className="py-12 px-4">
         <div className="container mx-auto max-w-7xl">
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center"
+            className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-8 text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -103,7 +104,7 @@ export function AgendaPage() {
             {events.map((event) => (
               <motion.div
                 key={event.id}
-                className="bg-card rounded-xl shadow-lg border border-border card-border-hover overflow-hidden"
+                className="explore-card bg-card rounded-2xl shadow-lg border border-border card-border-hover overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: event.id * 0.1 }}
@@ -122,10 +123,10 @@ export function AgendaPage() {
                     {event.category}
                   </div>
                 </div>
-                <div className="p-6">
-                  <a href={`/agenda/${event.id}`} className="font-bold text-xl mb-2 hover:text-emerald-600 transition-colors no-underline cursor-pointer duration-200">
+                <div className="p-6 flex flex-col flex-1">
+                  <Link to={`/agenda/${event.id}`} className="font-serif font-bold text-xl text-foreground mb-2 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors no-underline cursor-pointer duration-200">
                     {event.name}
-                  </a>
+                  </Link>
                   <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
                     {event.description}
                   </p>
@@ -137,7 +138,7 @@ export function AgendaPage() {
                     <MapPin className="w-4 h-4" />
                     <span>{event.location}</span>
                   </div>
-                  <Link to={`/agenda/${event.id}`}>
+                  <Link to={`/agenda/${event.id}`} className="mt-auto">
                     <Button className="w-full cursor-pointer bg-emerald-500 hover:bg-emerald-600 text-white">
                       {t("agendapg-btn")}
                     </Button>
