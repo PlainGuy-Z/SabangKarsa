@@ -1,16 +1,21 @@
 /* ============================================================
-   Footer – dark panoramic design
+   Footer – light & dark theme adaptive design
    ============================================================ */
 
 .sk-footer {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  color: #e8f0ec;
   font-family: inherit;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ── Background image ───────────────────────────────────────── */
+/* ── Light Mode Default ─────────────────────────────────────── */
+.sk-footer {
+  color: #1e3a34;
+  background-color: var(--background);
+}
+
 .sk-footer-bg {
   position: absolute;
   inset: 0;
@@ -24,12 +29,33 @@
   object-position: center 60%;
 }
 
+/* Light mode background overlay - clearer image with balanced contrast */
 .sk-footer-bg-overlay {
   position: absolute;
   inset: 0;
-  /* dark teal overlay that matches the screenshot */
-  background:
-    linear-gradient(180deg, #042b2b 0%, #042b2bbb 30%, #042b2b88 70%, #042b2bcc 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.72) 0%,
+    rgba(244, 250, 248, 0.42) 50%,
+    rgba(230, 244, 241, 0.75) 100%
+  );
+  transition: background 0.3s ease;
+}
+
+/* ── Dark Mode (.dark class on html/root) ───────────────────── */
+.dark .sk-footer {
+  color: #e8f0ec;
+  background-color: #042b2b;
+}
+
+.dark .sk-footer-bg-overlay {
+  background: linear-gradient(
+    180deg,
+    #042b2b 0%,
+    rgba(4, 43, 43, 0.73) 30%,
+    rgba(4, 43, 43, 0.53) 70%,
+    rgba(4, 43, 43, 0.8) 100%
+  );
 }
 
 /* ── Content wrapper ────────────────────────────────────────── */
@@ -50,6 +76,11 @@
 }
 
 /* ── Brand column ───────────────────────────────────────────── */
+.sk-footer-brand-col {
+  display: flex;
+  flex-direction: column;
+}
+
 .sk-footer-brand-link {
   display: flex;
   align-items: center;
@@ -74,9 +105,14 @@
   display: block;
   font-size: 22px;
   font-weight: 700;
-  color: #fff;
+  color: #042b2b;
   line-height: 1.1;
   letter-spacing: -0.3px;
+  transition: color 0.3s ease;
+}
+
+.dark .sk-footer-brand-name {
+  color: #ffffff;
 }
 
 .sk-footer-brand-sub {
@@ -84,16 +120,28 @@
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 2.5px;
-  color: #a0c4ba;
+  color: #0d9488;
   margin-top: 3px;
+  transition: color 0.3s ease;
+}
+
+.dark .sk-footer-brand-sub {
+  color: #a0c4ba;
 }
 
 .sk-footer-tagline {
   font-size: 14px;
   line-height: 1.65;
-  color: #a8c8be;
+  color: #0f3830;
+  font-weight: 500;
   margin: 0 0 20px;
   max-width: 260px;
+  transition: color 0.3s ease;
+}
+
+.dark .sk-footer-tagline {
+  color: #a8c8be;
+  font-weight: 400;
 }
 
 /* Social icons */
@@ -108,30 +156,51 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  border: 1.5px solid #4a8a7a;
+  border: 1.5px solid rgba(13, 148, 136, 0.4);
   border-radius: 8px;
-  color: #c5e3da;
-  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+  color: #0f766e;
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(4px);
+  transition: all 180ms ease;
   text-decoration: none;
 }
 
 .sk-footer-social-icon:hover {
+  background: #0d9488;
+  border-color: #0d9488;
+  color: #ffffff;
+}
+
+.dark .sk-footer-social-icon {
+  border-color: #4a8a7a;
+  color: #c5e3da;
+  background-color: transparent;
+  backdrop-filter: none;
+}
+
+.dark .sk-footer-social-icon:hover {
   background: #1a5a4a;
   border-color: #6abaaa;
-  color: #fff;
+  color: #ffffff;
 }
 
 /* ── Nav columns ────────────────────────────────────────────── */
 .sk-footer-nav-col {
-  /* intentionally minimal */
+  display: flex;
+  flex-direction: column;
 }
 
 .sk-footer-nav-heading {
   font-size: 15px;
   font-weight: 700;
-  color: #fff;
+  color: #042b2b;
   margin: 0 0 18px;
   letter-spacing: 0.1px;
+  transition: color 0.3s ease;
+}
+
+.dark .sk-footer-nav-heading {
+  color: #ffffff;
 }
 
 .sk-footer-nav-list {
@@ -145,13 +214,22 @@
 
 .sk-footer-nav-list a {
   font-size: 14px;
-  color: #a8c8be;
+  color: #0f3830;
+  font-weight: 500;
   text-decoration: none;
   transition: color 160ms ease;
 }
 
 .sk-footer-nav-list a:hover {
-  color: #fff;
+  color: #0d9488;
+}
+
+.dark .sk-footer-nav-list a {
+  color: #a8c8be;
+}
+
+.dark .sk-footer-nav-list a:hover {
+  color: #ffffff;
 }
 
 /* ── Contact list ───────────────────────────────────────────── */
@@ -169,11 +247,21 @@
   align-items: center;
   gap: 10px;
   font-size: 14px;
+  color: #2d5a50;
+  transition: color 0.3s ease;
+}
+
+.dark .sk-footer-contact-list li {
   color: #a8c8be;
 }
 
 .sk-footer-contact-list li svg {
   flex-shrink: 0;
+  color: #0d9488;
+  transition: color 0.3s ease;
+}
+
+.dark .sk-footer-contact-list li svg {
   color: #7ab8a8;
 }
 
@@ -184,40 +272,54 @@
 }
 
 .sk-footer-contact-list a:hover {
-  color: #fff;
+  color: #0d9488;
+}
+
+.dark .sk-footer-contact-list a:hover {
+  color: #ffffff;
 }
 
 /* ── Bottom bar ─────────────────────────────────────────────── */
 .sk-footer-bottom {
-  border-top: 1px solid #ffffff22;
+  border-top: 1px solid rgba(13, 148, 136, 0.15);
   padding: 12px 0 16px;
+  transition: border-color 0.3s ease;
+}
+
+.dark .sk-footer-bottom {
+  border-top-color: rgba(255, 255, 255, 0.15);
 }
 
 .sk-footer-bottom p {
   font-size: 13px;
-  color: #6a9e90;
+  color: #527068;
   margin: 0;
+  transition: color 0.3s ease;
 }
 
-/* ── Responsive ─────────────────────────────────────────────── */
-@media (max-width: 960px) {
+.dark .sk-footer-bottom p {
+  color: #6a9e90;
+}
+
+/* ── Responsive breakpoints ─────────────────────────────────── */
+@media (max-width: 900px) {
   .sk-footer-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 36px 32px;
-  }
-
-  .sk-footer-brand-col {
-    grid-column: 1 / -1;
+    gap: 28px 24px;
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 540px) {
   .sk-footer-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 24px;
   }
 
   .sk-footer-inner {
     padding-top: 28px;
+  }
+
+  .sk-footer-tagline {
+    max-width: 100%;
   }
 }

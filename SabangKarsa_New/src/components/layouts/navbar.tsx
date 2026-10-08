@@ -26,7 +26,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>(({ id = "navbar" 
     try { return JSON.parse(localStorage.getItem("user") || "null"); }
     catch { return null; }
   });
-  const floating = pathname !== "/" || scrolled || panel === "mobile";
+  const floating = scrolled || panel === "mobile";
   const services = [
     { to: "/layanan/penginapan", label: t("nav-acco") },
     { to: "/layanan/rental", label: t("nav-rental") },

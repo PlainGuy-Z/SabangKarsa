@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import {  Map, Search, Filter } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
+import { Search, ChevronDown, ArrowRight, MapPin, User } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import "../../../i18n/i18n";
 import { API_URL } from "@/lib/api";
+import "./TourGuidePage.css";
 
 interface TourGuide {
   _id: string;
@@ -20,13 +19,14 @@ interface TourGuide {
   foto: string;
 }
 
-
 export default function TourGuidePage() {
   const [tourGuides, setTourGuides] = useState<TourGuide[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("name");
   const [loading, setLoading] = useState(true);
-  const { t } = useTranslation();
+  const [visibleCount, setVisibleCount] = useState(6);
+  const { t, i18n } = useTranslation();
+  const isEn = i18n.language.toLowerCase().startsWith("en");
 
   useEffect(() => {
     const fetchTourGuides = async () => {
@@ -63,116 +63,153 @@ export default function TourGuidePage() {
       }
     });
 
+  const visibleItems = filteredTourGuides.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredTourGuides.length;
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="tgp-page">
       <Navbar />
 
-      {/* Hero section */}
-      <section className="relative h-[60vh] min-h-[400px] overflow-hidden">
-        <div className="absolute inset-0">
-          <img src="/assets/destinasi/pantaiiboih.webp" alt="Tour Guide Sabang" className="w-full h-full object-cover scale-110" />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
-        <div className="relative z-10 h-full flex items-center justify-center text-center text-white px-4">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <motion.h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent">
-              {t("tg-header")}
-            </motion.h1>
-            <motion.p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              {t("tg-line")}
-            </motion.p>
-          </motion.div>
+      {/* ── Hero ──────────────────────────────────────────────── */}
+      <section className="tgp-hero" aria-label={isEn ? "Hero" : "Banner"}>
+        <img
+          src="/assets/destinasi/pantaiiboih.webp"
+          alt={isEn ? "Tour Guide Sabang Hero" : "Hero Pemandu Wisata Sabang"}
+          className="tgp-hero-img"
+        />
+        <div className="tgp-hero-overlay" />
+        <div className="tgp-hero-content">
+          <nav className="tgp-breadcrumb" aria-label="Breadcrumb">
+            <Link to="/">{isEn ? "Home" : "Beranda"}</Link>
+            <span>/</span>
+            <span>{isEn ? "Tour Guide" : "Pemandu Wisata"}</span>
+          </nav>
+          <h1 className="tgp-hero-title">{t("tg-header")}</h1>
+          <p className="tgp-hero-sub">{t("tg-line")}</p>
         </div>
       </section>
 
-      {/* Filter */}
-      <section className="py-8 px-4 bg-background border-b border-border">
-        <div className="container mx-auto max-w-7xl">
-          <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
-            {/* Search */}
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
-              <input
-                type="text"
-                placeholder={t("tg-search-ph")}
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-emerald-500"
-              />
-            </div>
-
-            {/* Sort */}
-            <div className="flex items-center gap-2">
-              <Filter className="w-5 h-5 text-muted-foreground" />
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-emerald-500"
-              >
-                <option value="name">{t("tg-filter-1")}</option>
-                <option value="price-low">{t("tg-filter-2")}</option>
-                <option value="price-high">{t("tg-filter-3")}</option>
-              </select>
-            </div>
+      {/* ── Search + Filter ───────────────────────────────────── */}
+      <section className="tgp-search-section">
+        <div className="tgp-container">
+          {/* Search bar */}
+          <div className="tgp-search-bar">
+            <Search size={18} className="tgp-search-icon" aria-hidden="true" />
+            <input
+              type="search"
+              placeholder={t("tg-search-ph")}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="tgp-search-input"
+            />
+            <button className="tgp-search-btn" aria-label={isEn ? "Search" : "Cari"}>
+              {isEn ? "Search" : "Cari"}
+            </button>
           </div>
         </div>
       </section>
 
-      {/* Grid */}
-      <section className="py-12 px-4">
-        <div className="container mx-auto max-w-7xl">
+      {/* ── Listing ───────────────────────────────────────────── */}
+      <main className="tgp-listing-section">
+        <div className="tgp-container">
+          {/* Header row */}
+          <div className="tgp-listing-header">
+            <h2 className="tgp-listing-title">
+              {isEn ? "Tour Guide Options" : "Pilihan Pemandu Wisata"}
+            </h2>
+            <div className="tgp-sort-wrapper">
+              <label htmlFor="tgp-sort" className="tgp-sort-label">
+                {isEn ? "Sort by:" : "Urutkan:"}
+              </label>
+              <div className="tgp-sort-select-wrap">
+                <select
+                  id="tgp-sort"
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="tgp-sort-select"
+                >
+                  <option value="name">{t("tg-filter-1")}</option>
+                  <option value="price-low">{t("tg-filter-2")}</option>
+                  <option value="price-high">{t("tg-filter-3")}</option>
+                </select>
+                <ChevronDown size={15} className="tgp-sort-chevron" aria-hidden="true" />
+              </div>
+            </div>
+          </div>
+
+          {/* Grid */}
           {loading ? (
-            <div className="text-center py-12 text-muted-foreground">{t("tg-loading")}</div>
+            <div className="tgp-state-msg">{t("tg-loading")}</div>
           ) : filteredTourGuides.length === 0 ? (
-            <div className="text-center py-12">
-              <h3 className="text-xl font-semibold text-foreground mb-2">{t("tg-not-found")}</h3>
-              <p className="text-muted-foreground">{t("tg-suggest")}</p>
+            <div className="tgp-state-msg">
+              <p className="tgp-state-title">{t("tg-not-found")}</p>
+              <p className="tgp-state-sub">{t("tg-suggest")}</p>
             </div>
           ) : (
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}
-            >
-              {filteredTourGuides.map((guide, idx) => (
-                <motion.div
-                  key={guide._id}
-                  className="group bg-card rounded-2xl overflow-hidden shadow-lg border border-border hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
-                  initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.1 }}
-                >
-                  <div className="relative h-64 overflow-hidden">
-                    <img src={guide.foto} alt={guide.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                    <div className="absolute top-4 left-4 bg-emerald-500 text-white px-3 py-1 rounded-full text-sm shadow">
-                      {guide.wilayah}
+            <>
+              <div className="tgp-grid">
+                {visibleItems.map((guide) => (
+                  <article key={guide._id} className="tgp-card">
+                    {/* Image */}
+                    <div className="tgp-card-img-wrap">
+                      <img
+                        src={guide.foto}
+                        alt={guide.name}
+                        className="tgp-card-img"
+                        loading="lazy"
+                      />
+                      <span className="tgp-card-badge">
+                        <MapPin size={12} />
+                        {guide.wilayah}
+                      </span>
                     </div>
-                  </div>
-                  <div className="p-6">
-                    <a href={`/layanan/tour-guide/${guide._id}`} className="font-bold text-xl mb-2 hover:text-emerald-600 transition-colors no-underline cursor-pointer duration-200">{guide.name}</a>
-                    <p className="text-muted-foreground text-sm mb-2">{guide.kataKata}</p>
-                    <div className="flex items-center gap-2 text-muted-foreground mb-4">
-                      <Map className="w-4 h-4" /><span className="text-sm">{guide.wilayah}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <span className="text-2xl font-bold text-emerald-700">Rp {guide.harga.toLocaleString()}</span>
-                        <div className="text-xs text-muted-foreground">{t("tg-per-day")}</div>
+
+                    {/* Body */}
+                    <div className="tgp-card-body">
+                      <h3 className="tgp-card-name">
+                        <Link to={`/layanan/tour-guide/${guide._id}`}>{guide.name}</Link>
+                      </h3>
+                      <p className="tgp-card-desc">{guide.kataKata}</p>
+
+                      {/* Price + CTA */}
+                      <div className="tgp-card-footer">
+                        <div className="tgp-card-price">
+                          <span className="tgp-card-price-amount">
+                            Rp{guide.harga.toLocaleString("id-ID")}
+                          </span>
+                          <span className="tgp-card-price-unit">
+                            / {isEn ? "day" : "hari"}
+                          </span>
+                        </div>
+                        <Link to={`/layanan/tour-guide/${guide._id}`} className="tgp-card-btn">
+                          {isEn ? "See detail" : "Lihat detail"}
+                          <ArrowRight size={14} aria-hidden="true" />
+                        </Link>
                       </div>
-                      <Link to={`/layanan/tour-guide/${guide._id}`}>
-                        <Button size="sm" className="cursor-pointer bg-emerald-500 hover:bg-emerald-500 text-white">
-                          {t("tg-detail")}
-                        </Button>
-                      </Link>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+                  </article>
+                ))}
+              </div>
+
+              {/* Load more */}
+              {hasMore && (
+                <div className="tgp-load-more-wrap">
+                  <button
+                    className="tgp-load-more-btn"
+                    onClick={() => setVisibleCount((c) => c + 6)}
+                  >
+                    {isEn ? "See more guides" : "Lihat pemandu lainnya"}
+                    <ArrowRight size={16} aria-hidden="true" />
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </div>
-      </section>
+      </main>
 
       <Footer />
     </div>
   );
 }
+

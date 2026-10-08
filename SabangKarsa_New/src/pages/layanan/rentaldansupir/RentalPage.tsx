@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
-import { Filter, Search } from "lucide-react";
+import { Search, ChevronDown, ArrowRight, Car, UserCheck, Phone } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import "../../../i18n/i18n";
 import { API_URL } from "@/lib/api";
+import "./RentalPage.css";
 
 interface Rental {
   _id: string;
@@ -22,13 +21,16 @@ interface Rental {
 }
 
 export function RentalPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isEn = i18n.language.toLowerCase().startsWith("en");
+
   const categories = [t("rpg-all"), t("rpg-cat-1"), t("rpg-cat-2"), t("rpg-cat-3")];
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(t("rpg-all"));
   const [sortBy, setSortBy] = useState("name");
   const [rentals, setRentals] = useState<Rental[]>([]);
   const [loading, setLoading] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(6);
 
   useEffect(() => {
     const fetchRentals = async () => {
@@ -45,10 +47,20 @@ export function RentalPage() {
     fetchRentals();
   }, [t]);
 
+  const getCategoryInternal = (cat: string) => {
+    if (cat === t("rpg-cat-1")) return "motor";
+    if (cat === t("rpg-cat-2")) return "mobil";
+    if (cat === t("rpg-cat-3")) return "mobil dengan sopir";
+    return t("rpg-all");
+  };
+
   const filteredRental = rentals
     .filter((rental) => {
-      const matchesSearch = rental.name.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesCategory = selectedCategory === t("rpg-all") || rental.type === selectedCategory.toLowerCase();
+      const matchesSearch = rental.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (rental.namaPenyedia && rental.namaPenyedia.toLowerCase().includes(searchTerm.toLowerCase()));
+      
+      const categoryKey = getCategoryInternal(selectedCategory);
+      const matchesCategory = selectedCategory === t("rpg-all") || rental.type.toLowerCase() === categoryKey;
       return matchesSearch && matchesCategory;
     })
     .sort((a, b) => {
@@ -62,93 +74,174 @@ export function RentalPage() {
       }
     });
 
-  const getCategory = (category: string) => {
-    return category === t("rpg-cat-1") ? "Motor" : category === t("rpg-cat-2") ? "Mobil" : category === t("rpg-cat-3") ? "Mobil dengan Sopir" : t("rpg-all");
-  }
+  const visibleItems = filteredRental.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredRental.length;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="rpg-page">
       <Navbar />
 
-      {/* Hero section (tetap sama) */}
-      <section className="relative h-[60vh] min-h-[400px] overflow-hidden">
-        <div className="absolute inset-0">
-          <img src="/assets/images/sectionhero.webp" alt="Rental Sabang" className="w-full h-full object-cover scale-110" />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
-        <div className="relative z-10 h-full flex items-center justify-center text-center text-white px-4">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <motion.h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent">
-              {t("rpg-header")}
-            </motion.h1>
-            <motion.p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              {t("rpg-line")}
-            </motion.p>
-          </motion.div>
+      {/* ── Hero ──────────────────────────────────────────────── */}
+      <section className="rpg-hero" aria-label={isEn ? "Hero" : "Banner"}>
+        <img
+          src="/assets/images/sectionhero.webp"
+          alt={isEn ? "Rental Sabang Hero" : "Hero Rental Sabang"}
+          className="rpg-hero-img"
+        />
+        <div className="rpg-hero-overlay" />
+        <div className="rpg-hero-content">
+          <nav className="rpg-breadcrumb" aria-label="Breadcrumb">
+            <Link to="/">{isEn ? "Home" : "Beranda"}</Link>
+            <span>/</span>
+            <span>{isEn ? "Rental & Driver" : "Rental & Sopir"}</span>
+          </nav>
+          <h1 className="rpg-hero-title">{t("rpg-header")}</h1>
+          <p className="rpg-hero-sub">{t("rpg-line")}</p>
         </div>
       </section>
 
-      {/* Search and filter */}
-      <section className="py-8 px-4 border-b border-border">
-        <div className="container mx-auto max-w-7xl flex flex-col lg:flex-row gap-4 items-center justify-between">
-          <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
-            <input type="text" placeholder="Cari kendaraan..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-background text-foreground focus:ring-2 focus:ring-emerald-500" />
+      {/* ── Search + Filter ───────────────────────────────────── */}
+      <section className="rpg-search-section">
+        <div className="rpg-container">
+          {/* Search bar */}
+          <div className="rpg-search-bar">
+            <Search size={18} className="rpg-search-icon" aria-hidden="true" />
+            <input
+              type="search"
+              placeholder={isEn ? "Search vehicle or provider..." : "Cari kendaraan atau penyedia..."}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="rpg-search-input"
+            />
+            <button className="rpg-search-btn" aria-label={isEn ? "Search" : "Cari"}>
+              {isEn ? "Search" : "Cari"}
+            </button>
           </div>
-          <div className="flex flex-wrap gap-2">
+
+          {/* Category pills */}
+          <div className="rpg-filters" role="group" aria-label={isEn ? "Filter by category" : "Filter kategori"}>
             {categories.map((category) => (
-              <button key={category} onClick={() => {
-                setSelectedCategory(getCategory(category));
-              }}
-                className={`px-4 py-2 rounded-full text-sm ${selectedCategory === (getCategory(category)) ? "bg-emerald-500 text-white" : "bg-muted text-muted-foreground hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-900/20" }`}>
+              <button
+                key={category}
+                onClick={() => {
+                  setSelectedCategory(category);
+                  setVisibleCount(6);
+                }}
+                className={`rpg-filter-pill${selectedCategory === category ? " rpg-filter-pill--active" : ""}`}
+              >
                 {category}
               </button>
             ))}
           </div>
-          <div className="flex items-center gap-2">
-            <Filter className="w-5 h-5 text-muted-foreground" />
-            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-2 rounded-lg border border-border bg-background text-foreground">
-              <option value="name">{t("rpg-filter-1")}</option>
-              <option value="price-low">{t("rpg-filter-2")}</option>
-              <option value="price-high">{t("rpg-filter-3")}</option>
-            </select>
-          </div>
         </div>
       </section>
 
-      {/* Rental Grid */}
-      <section className="py-12 px-4">
-        <div className="container mx-auto max-w-7xl">
+      {/* ── Listing ───────────────────────────────────────────── */}
+      <main className="rpg-listing-section">
+        <div className="rpg-container">
+          {/* Header row */}
+          <div className="rpg-listing-header">
+            <h2 className="rpg-listing-title">
+              {isEn ? "Vehicle & Driver Options" : "Pilihan Rental & Sopir"}
+            </h2>
+            <div className="rpg-sort-wrapper">
+              <label htmlFor="rpg-sort" className="rpg-sort-label">
+                {isEn ? "Sort by:" : "Urutkan:"}
+              </label>
+              <div className="rpg-sort-select-wrap">
+                <select
+                  id="rpg-sort"
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="rpg-sort-select"
+                >
+                  <option value="name">{t("rpg-filter-1")}</option>
+                  <option value="price-low">{t("rpg-filter-2")}</option>
+                  <option value="price-high">{t("rpg-filter-3")}</option>
+                </select>
+                <ChevronDown size={15} className="rpg-sort-chevron" aria-hidden="true" />
+              </div>
+            </div>
+          </div>
+
+          {/* Grid */}
           {loading ? (
-            <div className="text-center text-muted-foreground">{t("rpg-loading")}</div>
+            <div className="rpg-state-msg">{t("rpg-loading")}</div>
           ) : filteredRental.length === 0 ? (
-            <div className="text-center text-muted-foreground">{t("rpg-not-found")}</div>
+            <div className="rpg-state-msg">
+              <p className="rpg-state-title">{t("rpg-not-found")}</p>
+              <p className="rpg-state-sub">{isEn ? "Try changing your search terms or filters." : "Coba ubah katakunci pencarian atau filter Anda."}</p>
+            </div>
           ) : (
-            <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredRental.map((rental) => (
-                <div key={rental._id} className="bg-card border rounded-2xl overflow-hidden shadow hover:-translate-y-2 transition">
-                  <img src={rental.gambar} alt={rental.name} className="w-full h-64 object-cover" />
-                  <div className="p-4">
-                    <a href={`/layanan/rental/${rental._id}`} className="font-bold text-xl mb-2 hover:text-emerald-600 transition-colors no-underline cursor-pointer duration-200">{rental.name}</a>
-                    <p className="text-muted-foreground text-sm mb-2">{rental.deskripsi}</p>
-                    <div className="flex items-center justify-between mt-2">
-                      <span className="text-emerald-700 font-bold">Rp {rental.harga.toLocaleString()}</span>
-                      <Link to={`/layanan/rental/${rental._id}`}>
-                        <Button size="sm" className="cursor-pointer bg-emerald-500 text-white">{t("rpg-detail")}</Button>
-                      </Link>
+            <>
+              <div className="rpg-grid">
+                {visibleItems.map((rental) => (
+                  <article key={rental._id} className="rpg-card">
+                    {/* Image */}
+                    <div className="rpg-card-img-wrap">
+                      <img
+                        src={rental.gambar}
+                        alt={rental.name}
+                        className="rpg-card-img"
+                        loading="lazy"
+                      />
+                      <span className="rpg-card-badge">{rental.type}</span>
                     </div>
-                  </div>
+
+                    {/* Body */}
+                    <div className="rpg-card-body">
+                      <h3 className="rpg-card-name">
+                        <Link to={`/layanan/rental/${rental._id}`}>{rental.name}</Link>
+                      </h3>
+                      
+                      <p className="rpg-card-desc">{rental.deskripsi}</p>
+
+                      {rental.namaPenyedia && (
+                        <div className="rpg-card-meta">
+                          <UserCheck size={14} />
+                          <span>{rental.namaPenyedia}</span>
+                        </div>
+                      )}
+
+                      {/* Price + CTA */}
+                      <div className="rpg-card-footer">
+                        <div className="rpg-card-price">
+                          <span className="rpg-card-price-amount">
+                            Rp{rental.harga.toLocaleString("id-ID")}
+                          </span>
+                          <span className="rpg-card-price-unit">
+                            / {isEn ? "day" : "hari"}
+                          </span>
+                        </div>
+                        <Link to={`/layanan/rental/${rental._id}`} className="rpg-card-btn">
+                          {isEn ? "See detail" : "Lihat detail"}
+                          <ArrowRight size={14} aria-hidden="true" />
+                        </Link>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              {/* Load more */}
+              {hasMore && (
+                <div className="rpg-load-more-wrap">
+                  <button
+                    className="rpg-load-more-btn"
+                    onClick={() => setVisibleCount((c) => c + 6)}
+                  >
+                    {isEn ? "See more options" : "Lihat pilihan lainnya"}
+                    <ArrowRight size={16} aria-hidden="true" />
+                  </button>
                 </div>
-              ))}
-            </motion.div>
+              )}
+            </>
           )}
         </div>
-      </section>
+      </main>
 
       <Footer />
     </div>
   );
 }
+
