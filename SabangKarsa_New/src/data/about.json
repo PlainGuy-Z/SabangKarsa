@@ -32,6 +32,14 @@
       "image": "/assets/images/fikram.png",
       "bio": "Fikram handles SabangKarsa’s frontend development, delivering an optimal interface and user experience."
     },
+      {
+      "id": 6,
+      "group": "research",
+      "name": "Afrijal, M.I.P.",
+      "role": "Lead Researcher",
+      "image": "/assets/images/afrijal.png",
+      "bio": "Afrijal leads the research team and oversees the research activities and development of the SabangKarsa research project."
+    },
     {
       "id": 5,
       "group": "research",
@@ -40,14 +48,7 @@
       "image": "/assets/images/nurul.png",
       "bio": "Nurul Kamaly is part of the research team contributing to the development and implementation of the SabangKarsa research project."
     },
-    {
-      "id": 6,
-      "group": "research",
-      "name": "Afrijal, M.I.P.",
-      "role": "Lead Researcher",
-      "image": "/assets/images/afrijal.png",
-      "bio": "Afrijal leads the research team and oversees the research activities and development of the SabangKarsa research project."
-    },
+
     {
       "id": 7,
       "group": "research",
