@@ -10,6 +10,37 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* ── Smooth Top Border Line ─────────────────────────────────── */
+.sk-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(13, 148, 136, 0.12) 15%,
+    rgba(13, 148, 136, 0.25) 50%,
+    rgba(13, 148, 136, 0.12) 85%,
+    transparent 100%
+  );
+  z-index: 5;
+  pointer-events: none;
+}
+
+.dark .sk-footer::before {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 15%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.05) 85%,
+    transparent 100%
+  );
+}
+
 /* ── Light Mode Default ─────────────────────────────────────── */
 .sk-footer {
   color: #1e3a34;
@@ -45,16 +76,14 @@
 /* ── Dark Mode (.dark class on html/root) ───────────────────── */
 .dark .sk-footer {
   color: #e8f0ec;
-  background-color: #042b2b;
+  background-color: var(--background);
 }
 
 .dark .sk-footer-bg-overlay {
   background: linear-gradient(
     180deg,
-    #042b2b 0%,
-    rgba(4, 43, 43, 0.73) 30%,
-    rgba(4, 43, 43, 0.53) 70%,
-    rgba(4, 43, 43, 0.8) 100%
+    var(--background) 0%,
+    transparent 100%
   );
 }
 
@@ -281,13 +310,13 @@
 
 /* ── Bottom bar ─────────────────────────────────────────────── */
 .sk-footer-bottom {
-  border-top: 1px solid rgba(13, 148, 136, 0.15);
-  padding: 12px 0 16px;
+  border-top: 1px solid rgba(13, 148, 136, 0.1);
+  padding: 14px 0 18px;
   transition: border-color 0.3s ease;
 }
 
 .dark .sk-footer-bottom {
-  border-top-color: rgba(255, 255, 255, 0.15);
+  border-top-color: rgba(255, 255, 255, 0.08);
 }
 
 .sk-footer-bottom p {

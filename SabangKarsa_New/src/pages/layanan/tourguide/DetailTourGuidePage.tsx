@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { motion } from "framer-motion";
+import { useNavigate, useParams, Link } from "react-router-dom";
+import { Phone, MapPin, Instagram, ArrowLeft, User } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
-import { Button } from "@/components/ui/button";
-import { Phone, MapPin, Instagram } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { NotFound } from "@/pages/NotFound";
 import { Transition } from "@/pages/TransitionPage";
 import type { UserData } from "@/types/userData";
 import "../../../i18n/i18n";
 import { API_URL } from "@/lib/api";
+import "./DetailTourGuidePage.css";
 
 interface TourGuide {
   _id: string;
@@ -34,7 +33,8 @@ export default function DetailTourGuidePage() {
   const [loading, setLoading] = useState(true);
   const user = JSON.parse(localStorage.getItem("user") || "{}") as UserData;
   const token = localStorage.getItem("token");
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isEn = i18n.language.toLowerCase().startsWith("en");
 
   useEffect(() => {
     const fetchGuide = async () => {
@@ -64,60 +64,105 @@ export default function DetailTourGuidePage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="tdp-page">
       <Navbar />
 
-      <section className="relative h-[50vh] overflow-hidden">
-        <img src={guide.foto} alt={guide.name} className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/40"></div>
-        <div className="absolute bottom-8 left-8 text-white">
-          <motion.h1 className="text-3xl md:text-5xl font-bold mb-2">{guide.name}</motion.h1>
-          <p className="text-lg">{guide.kataKata}</p>
+      {/* Hero Image */}
+      <section className="tdp-hero">
+        <img src={guide.foto} alt={guide.name} className="tdp-hero-img" />
+        <div className="tdp-hero-overlay" />
+        <div className="tdp-hero-content">
+          <nav className="tdp-breadcrumb" aria-label="Breadcrumb">
+            <Link to="/">{isEn ? "Home" : "Beranda"}</Link>
+            <span>/</span>
+            <Link to="/layanan/tourguide">{isEn ? "Local Guide" : "Pemandu Lokal"}</Link>
+            <span>/</span>
+            <span>{guide.name}</span>
+          </nav>
+          <h1 className="tdp-hero-title">{guide.name}</h1>
+          <div className="tdp-hero-meta">
+            <MapPin size={15} />
+            <span>{guide.wilayah}</span>
+          </div>
         </div>
       </section>
 
-      <section className="container mx-auto max-w-4xl py-10 px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 0.6 }}
-          className="bg-card rounded-2xl shadow-xl p-6 border border-border"
-        >
-          <h2 className="text-2xl font-semibold mb-4 text-foreground">{t("dtg-detail")}</h2>
+      {/* Detail Section */}
+      <section className="tdp-detail-section">
+        <div className="tdp-container">
+          <div className="tdp-layout">
+            {/* Main Info */}
+            <div className="tdp-main">
+              {/* Back link */}
+              <Link to="/layanan/tourguide" className="tdp-back-link">
+                <ArrowLeft size={16} />
+                {isEn ? "Back to guides" : "Kembali ke pemandu"}
+              </Link>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Phone className="w-5 h-5" />
-              {token ? (
-                <span>{guide.no_hp}</span>
-              ) : (
-                <span>08**********</span>
-              )}
+              {/* Description */}
+              <div className="tdp-section-block">
+                <h2 className="tdp-section-title">{t("dtg-detail")}</h2>
+                <p className="tdp-text">{guide.kataKata}</p>
+              </div>
+
             </div>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Instagram className="w-5 h-5" />
-              <span>{guide.instagram}</span>
-            </div>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <MapPin className="w-5 h-5" />
-              <span>{guide.wilayah}</span>
+
+            {/* Sidebar */}
+            <div className="tdp-sidebar">
+              <div className="tdp-sidebar-card">
+
+                <div className="tdp-sidebar-price">
+                  <span className="tdp-sidebar-price-label">{t("dtg-price")}</span>
+                  <div className="tdp-sidebar-price-amount">
+                    Rp {guide.harga.toLocaleString()}
+                  </div>
+                </div>
+
+                <div className="tdp-sidebar-info">
+                  <User size={18} />
+                  <span>{guide.name}</span>
+                </div>
+                
+                <div className="tdp-sidebar-info">
+                  <MapPin size={18} />
+                  <span>{guide.wilayah}</span>
+                </div>
+
+                <div className="tdp-sidebar-contacts">
+                  <div className="tdp-sidebar-info">
+                    <Phone size={16} />
+                    {token ? (
+                      <a href={`tel:${guide.no_hp}`} className="tdp-contact-link">
+                        {guide.no_hp || (isEn ? "No phone" : "Tidak ada nomor")}
+                      </a>
+                    ) : (
+                      <span>08**********</span>
+                    )}
+                  </div>
+                  
+                  <div className="tdp-sidebar-info">
+                    <Instagram size={16} />
+                    {guide.instagram ? (
+                      <a href={`https://instagram.com/${guide.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="tdp-contact-link">
+                        {guide.instagram}
+                      </a>
+                    ) : (
+                      <span>-</span>
+                    )}
+                  </div>
+                </div>
+
+                <button
+                  disabled={(user.role !== "buyer" || guide.penyedia._id === user.id)}
+                  className="tdp-book-btn"
+                  onClick={() => navigate(`/tourguide/${guide._id}/booking`)}
+                >
+                  {t("dtg-book-btn")}
+                </button>
+              </div>
             </div>
           </div>
-
-          <div className="mb-6">
-            <span className="text-muted-foreground">{t("dtg-price")}</span>
-            <div className="text-3xl font-bold text-emerald-700">Rp {guide.harga.toLocaleString()}</div>
-          </div>
-
-          <Button 
-            disabled={(user.role !== "buyer" || guide.penyedia._id === user.id)}
-            size="lg" 
-            className="bg-emerald-500 hover:bg-emerald-600 text-white" 
-            onClick={() => navigate(`/tourguide/${guide._id}/booking`)}
-          >
-            {t("dtg-book-btn")}
-          </Button>
-        </motion.div>
+        </div>
       </section>
 
       <Footer />

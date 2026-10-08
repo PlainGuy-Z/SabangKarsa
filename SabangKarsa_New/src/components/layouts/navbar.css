@@ -35,7 +35,7 @@
 .sk-nav--transparent :is(a, button):focus-visible { outline-color: #f7ce77; }
 .sk-nav-dropdown :is(a, button):focus-visible { outline-color: #976509; outline-offset: 0; }
 .sk-nav-mobile { display: none; }
-.dark .sk-nav--floating .sk-nav-shell, .dark .sk-nav-dropdown { background: #182e2a; color: #f6f5ee; border-color: #3f5148; }
+.dark .sk-nav--floating .sk-nav-shell, .dark .sk-nav-dropdown { background: var(--background); color: #f6f5ee; border-color: rgba(255, 255, 255, 0.1); }
 .dark .sk-nav-dropdown a:hover, .dark .sk-nav-dropdown button:hover, .dark .sk-nav-mobile a:hover { background: #2b463c; }
 @keyframes sk-nav-reveal { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 1099px) {
