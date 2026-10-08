@@ -80,6 +80,14 @@ app.use('/auth/login', authLimiter);
 app.use('/api/auth/register', authLimiter);
 app.use('/auth/register', authLimiter);
 
+const requireDatabase = (req, res, next) => {
+  if (mongoose.connection.readyState !== 1) {
+    return res.status(503).json({ error: "Database belum terhubung. Silakan coba lagi nanti." });
+  }
+  next();
+};
+app.use(['/api/auth/login', '/auth/login'], requireDatabase);
+
 // routes (mendukung dengan & tanpa prefix /api)
 app.use("/api/auth", authRoutes);
 app.use("/auth", authRoutes);
