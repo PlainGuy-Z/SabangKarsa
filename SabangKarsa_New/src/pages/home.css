@@ -62,15 +62,18 @@
 .sk-service-card:hover .sk-service-action { color: var(--sk-service-ink); }
 .sk-home .sk-text-link { display: inline-flex; gap: 24px; align-items: center; font-size: 12px; font-weight: 650; min-height: 44px; border-bottom: 1px solid #9cae94; }
 .sk-text-link:hover { border-color: currentColor; }
-.sk-home-footer { background: #0f6972; color: #f3f1de; padding-top: 62px; }
-.sk-footer-top { display: flex; align-items: start; justify-content: space-between; gap: 36px; padding-bottom: 55px; }
-.sk-footer-brand { font-size: clamp(35px, 4vw, 56px); letter-spacing: -2px; font-weight: 500; line-height: 1.2; }
-.sk-footer-brand > span { vertical-align: top; font-size: 14px; margin: 5px 0 0 7px; display: inline-block; }
-.sk-footer-top p { font-size: 12px; color: #ccd6c9; margin-top: 15px; }
-.sk-footer-top nav { display: flex; flex-direction: column; align-items: start; }
-.sk-footer-top nav a { display: inline-flex; align-items: center; gap: 12px; min-height: 38px; font-size: 12px; }
+.sk-home-footer { --sk-footer-bg: #e8f0e9; --sk-footer-entry: #edf3ea; --sk-footer-fade: #e8f0e9ef; --sk-footer-ink: #123e3a; --sk-footer-muted: #4f6e67; --sk-footer-rule: #577d724d; --sk-footer-contour: #568f8352; position: relative; isolation: isolate; overflow: hidden; padding-top: 175px; background: radial-gradient(ellipse 380px 300px at 30% 0%, transparent 89%, var(--sk-footer-contour) 89.3%, transparent 89.7%), radial-gradient(ellipse 430px 350px at 30% 0%, transparent 89%, var(--sk-footer-contour) 89.3%, transparent 89.7%), linear-gradient(180deg, var(--sk-footer-entry), var(--sk-footer-bg) 85px); color: var(--sk-footer-ink); }
+.dark .sk-home-footer { --sk-footer-bg: #041f1e; --sk-footer-entry: #052420; --sk-footer-fade: #041f1eef; --sk-footer-ink: #f6f2e9; --sk-footer-muted: #afc6c2; --sk-footer-rule: #c0d6cf30; --sk-footer-contour: #12635b40; }
+.sk-home-footer::before { content: ""; position: absolute; z-index: 0; top: 0; right: 0; width: 50%; height: 330px; background: linear-gradient(180deg, var(--sk-footer-entry) 0%, transparent 22%), linear-gradient(90deg, var(--sk-footer-bg) 0%, var(--sk-footer-fade) 12%, transparent 42%), linear-gradient(0deg, var(--sk-footer-bg) 0%, transparent 70%), linear-gradient(0deg, transparent 35%, #032b2b70 100%), url('/assets/images/sabang-footer-sunset.png') right 48% / cover no-repeat; }
+.sk-home-footer::after { content: ""; position: absolute; z-index: 0; top: 145px; left: 0; right: 0; border-top: 1px solid var(--sk-footer-rule); pointer-events: none; }
+.sk-home-footer .sk-container { position: relative; z-index: 1; }
+.sk-footer-top { padding: 0 16px 22px; }
+.sk-footer-brand { display: inline-block; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(52px, 6vw, 84px); letter-spacing: -3px; font-weight: 400; line-height: 1.08; }
+.sk-footer-top p { margin-top: 18px; color: var(--sk-footer-muted); font-size: 16px; line-height: 1.5; }
+.sk-footer-top nav { position: absolute; top: -75px; right: 16px; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 230px; color: #fff; text-shadow: 0 1px 5px #062c2bc9; }
+.sk-footer-top nav a { display: inline-flex; align-items: center; gap: 12px; min-height: 36px; font-size: 15px; }
 .sk-footer-top nav a:hover { text-decoration: underline; text-underline-offset: 5px; }
-.sk-footer-bottom { border-top: 1px solid #ffffff26; display: flex; justify-content: space-between; gap: 20px; padding-block: 25px; font-size: 10px; color: #ccd6c9; }
+.sk-footer-bottom { border-top: 1px solid var(--sk-footer-rule); display: flex; justify-content: space-between; gap: 20px; padding: 20px 0 30px; color: var(--sk-footer-muted); font-size: 13px; }
 .dark .sk-home { --sk-paper: #122829; --sk-ink: #f0efdf; --sk-muted: #b0bfbf; --sk-line: #384f51; }
 @media (max-width: 1100px) {
   .sk-home .sk-container { width: calc(100% - 64px); }
@@ -105,9 +108,14 @@
   .sk-service-image { aspect-ratio: 1.5; }
   .sk-service-body { padding: 13px 4px 0; }
   .sk-service-body > p:not(.sk-card-note) { min-height: auto; }
-  .sk-footer-top { flex-direction: column; padding-bottom: 35px; gap: 25px; }
-  .sk-home-footer { padding-top: 45px; }
-  .sk-footer-bottom { flex-wrap: wrap; gap: 12px 25px; padding-bottom: 80px; }
+  .sk-home-footer { padding-top: 160px; }
+  .sk-home-footer::before { top: 0; width: 75%; height: 300px; background-position: right 50%; }
+  .sk-home-footer::after { top: 130px; }
+  .sk-footer-top { padding: 0 0 22px; }
+  .sk-footer-brand { font-size: clamp(48px, 11vw, 72px); }
+  .sk-footer-top nav { top: -80px; right: 0; min-width: 0; }
+  .sk-footer-top nav a { min-height: 34px; font-size: 13px; }
+  .sk-footer-bottom { flex-wrap: wrap; gap: 12px 25px; padding-bottom: 36px; }
 }
 @media (max-width: 380px) {
   .sk-hero h1 { font-size: 41px; }
@@ -152,13 +160,13 @@
 .dark .sk-plan { --sk-plan-ink: #f5f1e8; --sk-plan-muted: #adc1bf; --sk-plan-line: #c8dad333; --sk-plan-accent: #e38560; --sk-plan-icon-ink: #072d2a; --sk-plan-contour: #3b7c7450; --sk-plan-edge: #092e2b; --sk-plan-panel: radial-gradient(ellipse at 90% -20%, #0b3a35 0%, transparent 54%), linear-gradient(135deg, #092e2b, #052420); background: #062926; }
 .sk-plan-visual { position: relative; min-height: 480px; overflow: hidden; background: #153d3c; }
 .sk-plan-visual::before { content: ""; position: absolute; z-index: 2; top: 0; right: 0; bottom: 0; width: clamp(32px, 4vw, 65px); background: linear-gradient(90deg, transparent, var(--sk-plan-edge)); pointer-events: none; }
-.sk-plan-visual::after { content: ""; position: absolute; z-index: 1; inset: 0; background: linear-gradient(180deg, #071e1f87, transparent 28%, transparent 73%, #071e1f91); pointer-events: none; }
+.sk-plan-visual::after { content: ""; position: absolute; z-index: 1; inset: 0; background: linear-gradient(180deg, var(--sk-paper) 0%, transparent 16%, transparent 73%, #071e1f91 100%); pointer-events: none; }
 .sk-plan-visual img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: 45% center; }
 .sk-home .sk-plan-label { grid-column: 1 / -1; margin: 0; padding: 20px max(56px, calc((100vw - 1280px) / 2)) 12px; background: var(--sk-paper); color: #123e3a; font-size: 11px; font-weight: 700; letter-spacing: 1.8px; }
 .dark .sk-home .sk-plan-label { color: #f6f2e9; }
 .sk-plan-location { position: absolute; z-index: 1; left: clamp(28px, 5vw, 80px); color: #fff; }
 .sk-plan-location { bottom: 40px; display: flex; align-items: center; gap: 11px; font-size: 10px; font-weight: 700; letter-spacing: 2px; }
-.sk-plan-content { position: relative; display: flex; align-items: center; padding: 48px clamp(32px, 4vw, 70px); overflow: hidden; background: linear-gradient(90deg, var(--sk-plan-edge), transparent 6%), var(--sk-plan-panel); }
+.sk-plan-content { position: relative; display: flex; align-items: center; padding: 48px clamp(32px, 4vw, 70px); overflow: hidden; background: linear-gradient(180deg, var(--sk-paper), transparent 16%), linear-gradient(90deg, var(--sk-plan-edge), transparent 6%), var(--sk-plan-panel); }
 .sk-plan-content::before { content: ""; position: absolute; width: 470px; height: 470px; top: -220px; right: -195px; border: 1px solid var(--sk-plan-contour); border-radius: 42% 58% 64% 36%; box-shadow: 0 0 0 24px #3b7c741a, 0 0 0 50px #3b7c7412; transform: rotate(29deg); pointer-events: none; }
 .sk-plan-inner { position: relative; width: 100%; max-width: 640px; margin-inline: auto; }
 .sk-plan-heading { grid-column: 1 / -1; padding: 0 max(56px, calc((100vw - 1280px) / 2)) 52px; background: var(--sk-paper); color: #123e3a; }
@@ -192,7 +200,7 @@
   .sk-plan-visual::before { top: auto; left: 0; width: 100%; height: 36px; background: linear-gradient(180deg, transparent, var(--sk-plan-edge)); }
   .sk-plan-visual img { object-position: center 54%; }
   .sk-plan-location { bottom: 60px; }
-  .sk-plan-content { padding: 56px 28px 65px; background: linear-gradient(180deg, var(--sk-plan-edge), transparent 6%), var(--sk-plan-panel); }
+  .sk-plan-content { padding: 56px 28px 65px; background: linear-gradient(180deg, var(--sk-paper), transparent 16%), var(--sk-plan-panel); }
   .sk-plan-heading h2 { font-size: clamp(48px, 9vw, 68px); }
 }
 @media (max-width: 600px) {
