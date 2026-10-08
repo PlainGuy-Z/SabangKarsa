@@ -20,17 +20,18 @@
       "id": 3,
       "group": "core",
       "name": "Muhammad Azlan",
-      "role": "Back-End Developer",
+      "role": "Front-End Developer",
       "image": "/assets/images/SabangKarsa.png",
-      "bio": "Azlan manages SabangKarsa’s backend and maintenance, ensuring the system runs stably and efficiently."
+         "bio": "Azlan handles SabangKarsa’s frontend development, delivering an optimal interface and user experience."
     },
     {
       "id": 4,
       "group": "core",
       "name": "Teuku Fikram Al Syahbanna",
-      "role": "Front-End Developer",
+      "role": "Back-End Developer",
       "image": "/assets/images/fikram.png",
-      "bio": "Fikram handles SabangKarsa’s frontend development, delivering an optimal interface and user experience."
+         "bio": "Fikram manages SabangKarsa’s backend and maintenance, ensuring the system runs stably and efficiently."
+
     },
       {
       "id": 6,
@@ -87,17 +88,19 @@
       "id": 3,
       "group": "core",
       "name": "Muhammad Azlan",
-      "role": "Back-End Developer",
+            "role": "Front-End Developer",
       "image": "/assets/images/SabangKarsa.png",
-      "bio": "Azlan mengelola pengembangan dan pemeliharaan backend, menjamin sistem berjalan stabil."
+      "bio": "Azlan mengembangkan frontend SabangKarsa, menghadirkan tampilan dan interaksi yang optimal."
+
     },
     {
       "id": 4,
       "group": "core",
       "name": "Teuku Fikram Al Syahbanna",
-      "role": "Front-End Developer",
+            "role": "Back-End Developer",
       "image": "/assets/images/fikram.png",
-      "bio": "Fikram mengembangkan frontend SabangKarsa, menghadirkan tampilan dan interaksi yang optimal."
+      "bio": "Fikram mengelola pengembangan dan pemeliharaan backend, menjamin sistem berjalan stabil."
+
     },
     {
       "id": 5,
