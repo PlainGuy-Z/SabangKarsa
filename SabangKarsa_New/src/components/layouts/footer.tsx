@@ -1,257 +1,137 @@
-import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
-import {
-  MapPin,
-  Phone,
-  Mail,
-  Instagram,
-  Facebook,
-  Twitter,
-} from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { Mail, MapPin, Instagram } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import "../../i18n/i18n"
+import "../../i18n/i18n";
+import "./footer.css";
 
 export function Footer() {
-  const { scrollYProgress } = useScroll();
-  const [parallaxScrollRange, setParallaxScrollRange] = useState([0, 1]);
-  const [parallaxTransformRange, setParallaxTransformRange] = useState([0, 0]);
-  const parallaxY = useTransform(scrollYProgress, parallaxScrollRange, parallaxTransformRange);
-  const [containerInView, setContainerInView] = useState(false);
-  const containerRef = useRef<HTMLElement>(null);
-  const parallaxContainerRef = useRef<HTMLDivElement>(null);
-  const { t } = useTranslation();
-
-  useEffect(() => {
-    const bodyElement = document.body;
-
-    const checkInViewState = () => {
-      const bodyScrollTop = bodyElement.scrollTop;
-      const bodyScrollBottom = bodyScrollTop + window.innerHeight;
-      const containerRect = containerRef.current?.getBoundingClientRect();
-
-      if (containerRect && (containerRect.y > bodyScrollTop && containerRect.y < bodyScrollBottom))
-        setContainerInView(true);
-    };
-
-    checkInViewState();
-
-    if (!containerInView) window.addEventListener("scroll", checkInViewState);
-
-    return () => window.removeEventListener("scroll", checkInViewState);
-  }, [containerRef, containerInView]);
-
-  useEffect(() => {
-    const getCurrentRange = () => {
-      const parallaxContainerElement = parallaxContainerRef.current;
-
-      if (parallaxContainerElement) {
-        const parallaxContainerRect = parallaxContainerElement.getBoundingClientRect();
-        const currentRangeStart = ((parallaxContainerRect.top + window.scrollY) / document.body.clientHeight);
-
-        setParallaxScrollRange([parseFloat(currentRangeStart.toFixed(2)), 1]);
-        setParallaxTransformRange([-parallaxContainerRect.height, 0]);
-      }
-    }
-      
-    getCurrentRange();
-
-    window.addEventListener("scroll", getCurrentRange);
-    window.addEventListener("resize", getCurrentRange);
-
-    return () => {
-      window.removeEventListener("scroll", getCurrentRange);
-      window.removeEventListener("resize", getCurrentRange);
-    }
-  }, [containerRef, containerInView, parallaxContainerRef])
+  const { t, i18n } = useTranslation();
+  const isEn = i18n.language === "en";
 
   return (
-    <>
-      {/* Separator Line */}
-          <div className="border-t border-border text-center"></div>
+    <footer className="sk-footer">
+      {/* Background scenery image */}
+      <div className="sk-footer-bg" aria-hidden="true">
+        <img
+          src="/assets/images/sabang-footer-sunset.png"
+          alt=""
+          loading="lazy"
+        />
+        <div className="sk-footer-bg-overlay" />
+      </div>
 
-      <footer ref={containerRef} className="bg-foreground dark:bg-background text-background dark:text-foreground py-16 px-4">
-        {containerInView && (
-          <div className="container mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+      <div className="sk-footer-inner">
+        {/* Main grid */}
+        <div className="sk-footer-grid">
+          {/* Brand column */}
+          <div className="sk-footer-brand-col">
+            <Link to="/" className="sk-footer-brand-link">
+              <img
+                src="/assets/images/SabangKarsa.png"
+                alt="SabangKarsa Logo"
+                className="sk-footer-logo"
+              />
               <div>
-                <div className="flex items-center gap-2 mb-6">
-                  <img 
-                    src="/assets/images/SabangKarsa.png" 
-
-                    alt="SabangKarsa Logo" 
-
-                    className="w-18 h-18"
-                  />
-                  <span className="text-3xl font-bold">SabangKarsa</span>
-                </div>
-                <p className="text-muted-foreground dark:text-muted-foreground mb-6 leading-relaxed">
-                  {t("footer-desc")}
-                </p>
-                <div className="flex gap-4">
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="w-10 h-10 bg-primary rounded-full flex items-center justify-center cursor-pointer"
-                  >
-                    <Instagram onClick={() => window.open("https://www.instagram.com/sabangkarsa?igsh=MWx5OThxamU2dXZwZw%3D%3D&utm_source=qr", "_blank")} className="w-5 h-5 text-primary-foreground cursor-pointer" />
-                  </motion.div>
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="w-10 h-10 bg-primary rounded-full flex items-center justify-center cursor-pointer"
-                  >
-                    <Facebook className="w-5 h-5 text-primary-foreground" />
-                  </motion.div>
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="w-10 h-10 bg-primary rounded-full flex items-center justify-center cursor-pointer"
-                  >
-                    <Twitter className="w-5 h-5 text-primary-foreground" />
-                  </motion.div>
-                </div>
+                <span className="sk-footer-brand-name">SabangKarsa</span>
+                <span className="sk-footer-brand-sub">SABANG, INDONESIA</span>
               </div>
-              <div>
-                <h3 className="text-xl font-bold mb-6 text-foreground dark:text-foreground">
-                  {t("footer-dest")}
-                </h3>
-                <ul className="space-y-3 text-muted-foreground dark:text-muted-foreground">
-                  <li>
-                    <Link
-                      to="/destinations"
-                      className="hover:text-foreground dark:hover:text-foreground transition-colors"
-                    >
-                      {t("footer-dli-1")}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/destinations"
-                      className="hover:text-foreground dark:hover:text-foreground transition-colors"
-                    >
-                      {t("footer-dli-2")}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/destinations"
-                      className="hover:text-foreground dark:hover:text-foreground transition-colors"
-                    >
-                      {t("footer-dli-3")}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/destinations"
-                      className="hover:text-foreground dark:hover:text-foreground transition-colors"
-                    >
-                      {t("footer-dli-4")}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/destinations"
-                      className="hover:text-foreground dark:hover:text-foreground transition-colors"
-                    >
-                      {t("footer-dli-5")}
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-bold mb-6 text-foreground dark:text-foreground">
-                  {t("footer-services")}
-                </h3>
-                <ul className="space-y-3 text-muted-foreground dark:text-muted-foreground">
-                  <li>
-                    <Link
-                      to="/destinations"
-                      className="hover:text-foreground dark:hover:text-foreground transition-colors"
-                    >
-                      {t("footer-sli-1")}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/layanan/penginapan"
-                      className="hover:text-foreground dark:hover:text-foreground transition-colors"
-                    >
-                      {t("footer-sli-2")}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/layanan/rental"
-                      className="hover:text-foreground dark:hover:text-foreground transition-colors"
-                    >
-                      {t("footer-sli-3")}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/layanan/tourguide"
-                      className="hover:text-foreground dark:hover:text-foreground transition-colors"
-                    >
-                      {t("footer-sli-4")}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/informations"
-                      className="hover:text-foreground dark:hover:text-foreground transition-colors"
-                    >
-                      {t("footer-sli-5")}
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-bold mb-6 text-foreground dark:text-foreground">
-                  {t("footer-contact")}
-                </h3>
-                <ul className="space-y-3 text-muted-foreground dark:text-muted-foreground">
-                  <li className="flex items-center gap-3">
-                    <Phone className="w-4 h-4" />
-                    <span>+62 812 3456 7890</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <Mail className="w-4 h-4" />
-                    <span>sabangkarsa@gmail.com</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <MapPin className="w-4 h-4" />
-                    <span>Sabang, Aceh, Indonesia</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-
-            {/* Parallax SABANGKARSA - Behind Footer Effect */}
-            <div ref={parallaxContainerRef} className="relative overflow-hidden py-4 sm:py-8 md:py-16 border-t border-border">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
-                  className="text-[14vw] md:text-9xl lg:text-[14vw] xl:text-[12rem] font-black text-foreground/10 dark:text-foreground/20 whitespace-nowrap select-none"
-                  style={{
-                    y: parallaxY,
-                  }}
-                >
-                  SABANGKARSA
-                </motion.div>
-              </div>
-              {/* Gradient overlay to create behind effect */}
-              <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/60 to-background/90 pointer-events-none"></div>
-              <div className="relative z-10 h-32"></div>
-            </div>
-
-            <div className="border-t border-border pt-8 text-center">
-              <p className="text-muted-foreground dark:text-muted-foreground">
-                ©2026 SabangKarsa. All rights reserved.
-              </p>
+            </Link>
+            <p className="sk-footer-tagline">{t("footer-desc")}</p>
+            <div className="sk-footer-socials">
+              <a
+                href="https://www.instagram.com/sabangkarsa?igsh=MWx5OThxamU2dXZwZw%3D%3D&utm_source=qr"
+                target="_blank"
+                rel="noreferrer"
+                className="sk-footer-social-icon"
+                aria-label="Instagram SabangKarsa"
+              >
+                <Instagram size={20} />
+              </a>
             </div>
           </div>
-        )}
-      </footer>
-    </>
+
+          {/* Jelajahi column */}
+          <div className="sk-footer-nav-col">
+            <h3 className="sk-footer-nav-heading">
+              {isEn ? "Explore" : "Jelajahi"}
+            </h3>
+            <ul className="sk-footer-nav-list">
+              <li>
+                <Link to="/destinations">
+                  {isEn ? "Destinations" : "Destinasi"}
+                </Link>
+              </li>
+              <li>
+                <Link to="/informations">
+                  {isEn ? "Travel Information" : "Informasi wisata"}
+                </Link>
+              </li>
+              <li>
+                <Link to="/about">
+                  {isEn ? "About Us" : "Tentang kami"}
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Layanan column */}
+          <div className="sk-footer-nav-col">
+            <h3 className="sk-footer-nav-heading">{t("footer-services")}</h3>
+            <ul className="sk-footer-nav-list">
+              <li>
+                <Link to="/layanan/penginapan">
+                  {isEn ? "Accommodation" : "Penginapan"}
+                </Link>
+              </li>
+              <li>
+                <Link to="/layanan/rental">
+                  {isEn ? "Vehicle Rental" : "Rental kendaraan"}
+                </Link>
+              </li>
+              <li>
+                <Link to="/layanan/tourguide">
+                  {isEn ? "Local Guide" : "Pemandu lokal"}
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Hubungi kami column */}
+          <div className="sk-footer-nav-col">
+            <h3 className="sk-footer-nav-heading">
+              {isEn ? "Contact Us" : "Hubungi kami"}
+            </h3>
+            <ul className="sk-footer-contact-list">
+              <li>
+                <Mail size={16} aria-hidden="true" />
+                <span>sabangkarsa@gmail.com</span>
+              </li>
+              <li>
+                <MapPin size={16} aria-hidden="true" />
+                <span>Sabang, Aceh, Indonesia</span>
+              </li>
+              <li>
+                <Instagram size={16} aria-hidden="true" />
+                <a
+                  href="https://www.instagram.com/sabangkarsa?igsh=MWx5OThxamU2dXZwZw%3D%3D&utm_source=qr"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Instagram
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="sk-footer-bottom">
+          <p>
+            © {new Date().getFullYear()} SabangKarsa.{" "}
+            {isEn ? "All rights reserved." : "Semua hak dilindungi."}
+          </p>
+        </div>
+      </div>
+    </footer>
   );
 }

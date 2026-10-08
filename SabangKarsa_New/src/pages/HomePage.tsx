@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, BedDouble, CarFront, MapPin, Pause, Play, Star, UsersRound } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Navbar } from "@/components/layouts/navbar";
+import { Footer } from "@/components/layouts/footer";
 import destinations from "@/data/destinations.json";
 import "./home.css";
 
@@ -177,19 +178,7 @@ export function HomePage() {
           </div>
         </section>
       </main>
-      <footer className="sk-home-footer">
-        <div className="sk-container">
-          <div className="sk-footer-top">
-            <div><Link to="/" className="sk-footer-brand">SabangKarsa</Link><p>{c.footerLine}</p></div>
-            <nav aria-label={english ? "Footer navigation" : "Navigasi penutup"}>
-              <Link to="/about">{c.about}</Link>
-              <Link to="/informations">{c.information}</Link>
-              <a href="https://www.instagram.com/sabangkarsa" target="_blank" rel="noreferrer">{c.instagram}<ArrowUpRight size={16} aria-hidden="true" /></a>
-            </nav>
-          </div>
-          <div className="sk-footer-bottom"><span>© {new Date().getFullYear()} SabangKarsa</span><span>Sabang, Aceh, Indonesia</span><span>{c.footerSmall}</span></div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
