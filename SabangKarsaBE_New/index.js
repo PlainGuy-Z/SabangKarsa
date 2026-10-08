@@ -6,12 +6,6 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./swagger/swagger");
 dotenv.config();
 
-// Custom DNS Servers (Google DNS & Cloudflare DNS)
-if (process.env.NODE_ENV !== "production") {
-  const dns = require("node:dns");
-  dns.setServers(["8.8.8.8", "1.1.1.1"]);
-}
-
 const authRoutes = require("./routes/authRoutes");
 const rentalRoutes = require("./routes/rentalRoutes");
 const bookingRentalRoutes = require("./routes/bookingRentalRoutes");
@@ -139,7 +133,8 @@ app.get("/", (req, res) => {
 
 app.get("/health", (req, res) => {
   res.status(200).json({
-    status: "ok",
+    status: mongoose.connection.readyState === 1 ? "ok" : "degraded",
+    database: mongoose.connection.readyState === 1 ? "connected" : "disconnected",
     message: "SabangKarsa API is running"
   });
 });
@@ -157,18 +152,22 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 3001;
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("✅ MongoDB connected");
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
-    app.listen(PORT, "0.0.0.0", () => {
-      console.log(`🚀 Server running on port ${PORT}`);
-    });
-  })
-  .catch((err) => {
-    console.error("❌ MongoDB connection error:", err);
-    process.exit(1);
-  });
+const connectMongo = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, { serverSelectionTimeoutMS: 10000 });
+    console.log("MongoDB connected");
+  } catch (err) {
+    console.error("MongoDB connection error:", err);
+    const retry = setTimeout(connectMongo, 15000);
+    retry.unref();
+  }
+};
+
+connectMongo();
 
 
 
