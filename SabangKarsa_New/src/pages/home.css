@@ -5,8 +5,8 @@
 .sk-home :is(#services, #destinations) { scroll-margin-top: 120px; }
 .sk-home .sk-skip { position: fixed; top: 12px; left: 20px; z-index: 100; background: #fff; color: #213e36; padding: 14px 22px; border-radius: 8px; transform: translateY(-180%); }
 .sk-home .sk-skip:focus { transform: translateY(0); }
-.sk-hero { --sk-hero-shade: linear-gradient(90deg, #05384fc9 0%, #07536c7d 43%, #5bb6c30d 78%), linear-gradient(0deg, #053b4d9c 0%, transparent 42%, #07394b33 100%); --sk-shortcut-bg: #f5faf0d1; --sk-shortcut-ink: #104d59; --sk-shortcut-muted: #49676d; --sk-shortcut-line: #155c6a33; --sk-shortcut-icon: #0d8694; --sk-shortcut-hover: #e4f1edcc; min-height: 660px; height: min(850px, 100svh); position: relative; display: flex; flex-direction: column; justify-content: center; color: #fff; background: #0b5670 url('/assets/images/sabang-dolphins-hero.png') center / cover no-repeat; }
-.dark .sk-hero { --sk-hero-shade: linear-gradient(90deg, #001522e8 0%, #00273bb5 43%, #00263940 78%), linear-gradient(0deg, #001622e8 0%, transparent 42%, #00172466 100%); --sk-shortcut-bg: #001d2abb; --sk-shortcut-ink: #f5f8f6; --sk-shortcut-muted: #b4c8cf; --sk-shortcut-line: #a6c7c54d; --sk-shortcut-icon: #5cd3d5; --sk-shortcut-hover: #0a586075; background-color: var(--background); }
+.sk-hero { --sk-hero-shade: linear-gradient(90deg, #05384fc9 0%, #07536c7d 43%, #5bb6c30d 78%), linear-gradient(0deg, #053b4d9c 0%, transparent 42%, #07394b33 100%); --sk-shortcut-bg: #f5faf0a8; --sk-shortcut-ink: #104d59; --sk-shortcut-muted: #49676d; --sk-shortcut-line: #155c6a33; --sk-shortcut-icon: #0d8694; --sk-shortcut-hover: #e4f1edcc; min-height: 660px; height: min(850px, 100svh); position: relative; display: flex; flex-direction: column; justify-content: center; color: #fff; background: #0b5670 url('/assets/images/sabang-dolphins-hero.webp') center / cover no-repeat; }
+.dark .sk-hero { --sk-hero-shade: linear-gradient(90deg, #001522e8 0%, #00273bb5 43%, #00263940 78%), linear-gradient(0deg, #001622e8 0%, transparent 42%, #00172466 100%); --sk-shortcut-bg: #001d2a8f; --sk-shortcut-ink: #f5f8f6; --sk-shortcut-muted: #b4c8cf; --sk-shortcut-line: #a6c7c54d; --sk-shortcut-icon: #5cd3d5; --sk-shortcut-hover: #0a586075; background-color: var(--background); }
 .sk-hero-video, .sk-hero-shade { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .sk-hero-shade { background: linear-gradient(180deg, transparent 78%, var(--sk-paper) 100%), var(--sk-hero-shade); pointer-events: none; }
 .sk-hero-content { position: relative; padding-top: 85px; padding-bottom: 105px; display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
@@ -16,15 +16,16 @@
 .sk-hero h1 em { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; letter-spacing: -3.3px; }
 .sk-hero-intro { max-width: 570px; font-size: clamp(17px, 1.6vw, 21px); line-height: 1.6; color: #f0f2ed; }
 .sk-hero-links { display: flex; align-items: center; gap: 30px; margin-top: 34px; }
-.sk-home .sk-button { min-height: 54px; display: inline-flex; align-items: center; justify-content: space-between; gap: 26px; padding: 15px 23px; border-radius: 6px; font-size: 13px; font-weight: 650; transition: background-color 180ms ease, transform 180ms ease; }
-.sk-home .sk-button--white { background: #f7f4edd1; color: #075568; backdrop-filter: blur(4px); }
-.dark .sk-home .sk-button--white { background: #e9f2eebb; color: #073d4d; }
-.sk-home .sk-button--white:hover { background: #f7f4ede8; }
-.dark .sk-home .sk-button--white:hover { background: #e9f2eed6; }
-.sk-home .sk-button:hover { background: #eef6f7; transform: translateY(-2px); }
+.sk-home .sk-button { min-height: 54px; display: inline-flex; align-items: center; justify-content: space-between; gap: 26px; padding: 15px 23px; border-radius: 999px; font-size: 13px; font-weight: 650; transition: background-color 180ms ease, transform 180ms ease; }
+.sk-home .sk-button--white { background: #f7f4eda8; color: #075568; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.dark .sk-home .sk-button--white { background: #e9f2ee96; color: #073d4d; }
+.sk-home .sk-button--white:hover { background: #f7f4edc2; }
+.dark .sk-home .sk-button--white:hover { background: #e9f2eeb5; }
+.sk-home .sk-button:hover { transform: translateY(-2px); }
+.sk-home .sk-button--outline:hover { background: #eef6f7; }
 .sk-hero-discover { font-size: 13px; display: inline-flex; align-items: center; gap: 17px; min-height: 48px; border-bottom: 1px solid #ffffff80; }
 .sk-hero-bottom { position: absolute; bottom: 30px; left: 0; right: 0; }
-.sk-hero-shortcuts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--sk-shortcut-line); border-radius: 13px; background: var(--sk-shortcut-bg); backdrop-filter: blur(4px); overflow: hidden; }
+.sk-hero-shortcuts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--sk-shortcut-line); border-radius: 28px; background: var(--sk-shortcut-bg); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); overflow: hidden; }
 .sk-hero-shortcut { display: flex; align-items: center; gap: 24px; min-width: 0; min-height: 90px; padding: 17px 30px; color: var(--sk-shortcut-ink); transition: background-color 180ms ease; }
 .sk-hero-shortcut + .sk-hero-shortcut { border-left: 1px solid var(--sk-shortcut-line); }
 .sk-hero-shortcut:hover { background: var(--sk-shortcut-hover); }
@@ -64,7 +65,7 @@
 .sk-text-link:hover { border-color: currentColor; }
 .sk-home-footer { --sk-footer-bg: #e8f0e9; --sk-footer-entry: #edf3ea; --sk-footer-fade: #e8f0e9ef; --sk-footer-ink: #123e3a; --sk-footer-muted: #4f6e67; --sk-footer-rule: #577d724d; --sk-footer-contour: #568f8352; position: relative; isolation: isolate; overflow: hidden; padding-top: 175px; background: radial-gradient(ellipse 380px 300px at 30% 0%, transparent 89%, var(--sk-footer-contour) 89.3%, transparent 89.7%), radial-gradient(ellipse 430px 350px at 30% 0%, transparent 89%, var(--sk-footer-contour) 89.3%, transparent 89.7%), linear-gradient(180deg, var(--sk-footer-entry), var(--sk-footer-bg) 85px); color: var(--sk-footer-ink); }
 .dark .sk-home-footer { --sk-footer-bg: var(--background); --sk-footer-entry: var(--background); --sk-footer-fade: var(--background); --sk-footer-ink: #f6f2e9; --sk-footer-muted: #afc6c2; --sk-footer-rule: #c0d6cf30; --sk-footer-contour: #12635b40; }
-.sk-home-footer::before { content: ""; position: absolute; z-index: 0; top: 0; right: 0; width: 50%; height: 330px; background: linear-gradient(180deg, var(--sk-footer-entry) 0%, transparent 22%), linear-gradient(90deg, var(--sk-footer-bg) 0%, var(--sk-footer-fade) 12%, transparent 42%), linear-gradient(0deg, var(--sk-footer-bg) 0%, transparent 70%), linear-gradient(0deg, transparent 35%, #032b2b70 100%), url('/assets/images/sabang-footer-sunset.png') right 48% / cover no-repeat; }
+.sk-home-footer::before { content: ""; position: absolute; z-index: 0; top: 0; right: 0; width: 50%; height: 330px; background: linear-gradient(180deg, var(--sk-footer-entry) 0%, transparent 22%), linear-gradient(90deg, var(--sk-footer-bg) 0%, var(--sk-footer-fade) 12%, transparent 42%), linear-gradient(0deg, var(--sk-footer-bg) 0%, transparent 70%), linear-gradient(0deg, transparent 35%, #032b2b70 100%), url('/assets/images/sabang-footer-sunset.webp') right 48% / cover no-repeat; }
 .sk-home-footer::after { content: ""; position: absolute; z-index: 0; top: 145px; left: 0; right: 0; border-top: 1px solid var(--sk-footer-rule); pointer-events: none; }
 .sk-home-footer .sk-container { position: relative; z-index: 1; }
 .sk-footer-top { padding: 0 16px 22px; }

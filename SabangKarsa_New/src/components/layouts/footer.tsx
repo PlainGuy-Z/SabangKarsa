@@ -13,7 +13,7 @@ export function Footer() {
       {/* Background scenery image */}
       <div className="sk-footer-bg" aria-hidden="true">
         <img
-          src="/assets/images/sabang-footer-sunset.png"
+          src="/assets/images/sabang-footer-sunset.webp"
           alt=""
           loading="lazy"
         />

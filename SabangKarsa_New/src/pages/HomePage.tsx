@@ -6,6 +6,7 @@ import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import destinations from "@/data/destinations.json";
 import "./home.css";
+import "./home-image-preview.css";
 
 const copy = {
   id: {
@@ -99,7 +100,7 @@ export function HomePage() {
       <Navbar />
       <main id="main-content" tabIndex={-1}>
         <section className="sk-hero" id="home" aria-labelledby="sk-hero-title">
-          <video ref={videoRef} className="sk-hero-video" autoPlay={!reducedMotion} loop muted playsInline preload="metadata" poster="/assets/images/sabang-dolphins-hero.png" aria-hidden="true" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}>
+          <video ref={videoRef} className="sk-hero-video" autoPlay={!reducedMotion} loop muted playsInline preload="metadata" poster="/assets/images/sabang-dolphins-hero.webp" aria-hidden="true" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}>
             <source src="/video/videobg.webm" type="video/webm" />
             <source src="/video/videobg.mp4" type="video/mp4" />
           </video>
@@ -165,7 +166,17 @@ export function HomePage() {
           <p className="sk-eyebrow sk-plan-label">03 / {c.planLabel}</p>
           <div className="sk-plan-heading"><h2 id="sk-plan-title">{c.planTitle}</h2><p>{c.planIntro}</p></div>
           <div className="sk-plan-visual">
-            <img src="/assets/images/sabang-journey-sunset.png" alt={english ? "Sunset over the sea seen from a wooden boat near a tropical island" : "Senja di laut dilihat dari perahu kayu dekat pulau tropis"} loading="lazy" width="1024" height="1536" />
+            <img
+              src="/assets/images/sabang-journey-sunset.webp"
+              srcSet="/assets/images/sabang-journey-sunset-640.webp 640w, /assets/images/sabang-journey-sunset.webp 1024w"
+              sizes="(max-width: 760px) 100vw, (max-width: 1100px) 40vw, 38vw"
+              alt={english ? "Sunset over the sea seen from a wooden boat near a tropical island" : "Senja di laut dilihat dari perahu kayu dekat pulau tropis"}
+              loading="eager"
+              fetchPriority="low"
+              decoding="async"
+              width="1024"
+              height="1536"
+            />
             <p className="sk-plan-location"><MapPin size={15} aria-hidden="true" />SABANG, INDONESIA</p>
           </div>
           <div className="sk-plan-content">
