@@ -1,20 +1,17 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/theme-toogle";
 import { Eye, EyeOff, Mail, Lock} from "lucide-react";
-import type { UserData } from '@/types/userData';
 import { useTranslation } from "react-i18next";
 import "../../i18n/i18n";
 import { API_URL } from "@/lib/api";
+import { completeSignIn, SessionError } from "@/lib/session";
 
 export function LoginPage() {
   const navigate = useNavigate();
-  const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
-  
-  if (userData.id) {
-    navigate(-1);
-  }
+  const [searchParams] = useSearchParams();
+  const { t } = useTranslation();
 
   const [showPassword, setShowPassword] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -24,8 +21,9 @@ export function LoginPage() {
     password: "",
   });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const { t } = useTranslation();
+  const [error, setError] = useState<string | null>(() =>
+    searchParams.get("reason") === "session-expired" ? t("auth-session-expired") : null
+  );
 
   // Mouse tracking for parallax effect
   useEffect(() => {
@@ -68,14 +66,15 @@ export function LoginPage() {
       const result = await response.json();
 
       if (response.ok && result.user) {
-        localStorage.setItem("user", JSON.stringify(result.user));
-        navigate("/", { replace: true });
-        window.location.reload();
+        await completeSignIn(result.user);
+        window.location.replace("/");
       } else {
         setError(result.error || t("login-error"));
       }
-    } catch (err) {
-      setError(t("login-err-msg"));
+    } catch (error) {
+      setError(error instanceof SessionError
+        ? t(error.status === "unauthenticated" ? "auth-session-missing" : "auth-session-unavailable")
+        : t("login-err-msg"));
     } finally {
       setLoading(false);
     }

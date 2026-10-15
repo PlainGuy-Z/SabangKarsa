@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from 'react-router-dom';
 import type { UserData } from '@/types/userData';
 import type { EditData } from '@/pages/layanan/dashboard/DashboardPage';
+import { API_URL } from '@/lib/api';
 import "../../i18n/i18n"
 
 interface RentalData {
@@ -98,7 +99,7 @@ export default function RentalForm({ user, setActiveForm, editData, setter }: Re
       form.append('namaPenyedia', user.name);
       form.append('no_telepon', rentalData.no_telepon);
 
-      const apiUrl = import.meta.env.VITE_API_URL;
+      const apiUrl = API_URL;
       if (newEditData) {
         // Update data (PUT)
         await fetch(`${apiUrl}/rental/${newEditData._id}`, {

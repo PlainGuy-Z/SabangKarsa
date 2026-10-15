@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from 'react-router-dom';
 import type { UserData } from '@/types/userData';
 import type { EditData } from '@/pages/layanan/dashboard/DashboardPage';
+import { API_URL } from '@/lib/api';
 import "../../i18n/i18n"
 
 interface TourGuideData {
@@ -98,7 +99,7 @@ export default function TourGuideForm({ user, setActiveForm, editData, setter }:
       });
       form.append('penyedia', user.id); // auto-set penyedia
 
-      const apiUrl = import.meta.env.VITE_API_URL;
+      const apiUrl = API_URL;
       if (newEditData) {
         await fetch(`${apiUrl}/tourguides/${newEditData._id}`, {
           method: 'PUT',

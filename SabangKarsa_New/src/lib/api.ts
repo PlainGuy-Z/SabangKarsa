@@ -1,13 +1,7 @@
-/**
- * Centralized API configuration.
- * Memastikan base URL selalu memiliki prefix '/api' secara konsisten.
- * 
- * Contoh:
- * - https://sabangkarsa-production-3793.up.railway.app -> https://sabangkarsa-production-3793.up.railway.app/api
- * - https://sabangkarsa-production-3793.up.railway.app/api -> https://sabangkarsa-production-3793.up.railway.app/api
- * - http://localhost:3001 -> http://localhost:3001/api
- */
+// Production requests go through the website's /api proxy so session cookies
+// stay on the same origin, even if an old VITE_API_URL is configured in Vercel.
 const getBaseApiUrl = (): string => {
+  if (import.meta.env.PROD) return "/api";
   const envUrl = (import.meta.env.VITE_API_URL || "http://localhost:3001").trim().replace(/\/+$/, "");
   return envUrl.endsWith("/api") ? envUrl : `${envUrl}/api`;
 };

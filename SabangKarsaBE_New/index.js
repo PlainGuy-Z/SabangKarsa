@@ -71,6 +71,7 @@ const globalLimiter = rateLimit({
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 10,
+  skipSuccessfulRequests: true,
   message: { error: 'Terlalu banyak percobaan login, coba lagi dalam 15 menit' }
 });
 

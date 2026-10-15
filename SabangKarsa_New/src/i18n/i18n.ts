@@ -136,6 +136,10 @@ i18n.use(initReactI18next).init({
 
                 "login-err-msg": "An error occurred during login",
                 "login-error": "Log in failed",
+                "auth-session-expired": "Your session has expired. Please log in again.",
+                "auth-session-missing": "Your login session could not be saved. Please try logging in again.",
+                "auth-session-unavailable": "The login service is temporarily unavailable. Please wait a moment and try again.",
+                "reg-session-unavailable": "Your account was created, but the login session could not be confirmed. Please use the login page instead of registering again.",
                 "login-welcome": "Welcome to",
                 "login-line": "Explore the beauty of Sabang with integrated services for destinations, accommodations, and transportation.", 
                 "login-header": "Log in to SabangKarsa",
@@ -972,6 +976,10 @@ i18n.use(initReactI18next).init({
 
                 "login-err-msg": "Terjadi kesalahan saat masuk",
                 "login-error": "Gagal masuk",
+                "auth-session-expired": "Sesi Anda telah berakhir. Silakan masuk kembali.",
+                "auth-session-missing": "Sesi masuk tidak dapat disimpan. Silakan coba masuk kembali.",
+                "auth-session-unavailable": "Layanan masuk sementara tidak tersedia. Tunggu sebentar lalu coba lagi.",
+                "reg-session-unavailable": "Akun Anda berhasil dibuat, tetapi sesi masuk belum dapat dipastikan. Silakan gunakan halaman masuk, tanpa mendaftar ulang.",
                 "login-welcome": "Selamat Datang di",
                 "login-line": "Jelajahi keindahan Sabang dengan layanan terpadu untuk destinasi wisata, penginapan, dan transportasi.",
                 "login-header": "Masuk ke SabangKarsa",

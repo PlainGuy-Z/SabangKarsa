@@ -3,18 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/theme-toogle";
 import { Eye, EyeOff, Mail, Lock, User, Phone, MapIcon } from "lucide-react";
-import type { UserData } from '@/types/userData';
 import { useTranslation } from "react-i18next";
 import "../../i18n/i18n";
 import { API_URL } from "@/lib/api";
+import { completeSignIn, SessionError } from "@/lib/session";
 
 export function RegisterPage() {
   const navigate = useNavigate();
-  const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
-  
-  if (userData.id) {
-    navigate(-1);
-  }
   
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -80,7 +75,9 @@ export function RegisterPage() {
 
     try {
       // Remove confirmPassword from data sent to API
-      const { confirmPassword, ...dataToSend } = formData;
+      const dataToSend = Object.fromEntries(
+        Object.entries(formData).filter(([key]) => key !== "confirmPassword")
+      );
 
       const response = await fetch(`${API_URL}/auth/register`, {
         method: "POST",
@@ -93,14 +90,13 @@ export function RegisterPage() {
       const result = await response.json();
 
       if (response.ok && result.user) {
-        localStorage.setItem("user", JSON.stringify(result.user));
-        navigate("/", { replace: true });
-        window.location.reload();
+        await completeSignIn(result.user);
+        window.location.replace("/");
       } else {
         setError(result.error || t("reg-error"));
       }
-    } catch (err) {
-      setError(t("reg-err-msg"));
+    } catch (error) {
+      setError(error instanceof SessionError ? t("reg-session-unavailable") : t("reg-err-msg"));
     } finally {
       setLoading(false);
     }

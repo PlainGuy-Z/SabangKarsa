@@ -30,22 +30,10 @@ import BookingTourguidePage from "./pages/layanan/booking/BookingTourguidePage";
 import PemesananPage from "./pages/layanan/pemesanan/PemesananPage";
 import PesananPage from "./pages/layanan/pemesanan/PesananPage";
 import { NotFound } from "./pages/NotFound";
-import axios, { AxiosError } from "axios";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import { API_URL } from "./lib/api";
+import { restoreSession } from "./lib/session";
 import { useEffect } from "react";
-
-interface TokenRes {
-  active: boolean;
-  token: string;
-  data: {
-    id: string;
-    role: string;
-    iat: number;
-    exp: number;
-  }
-}
 
 function App() {
   if (localStorage.getItem("language") === null) localStorage.setItem("language", "ID");
@@ -55,31 +43,9 @@ function App() {
   }));
   
   useEffect(() => {
-    const user = localStorage.getItem("user");
-
-    if (user) {
-      const checkToken = async () => {
-        try {
-          const response = await axios.get<TokenRes>(`${API_URL}/token`, {
-            withCredentials: true
-          });
-          
-          if (!response.data.active) {
-            localStorage.removeItem("user");
-            localStorage.removeItem("chatbot");
-            window.location.href = "/";
-          }
-        }
-        catch (error) {
-          const err = error as AxiosError;
-          console.error(err);
-          localStorage.removeItem("user");
-          localStorage.removeItem("chatbot");
-          window.location.href = "/";
-        }
-      }
-      checkToken();
-    }
+    const controller = new AbortController();
+    void restoreSession(controller.signal);
+    return () => controller.abort();
   }, []);
 
   return (
